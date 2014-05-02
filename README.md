@@ -1,4 +1,3 @@
-
 jfac
 ====
 Repositorio con módulos y configuración de jfac.
@@ -17,7 +16,7 @@ Requerimientos:
 ====
 Este es un módulo php que sirve de puente entre la extensión JFac y la Base de datos del servidor
 
-2. JFacWeb
+3. JFacWeb
 Este es un módulo php que usa el framework codeigniter 2.1.4 en donde se presenta el proyecto al cliente
 
 4. JFacRecuros
