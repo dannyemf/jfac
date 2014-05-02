@@ -1,0 +1,9 @@
+-- Exportar a xpi --
+A la hora de exportar a xpi da un error de Null Pointer Exception, debido a que no se guarda un par de propiedades del proyecto.
+Despues de bajar JFac de git seguir los siguientes pasos para poder exportar a xpi:
+
+- Clonar el proyecto JFAC
+- Hacer click derecho sobre el proyecto y seleccionar propiedades
+- Ubicarse en el item Xul Project
+- Rellenar el campo XulSourceFolder: srcExtension y en XulMasterLanguage: es-EC
+- Listo con ello ya se puede exportar a xpi
