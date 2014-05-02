@@ -1,0 +1,52 @@
+.total{
+		width:21.1cm;
+		height:30cm;   
+		margin-top:0.4cm;
+		margin-left:0.4cm;
+		margin-right:1cm;
+		margin-bottom:0.1cm;
+		background-color:#99CFFF;
+}
+.cabecera{
+		height:4cm;
+		margin-top:0.4cm;
+		margin-left:0.4cm;
+		margin-right:1.6cm;
+		margin-bottom:0cm;
+		background-color:#0066CC;
+}
+.datosventa{ 
+		height:2.1cm;
+		margin-top:0cm;
+		margin-left:2.5cm;
+		margin-right:1cm;
+		margin-bottom:0cm;
+		background-color:#0066CC;
+}					
+.venta{
+font-size-adjust:inherit;
+	font:Arial;
+	font-size:13px;
+}
+.i{
+	height:1.2cm;
+	margin-top:0cm;
+		margin-left:0.4cm;
+		margin-right:1cm;
+		margin-bottom:0cm;
+		background-color:#00FFFF;
+}
+.cuerpo{  
+height:22.7cm;
+margin-top:0cm;
+		margin-left:0.1cm;
+		margin-right:1cm;
+		margin-bottom:0cm;
+		background-color:#0066CC;
+	
+}
+.piepagina{
+} 
+body{
+	  
+}

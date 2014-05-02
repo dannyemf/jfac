@@ -1,0 +1,79 @@
+/*Clase propias de Dialog*/
+.dialog-button{
+	-moz-appearance:none;
+	color: yellow;
+	font:bold;
+	border: none;
+	background-color: #518ed4;	
+	font-size: 12px; 
+	height: 20px;
+	font-weight: 700;
+	font-family: tahoma, Verdana, Arial, Helvetica, sans-serif;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-topright: 6px;
+	-moz-border-radius-bottomright: 6px;
+}
+
+.header-large{
+	-moz-appearance:none;
+	color: yellow;
+	list-style-image: url("images/agenda-vehiculo.png");
+}
+
+/*CLases Creadas*/
+.fondoDialog{
+	background-color: #eef5fb;	
+	background-repeat: repeat-y;
+}
+
+.labelDialog{
+	color: #938b4e; 
+	font-size: 11px;
+	font-weight: 700;
+	font-family: tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+groupbox.dialog {
+  -moz-appearance:none;
+  margin: 15px;
+  border: 1px solid;
+  border-color: #938b4e;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+	
+}
+
+input.validate{		
+	color: #deedf7;
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400;
+	border : none;
+		margin : 2px 6px;
+		background-color: #518ed4;
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-bottomleft: 5px;
+		-moz-border-radius-topright: 5px;
+		-moz-border-radius-bottomright: 5px;			 
+		padding-right: 5px
+}
+
+.btnImprimir{
+	-moz-appearance:none;	
+	border: hidden;
+	max-height:40px; min-height:40px; max-width: 40px; min-width: 40px;
+	background-color: transparent;
+	list-style-image: url("images/btn-imprimir.png");
+	}
+
+.btnBuscar{
+	-moz-appearance:none;	
+	border: hidden;
+	max-width: 20px;
+	min-width: 20px;
+	background-color: transparent;
+	list-style-image: url("images/btn-examinar.png");
+	}

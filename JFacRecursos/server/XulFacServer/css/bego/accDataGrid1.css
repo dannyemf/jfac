@@ -1,0 +1,85 @@
+ 
+
+.llistaDades {
+	background: #EFEBDE;
+	font-size: 11px;
+	}
+
+.llistaDades .opcions {
+	background: #fff;
+	padding: 6px;
+	color: #CFC9B5;
+	}
+
+.llistaDades .opcions a {
+	margin-right: 15px;
+	}
+
+.llistaDades .opcions .pageSelected {
+	padding: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin: 3px;
+	border: 1px #CFC9B5 solid;
+	color: #CFC9B5;
+	text-decoration: none;
+
+	background: #EFEBDE;
+	font-weight: bold;
+	}
+
+.llistaDades .opcions .page {
+	padding: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin: 3px;
+	border: 1px #CFC9B5 solid;
+	text-decoration: none;
+	color: #CFC9B5;
+	}
+
+
+.llistaDades th {
+	border-top: 1px #CFC9B5 solid;
+	border-bottom: 1px #CFC9B5 solid;
+	font-weight: bold;
+	text-align: left;
+	padding-left: 30px;
+	padding-right: 30px;
+	}
+
+.llistaDades th a {
+	text-decoration: none;
+	}
+
+.llistaDades th .aHead {
+	
+	}
+
+.llistaDades th .aHeadASC {
+	}
+
+.llistaDades th .aHeadDESC {
+	}
+
+.aHeaderASC:after {
+	color: #CFC9B5;
+	margin-left: 5px;
+	font-size: 10px;
+	content: "Az";
+	}
+
+.aHeaderDESC:after {
+	color: #CFC9B5;
+	margin-left: 5px;
+	font-size: 10px;
+	content: "zA";
+	}
+
+.llistaDades td {
+	border-bottom: 1px #CFC9B5 solid;
+	text-align: left;
+	padding-left: 5px;
+	font-family: verdana;
+	}
+

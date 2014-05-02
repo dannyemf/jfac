@@ -1,0 +1,245 @@
+/*
+ * @archivo    controles.css
+ * @empresa    DeltaSystems Cia. Ltda.
+ * @autor      Johnny H. Sanchez L.
+ * @email      jsanchez@lahora.com.ec
+ * @fecha      2008-04-18 22:32:19
+ */
+
+
+dmos_test
+{
+  -moz-binding: url("chrome://begoro/content/xml/dmos_test.xml#dmos_test");
+}
+
+
+edittree
+{
+  -moz-binding: url("chrome://begoro/content/xml/edittree.xml#edittree");
+}
+/*  -moz-user-focus: normal !important;
+  -moz-user-select: text;
+}
+
+textbox {
+  min-height: 1.8em;
+  -moz-user-focus: normal !important;
+  -moz-user-select: text !important;
+}
+
+edittree[editing] > treechildren:-moz-tree-row(selected)
+{
+  background-color: transparent;
+  border: none;
+}
+*/
+
+/*
+ * db
+ */
+db_preventa_item {
+   -moz-binding: url(chrome://begoro/content/xml/db_preventa_item.xml#db_preventa_item);
+}
+
+ 
+/*
+ * db
+ */
+dbinputsujeto {
+   -moz-binding: url(chrome://begoro/content/xml/dbinputsujeto.xml#dbinputsujeto);
+}
+dbinputarticulo {
+   -moz-binding: url(chrome://begoro/content/xml/dbinputarticulo.xml#dbinputarticulo);
+}
+dbsujeto {
+   -moz-binding: url(chrome://begoro/content/xml/dbsujeto.xml#dbsujeto);
+}
+
+dbarticulo {
+   -moz-binding: url(chrome://begoro/content/xml/dbarticulo.xml#dbarticulo);
+}
+
+dbfoto {
+   -moz-binding: url(chrome://begoro/content/xml/dbfoto.xml#dbfoto);
+}
+
+dbtabtitle {
+   -moz-binding: url(chrome://begoro/content/xml/dbtabtitle.xml#dbtabtitle);
+}
+
+basebrowse {
+   -moz-binding: url(chrome://begoro/content/xml/basebrowse.xml#basebrowse);
+}
+
+dbbrowse {
+   -moz-binding: url(chrome://begoro/content/xml/basebrowse.xml#dbbrowse);
+}
+
+dbbrowsefac {
+   -moz-binding: url(chrome://begoro/content/xml/basebrowse.xml#dbbrowsefac);
+}
+
+dbcuotas {
+   -moz-binding: url(chrome://begoro/content/xml/dbcuotas.xml#dbcuotas);
+}
+dbtabtitle {
+   -moz-binding: url(chrome://begoro/content/xml/dbtabtitle.xml#dbtabtitle);
+}
+
+dbtabs {
+   -moz-binding: url(chrome://begoro/content/xml/dbtabs.xml#dbtabs);
+}
+
+boxtoolbar {
+   -moz-binding: url(chrome://begoro/content/xml/boxtoolbar.xml#boxtoolbar);
+}
+
+boxbottomtoolbar {
+   -moz-binding: url(chrome://begoro/content/xml/boxbottomtoolbar.xml#boxbottomtoolbar);
+}
+
+boxdetailtoolbar {
+   -moz-binding: url(chrome://begoro/content/xml/boxdetailtoolbar.xml#boxdetailtoolbar);
+}
+
+dbboxitems {
+   -moz-binding: url(chrome://begoro/content/xml/dbboxitems.xml#dbboxitems);
+}
+
+dbboxaccount {
+   -moz-binding: url(chrome://begoro/content/xml/dbboxaccount.xml#dbboxaccount);
+}
+
+dbboxpagos {
+   -moz-binding: url(chrome://begoro/content/xml/dbboxpagos.xml#dbboxpagos);
+}
+
+dbformapago {
+   -moz-binding: url(chrome://begoro/content/xml/dbformapago.xml#dbformapago);
+}
+/*
+ * Comunicaciones
+ */
+soap {
+   -moz-binding: url(chrome://begoro/content/xml/soap.xml#soap);
+}
+
+/*
+ * Gui-Components
+ */
+
+dbpopup {
+   -moz-binding: url(chrome://begoro/content/xml/dbpopup.xml#dbpopup);
+}
+dbpopup_filter {
+   -moz-binding: url(chrome://begoro/content/xml/dbpopup_filter.xml#dbpopup_filter);
+}
+
+_popup_ {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup);
+}
+
+popup_sexo {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_sexo);
+}
+
+popup_sino {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_sino);
+}
+
+popup_doctype {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_doctype);
+}
+
+popup_docorigen {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_docorigen);
+}
+
+popup_op {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_op);
+}
+
+popup_tipoactivo {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_tipoactivo);
+}
+
+popup_debehaber {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_debehaber);
+}
+
+popup_plantype {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_plantype);
+}
+
+popup_typcta {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_typcta);
+}
+
+popup_ingdes {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_ingdes);
+}
+
+popup_rubimp {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_rubimp);
+}
+popup_typedoc {
+   -moz-binding: url(chrome://begoro/content/xml/popup.xml#popup_typedoc);
+}
+
+/*
+ * Input
+ */
+
+textbox[text='int'] {
+   -moz-binding: url(chrome://begoro/content/xml/text.xml#text_int);
+}
+
+textbox[text='real'] {
+   -moz-binding: url(chrome://begoro/content/xml/text.xml#text_real);
+}
+
+textbox[text='cedula'] {
+   -moz-binding: url(chrome://begoro/content/xml/text.xml#text_cedula);
+}
+
+textbox[text='ruc'] {
+   -moz-binding: url(chrome://begoro/content/xml/text.xml#text_ruc);
+}
+
+textbox[text='include'] {
+   -moz-binding: url(chrome://begoro/content/xml/text.xml#text_include);
+}
+
+textbox[text='char'] {
+   -moz-binding: url(chrome://begoro/content/xml/text.xml#text_char);
+}
+textbox[text='fact'] {
+   -moz-binding: url(chrome://begoro/content/xml/text.xml#text_factura);
+}
+treeData 
+{
+   -moz-binding: url(chrome://begoro/content/xml/treeData.xml#treeData);
+}
+
+treeData_boxdetailtoolbar
+{
+   -moz-binding: url(chrome://begoro/content/xml/treeData_boxdetailtoolbar.xml#treeData_boxdetailtoolbar);
+}
+
+treeDataSingle 
+{
+   -moz-binding: url(chrome://begoro/content/xml/treeDataSingle.xml#treeDataSingle);
+}
+
+treeDataPag 
+{
+   -moz-binding: url(chrome://begoro/content/xml/treeDataPag.xml#treeDataPag);
+}
+treeData_v1{
+   -moz-binding: url(chrome://begoro/content/xml/treeData_v1.xml#treeData_v1);
+}
+
+editornotas
+{
+	-moz-binding: url(chrome://begoro/content/xml/editornotas.xml#editornotas);
+}

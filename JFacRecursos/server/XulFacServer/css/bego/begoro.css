@@ -1,0 +1,29 @@
+/*
+ *  @archivo    begoro.css
+ *  @empresa    DeltaSystems Cia. Ltda. - 2008
+ *  @autor      Johnny H. Sanchez L.
+ *  @mail       jsanchez@lahora.com.ec
+ *  @nota       Bebidas Gaseosas el Oro
+ */
+window {
+}
+
+.fondo
+{
+    background-image: url(images/myFondo.png); 
+    background-repeat: repeat;         
+}
+
+/*#_tareasIniciales
+{ 
+	background-image: url(images/myFondo.png); 
+    background-repeat: repeat;
+	border: none;   
+}
+
+#_tareasPendientes
+{
+	background-image: url(images/myFondo.png); 
+    background-repeat: repeat;
+	border: none;   
+}*/

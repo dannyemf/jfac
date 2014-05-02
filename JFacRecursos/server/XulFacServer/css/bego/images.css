@@ -1,0 +1,365 @@
+/*
+    @archivo	images.css
+    @empresa	DeltaSystems Cia. Ltda - 2007-08-05
+    @autor		Johnny H. Sanchez L. (JHSL)
+    @email		jsanchez@lahora.com.ec
+    @copyright	Johnny H. Sanchez L. (JHSL)
+ */
+
+/***
+ * Imagenes del componente boxbootomtoolbar
+ */
+#btnEditarImagen {
+    list-style-image: url("images/btn-editar.png");
+    width: 34px;
+    height: 49px;
+	border: 0px;
+}
+
+#btnImprimir2Imagen {
+    list-style-image: url("images/btn-imprimir18.png");
+}
+
+#btnImprimirOnImagen {
+    list-style-image: url("images/btn-imprimir.png");
+}
+
+#btnImprimirOffImagen {
+    list-style-image: url("images/btn-imprimir-desactiv.png");
+}
+
+#btnGrabarOnImagen {
+    list-style-image: url("images/btn-grabar.png");
+}
+
+#btnGrabarOffImagen {
+    list-style-image: url("images/btn-grabar-desactiv.png");
+}
+
+#btnGuardarImagen {
+    list-style-image: url("images/btn-guardar.png");
+    width: 45px;
+    height: 50px;
+	border: 0px;
+}
+
+#btnLimpiarOnImagen {
+    list-style-image: url("images/btn-limpiar.png");
+}
+
+#btnLimpiarOffImagen {
+    list-style-image: url("images/btn-limpiar-desactiv.png");
+}
+
+#btnLimpiar2Imagen {
+    list-style-image: url("images/btn-limpiar2.png");
+}
+
+#btnAdicionarItemImagen {
+    list-style-image: url("images/btn-adicionaritem.png");
+}
+
+
+#btnEliminarItemImagen {
+    list-style-image: url("images/btn-eliminaritem.png");
+}
+#btnEliminarItemImagenOn {
+    list-style-image: url("images/btn-eliminaritemOn.png");
+}
+#btnClearItemImagen{
+    list-style-image: url("images/btn-limpiar2.png");
+}
+#btnSalirImagen {
+    list-style-image: url("images/btn-salir.png");
+    width: 32px;
+    height: 49px;
+	border: 0px;	
+}
+
+#btnCancelarImagen {
+    list-style-image: url("images/btn-cancelar.png");
+}
+
+
+/***
+ * Imagenes del componente boxtoolbar
+ */
+#btnVentasImagen {
+    list-style-image: url("images/btn-ventas.png");
+}
+
+#btnComprasImagen {
+    list-style-image: url("images/btn-compras.png");
+}
+
+#btnGastosImagen {
+    list-style-image: url("images/btn-gastos.png");
+}
+
+#btnBancosImagen {
+    list-style-image: url("images/btn-bancos.png");
+}
+
+#btnPagosImagen {
+    list-style-image: url("images/btn-pagos.png");
+}
+
+#btnCajaImagen {
+    list-style-image: url("images/btn-caja.png");
+}
+
+#btnConsultasImagen {
+    list-style-image: url("images/btn-consultas.png");
+}
+
+#btnSri2Imagen {
+    list-style-image: url("images/btn-sri2.png");
+}
+
+#btnContabilidad2Imagen {
+    list-style-image: url("images/btn-contabilidad2.png");
+}
+
+#btnInventarioImagen {
+    list-style-image: url("images/btn-inventario.png");
+}
+
+#btnActivosImagen {
+    list-style-image: url("images/btn-activos.png");
+}
+
+#btnTallerImagen {
+    list-style-image: url("images/btn-taller.png");
+}
+
+#btnPersonalImagen {
+    list-style-image: url("images/btn-personal.png");
+}
+
+#btnAutorizaImagen {
+    list-style-image: url("images/btn-autorizaciones.png");
+}
+
+#btnContratosImagen {
+    list-style-image: url("images/btn-contratos.png");
+}
+
+#btnFormalizaImagen {
+    list-style-image: url("images/btn-formalizar.png");
+}
+
+#idRolleslImagen {
+    list-style-image: url("images/rollesl.png");
+	width="6px"; 
+	height="39px"; 
+}
+
+#idRollespicImagen {
+    list-style-image: url("images/rollespic.png");
+}
+
+/***
+ * EntryWorkArea
+ */
+#entryDetailLeftbImagen {
+    list-style-image: url("images/entrydetail-leftb.png");
+}
+
+#entryDetailRightbImagen {
+    list-style-image: url("images/entrydetail-rightb.png");
+}
+ 
+/*** 
+ * login 
+ */
+
+#bgLeftImagen {
+    list-style-image: url("images/bg-left.png");
+    width: 173px;
+    height: 359px;
+}
+
+#bgRightImagen {
+    list-style-image: url("images/bg-right.png");
+    width: 173px;
+    height: 359px;
+}
+
+#logoEmpresaImagen {
+    list-style-image: url("images/logo-empresa.png");
+    width: 454px;
+    height: 197px;
+}
+
+#loginTextureImagen {
+    list-style-image: url("images/login-texture.png");
+    width: 454px;
+    height: 162px;
+}
+
+#speedImagen {
+    list-style-image: url("images/speed.gif");
+    width: 191px;
+    height: 100px;
+}
+
+#shoulderImagen {
+    list-style-image: url("images/shoulder.jpg");
+    width: 35px;
+    height: 162px;
+}
+
+#bg2Imagen {
+    list-style-image: url("images/bg-2.png");
+    width: 800px;
+    height: 181px;
+}
+
+/* :::::::::::::::: IMAGENES: COMPONENTE dbtab :::::::::::: */
+#sujetoMarcoFotoImagen {
+    list-style-image: url("images/sujeto-marcofoto.png");
+	width: 194px;
+	height: 214px; 
+	border: 0px;
+}
+
+#btnExaminarImagen {
+    list-style-image: url("images/btn-examinar.png");
+	width: 24px;
+	height: 22px; 
+	border: 0px;
+}
+
+#sujetoLeftbImagen {
+    list-style-image: url("images/sujeto-leftb.png");
+}
+
+#sujetoRightbImagen {
+    list-style-image: url("images/sujeto-rightb.png");
+}
+
+/************* Sujeto *************/
+#logoImagen {
+    list-style-image: url("images/logo-ventacar.gif");
+}
+
+#sujetoHeaderImagen {
+    list-style-image: url("images/creacion-sujeto-header.png");
+    width: 530px;
+    height: 97px;
+}
+
+#sujetoFooterImagen {
+    list-style-image: url("images/sujeto-footer.png");
+    width: 530px;
+    height: 37px;
+}
+
+#btnGuardarImagen {
+    list-style-image: url("images/btn-guardar.png");
+}
+
+#btnLimpiarImagen {
+    list-style-image: url("images/btn-limpiar.png");
+}
+
+#btnCancelarImagen {
+    list-style-image: url("images/btn-cancelar.png");
+}
+
+#foto1Imagen {
+    list-style-image: url("images/foto-1.png");
+}
+
+#sujetoFotoImagen {
+    list-style-image: url("images/sujeto-foto.png");
+    width: 183px;
+    height: 217px;
+}
+
+#btnExaminarImagen {
+    list-style-image: url("images/btn-examinar.png");
+}
+
+#btnNuevoImagen {
+    list-style-image: url("images/nuevo.png");
+    width: 18px;
+    height: 22px;
+}
+
+#gapNuevo {
+    width: 10px;
+} 
+
+
+/*.......*/
+
+#btnCalendarioImagen {
+    list-style-image: url("images/btn-calendario.png");
+}
+
+#btnNuevoImagen {
+    list-style-image: url("images/btn-nuevo.png");
+}
+
+/* :::::::::::::::: IMAGENES: COMPONENTE dbtab :::::::::::: */
+#btnDetallesImagen {
+    list-style-image: url("images/btn-detalles.png");
+}
+
+#btnFormaPagoImagen {
+    list-style-image: url("images/btn-formapago.png");
+}
+
+#btnSriImagen {
+    list-style-image: url("images/btn-sri.png");
+}
+
+#btnContabilidadImagen {
+    list-style-image: url("images/btn-contabilidad.png");
+}
+
+#btnFacturasImagen {
+    list-style-image: url("images/btn-facturas.png");
+}
+
+#btnCuotasImagen {
+    list-style-image: url("images/btn-cuotas.png");
+}
+
+#btnRubrosImagen {
+    list-style-image: url("images/btn-rubros.png");
+}
+
+#indicadorTooltabImagen {
+    list-style-image: url("images/indicador-tooltab.png");
+}
+
+#btnMaterialImagen {
+    list-style-image: url("images/btn-material.png");
+}
+
+#btnOrdenesTrabajoImagen {
+    list-style-image: url("images/btn-ordenestrabajo.png");
+}
+
+#imgBodegaImagen {
+    list-style-image: url("images/img-bodega.png");
+}
+
+#imgDocumentoImagen {
+    list-style-image: url("images/img-documento.png");
+}
+#imgVehiculosImagen {
+    list-style-image: url("images/img-vehiculos.png");
+}
+
+/* :::::::::::::::: IMAGENES: AUTORIZACIONES :::::::::::: */
+#btnAprobadoImagen {
+    list-style-image: url("images/btn-aprobado.png");
+}
+
+#btnNoAprobadoImagen {
+    list-style-image: url("images/btn-noaprobado.png");
+}
+

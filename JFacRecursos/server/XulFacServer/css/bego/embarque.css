@@ -1,0 +1,158 @@
+treechildren::-moz-tree-checkbox(checked)
+{
+    /* css for checked cells */
+    list-style-image: url("checkbox2.png");
+}
+.treeColor {
+	border-color:threedshadow threedlightshadow threedlightshadow threedshadow;
+	background-color:threedface;
+}
+/* Titulos de Pagina */
+h1 {
+/*	color: #0A6184;*/
+ color: #666;
+/* border-left: 4px solid #0A6184;*/
+ /*border-left: 4px solid green;*/
+/*	background-color: #0A6184;*/
+	font-size: 11px;
+	font: small-caps;
+    padding-left: 4px;
+	padding-bottom:0px;
+	margin:0px;
+}
+-moz-tree-row {
+	background-color:red;
+}
+treechildren::-moz-tree-column(colorColumna)
+{
+  background-color: #FFFFCC;
+}
+treechildren::-moz-tree-separator{
+	border:3px solid #0A6184;
+}
+
+.textoEtiqueta {
+	color: #7999b7; 
+	font-size: 11px; 
+	font-family: tahoma, Verdana, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 
+	background-color: transparent; 
+	text-align: right; 
+	vertical-align: middle; 
+	padding: 5px 2px 6px 4px; 
+	border-style: none; 
+}
+.areaTrabajo { 
+	background-color: #fcfcf9; 
+	text-align: center; 
+	vertical-align: top; 
+	width: 100%; 
+	height: 100%; 
+	padding: 0px 4px 2px; 
+}
+
+/* Inputs en general*/
+input {
+	color: #7AA62F;
+	font-size: 11px; 
+	font-family: tahoma, Verdana, Arial, Helvetica, sans-serif; 
+	font-weight: 700; 
+	background-color: #e7f2fa; 
+	text-align: left; 
+	vertical-align: middle; 
+	width: 100px; 
+	height: 15px; 
+	padding: 0 0px; 
+	border: solid 1px #9fbbd5; 
+ /*importante: mismo tamño de fuentes que tablas*/
+}
+/* selector compatible con Firefox 
+textbox::-moz-selection{ 
+    background: #D4F699; 
+    color: #7AA62F; 
+} 
+*/
+textarea , input {
+ background-color: #efe;
+}
+
+/* Selecciones en formularios */
+textarea:focus, input:focus, select:focus {
+  background-color: #D4F699;  /* color opcional #cfc amarillo*/
+}
+.AreaCuadroMayor {
+  background-color: white;
+  border: 0px none!important;
+}
+.AreaCuadro {
+  background-color: #ECE8DE; /*#ECE8DE;*/
+  color-palette: "green";
+  border: 0px none!important;
+  margin:3px;
+}
+
+.boton {
+ margin-right: 4px;
+ margin-left: 4px; 
+ text-align: center; 
+}
+
+
+/* butonizados redondeados */
+.tb,button.btn, button.sbtn {
+ /* -moz-border-radius: 8px; */
+ font-size: 12px;
+}
+
+
+/* Botones tienen el mismo estilo que los linkbutonizados 
+input.btn, input.sbtn,select.btn {
+ background-color: #ece8de;
+ border-top: thin solid white;
+ border-left: thin solid white;
+ border-right: thin solid gray;
+ border-bottom: thin solid gray;
+ color: blue;
+
+}
+*/
+
+/* Enlaces butonizados */
+.tb ,button.btn, button.sbtn,select.btn {
+  border: 1px solid !important;
+  -moz-border-top-colors: ThreeDLightShadow ThreeDHighlight;
+  -moz-border-right-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-bottom-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-left-colors: ThreeDLightShadow ThreeDHighlight;
+  padding-left: 4px;
+ padding-right: 4px;
+
+/* background-color: threedface;*/
+ background-color: -moz-dialog;
+ color: windowtext!important;
+ -moz-appearance: button;
+ text-transform: capitalize;
+ cursor: pointer;
+}
+
+/* Hover de Enlaces butonizados y Botones reales */
+.tb:hover, button.btn:hover, button.sbtn:hover{
+  -moz-border-bottom-colors: ThreeDLightShadow ThreeDHighlight;
+  -moz-border-left-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-top-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-right-colors: ThreeDLightShadow ThreeDHighlight;
+ text-decoration: none !important;
+/* background-color: buttonHighlight;*/
+  background-color: #cfc;
+}
+
+a:visited, a:link, .tb,button.btn, input.sbtn {
+ color: green;
+}
+treechildren::-moz-tree-cell-text(centrar) {
+ color: black;
+ font-weight: bold; 
+}
+treechildren::-moz-tree-cell-text {
+cursor: pointer;
+}

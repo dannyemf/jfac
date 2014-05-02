@@ -1,0 +1,603 @@
+.areaTrabajo { 
+	background-color: #fcfcf9; 
+	text-align: center; 
+	vertical-align: top; 
+	width: 100%; 
+	height: 100%; 
+	padding: 0px 4px 2px; 
+}
+
+/*Lista desplegable del popup*/
+menulist{
+	-moz-appearance:none;
+	color: #deedf7; 
+	font-size: 10px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	background-color: #518ed4; 
+	text-align: left;  
+	padding-top: 2px;
+	border-bottom: 1px dotted #c5daee;
+	border-color: #2561a6 #3174ba #75a7e0; 
+	border-style: solid; 
+	border-width: 1px;
+	border: hidden;
+	max-width:250px;
+	min-width: 250px;
+}
+
+/*Para los elementos del popup*/
+menupopup{
+	-moz-appearance:none;
+	color: #deedf7; 
+	font-size: 10px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	background-color:#fbfbf5; 
+	text-align: left;  	
+	padding-top: 2px;
+	border-bottom: 1px dotted #c5daee;
+	border-color: #2561a6 #3174ba #75a7e0; 
+	border-style: solid; 
+	border-width: 1px;	
+}
+
+.colorDatepicker{
+	-moz-appearance:none;
+	color: #528ED4;
+	font: 12px "Arial";
+	font-weight: bold;
+	background: transparent;
+}
+
+/*Atributo Propio del Componente Datepicker*/
+.datetimepicker-input-box{
+	-moz-appearance:none;
+	color: #deedf7; 
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400;
+	border-bottom: 1px dotted #c5daee;
+	border-color: #2561a6 #3174ba #75a7e0; 
+	border-style: solid; 
+	border-width: 1px;
+	border: hidden;
+	background-color: #518ed4;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+}
+
+/*Letras del popup*/
+menuitem{
+	color: #668bb4; font-size: 10px; font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; max-width: 100%;
+}
+
+.margenHead{
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+/*Color Etiquetas de la Cabecera*/
+.colorLabel{
+	color: #6bb2e7; 
+	font-size: 11px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 	
+	
+}
+
+/*Color Etiquetas Page Tareas Pendientes*/
+.colorLabelPageTareasPen{
+	color: #518ed4; 
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 	
+	
+}
+
+/*Textbox en General*/
+textbox{
+		-moz-appearance:none;
+		color: #deedf7; 
+		font-size: 12px; 
+		font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+		font-weight: 400; 
+		border : none;		
+		border-width : 2px;
+		margin : 2px 6px;
+		background-color: #518ed4;			 
+		padding-right: 5px;
+		-moz-border-radius-topleft: 5px;
+		-moz-border-radius-bottomleft: 5px;
+		-moz-border-radius-topright: 5px;
+		-moz-border-radius-bottomright: 5px;	
+}
+textbox[title="numeroDerecha"]{
+	text-align: right;
+}
+.btnCargar {
+	-moz-appearance:none;	
+	border: none;
+	background-color: transparent;
+	list-style-image: url("images/btn-generar.png");
+	}
+	
+.btnAutorizacion{
+	-moz-appearance:none;	
+	border: none;
+	background-color: #eef5fb;
+	max-width: 120px;
+	min-width: 120px;
+	list-style-image: url("images/btn-autorizaciones.png");
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	}
+	
+	
+treechildren{
+	-moz-appearance:none;
+	color: #487098; 
+	font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif, tahoma; 
+	background-color: #fff; 	
+}
+
+.alingText{
+	text-align: left;
+}
+
+treecol{
+	-moz-appearance:none;
+	color: #0000CD; 
+	font-size: 11px; 
+	font-weight: 700;
+	background-color: transparent;
+	background-image: url("images/parrilla-tab-bg.png"); 	
+	height: 15px; 	
+	border-color: #bdd4ec #adc6e0 #adc6e0 #daebfc;  
+	border-style: solid; 
+	border-width: 1px;
+		
+}
+
+treecolpicker{
+	-moz-appearance:none;
+	background-color: #518ed4;	
+	border: inset;
+	border-width: 1px;
+	border-color: #bdd4ec #adc6e0 #adc6e0 #daebfc;
+	
+}
+/*
+treechildren::-moz-tree-cell-text(texto){
+    -moz-appearance:none;
+    color: #6c93b8; font-size: 11px; font-family: tahoma, Verdana, Arial, Helvetica, sans-serif; text-align: right; height: 15px; vertical-align: middle; padding-right: 5px; border-bottom: 1px dotted #c1d4e7;
+
+}
+
+treechildren::-moz-tree-cell-text(totales){
+    -moz-appearance:none;
+    color: #6c93b8; font-size: 12px; font-family: tahoma, Verdana, Arial, Helvetica, sans-serif; font-weight: 700; background-color: transparent; text-align: right; height: 15px; vertical-align: middle; width: 144px; padding-right: 5px; padding-left: 5px; border-bottom: 1px dotted #c1d4e7; border-top-color: #fff; border-top-width: 1px; border-right-color: #fff;
+    border-left-color: #fff;
+}
+
+treechildren::-moz-tree-cell-text(totalGeneral){
+    -moz-appearance:none;
+    color: #bf0027; font-size: 12px; font-family: tahoma, Verdana, Arial, Helvetica, sans-serif; font-weight: 700; text-align: right; padding-right: 5px; width: 144px; height: 18px; vertical-align: middle; padding-top: 5px; border-color: transparent;
+
+}*/
+
+grid{
+	text-align: left;
+		
+}
+
+.espacioColumn{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/*Fija el fondo y para elementos que se encuentre en la secci�n items*/
+.textboxItems{	
+	color: #6c93b8; 
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-image: url("images/negobg.png");	
+	width: 100%; 
+	float: left; 
+	margin-top: 0; 
+	margin-bottom: 8px; padding-top: 3px; padding-bottom: 5px;   
+}
+
+
+.fondoItems{
+	-moz-appearance:none;
+	text-align: right;
+	 color: #6c93b8;
+	 font-size: 11px; 	  
+	 padding: 5px; 
+}
+
+/*Para Mostrar Varios Totales en textbox de un Tree*/
+.fondoTotales{
+	 -moz-appearance:none;
+	 color: #6c93b8;
+	 font-size: 11px;
+	 font-family: Verdana, Arial, Helvetica, sans-serif;  
+	 padding: 5px; 
+	 background-image: url("images/negobg.png");
+}
+/*Para elementos input que se encuentre en fichas*/
+.fondotextbox{
+	-moz-appearance:none;	
+	color: #6c93b8;
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 
+	background-color: #eef5fb;	
+	text-align: left; 
+	padding: 0 5px; 
+	border: solid 1px #9fbbd5;
+	max-width:120px;
+	max-height:22px;
+	min-height:22px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 0px;
+}
+
+caption{
+	-moz-appearance:none;
+	color: #518ed4;
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400;
+	background-color: #eef5fb;
+}
+.tabIconDetalle{
+	-moz-appearance:none;
+	list-style-image: url("images/btn-detalles.png");
+	background-color: #518ed4;
+	border: none;
+	border-right:inset;
+	
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+/*Icono para los tabs Forma Pago*/
+.tabIconNegociacion{
+	-moz-appearance:none;
+	list-style-image: url("images/btn-formapago.png");
+	background-color: #518ed4;
+	border:none;
+	border-right:inset;
+	
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+.tabIconContabilizacion{
+	-moz-appearance:none;	
+	list-style-image: url("images/btn-contabilidad.png");
+	background-color: #518ed4;
+	border:none;
+	border-right:inset;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+.tabIconFormaPago{
+	-moz-appearance:none;
+	list-style-image: url("images/btn-formapago.png");
+	background-color: #518ed4;
+	border:none;
+	border-right:inset;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+.tabIconFacturas{
+	-moz-appearance:none;
+	list-style-image: url("images/btn-facturas.png");
+	background-color: #518ed4;
+	border:none;
+	border-right:inset;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+.tabIconSRI{
+	-moz-appearance:none;
+	list-style-image: url("images/btn-sri.png");
+	background-color: #518ed4;
+	border:none;
+	border-right:inset;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+.tabAnticipos{
+	-moz-appearance:none;
+	list-style-image: url("images/btn-pagos.png");
+	background-color: #518ed4;
+	border:none;
+	border-right:inset;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+.tabActaEntrega{
+	-moz-appearance:none;
+	list-style-image: url("images/lojacar/ico-nota-venta.gif");
+	background-color: #518ed4;
+	color: white;
+	font-size: 11px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 
+	border:none;
+	border-right:inset;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+
+.tabPreview{
+	-moz-appearance:none;
+	list-style-image: url("images/lojacar/icono-preview.gif");
+	background-color: #518ed4;
+	color: white;
+	font-size: 11px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 
+	border:none;
+	border-right:inset;
+		-moz-border-radius-topleft: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 0px;
+}
+tabpanels{
+	-moz-appearance:none;
+	background-color: transparent;
+	border: hidden;
+    border-bottom:hidden;
+	border-left-style:hidden;
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-top-style:hidden;
+	border-right:hidden;
+	border-bottom-style: none;
+}
+
+tabbox, tab{
+	-moz-appearance:none;
+	border: hidden;
+	background-color: transparent;
+
+}
+
+/*Para los Tree que contienen totales(Subtoal, IVA etc.)*/
+.borderTreTotales{
+	-moz-appearance:none;
+	border-bottom: hidden;
+	background-color: transparent;
+	background-image: none;
+	border: hidden;	
+	border-left: hidden;
+	border-right: hidden;
+	border-color: transparent;
+	border-bottom-style: hidden;
+	text-align: right;	
+}
+
+.btnStockVeh{
+	-moz-appearance:none;	
+	border: none;
+	color:  #6c93b8;
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 
+	background-color: transparent;
+	list-style-image: url("images/lojacar/btn-cargarstockveh.gif");	
+	}
+	
+.btnCargarHistPersonal{
+	-moz-appearance:none;	
+	border: none;
+	color:  #6c93b8;
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400; 
+	background-color: transparent;
+	list-style-image: url("images/lojacar/btn-cargar-historial.ICO");	
+	}	
+	
+/*Css Login*/
+.login-table { width: 800px; margin-top: 10px; border: 1px #556787; }
+
+.btnLogin {
+	-moz-appearance:none;	
+	border: none;
+	background-color: transparent;
+	list-style-image: url("images/btn-ingresar.png");
+	
+	}
+	
+splitter{
+	-moz-appearance:none;
+	background-color: #518ed4;
+	border-bottom: 1px solid #c1d4e7; border-top-color: #fff; border-top-width: 1px; border-right-color: #fff;
+	border-left-color: #fff; 
+}
+
+/*Para Tareas Pendientes*/
+.btnAceptar{
+	-moz-appearance:none;
+	border: none;	
+	background-color: #518ed4;
+	list-style-image: url(images/btn-facturas.png);
+	}
+
+/*Menu Tareas Pendientes(task)*/
+listbox.task{
+   -moz-appearance: none;
+   color: #6bb2e7;
+   margin: 3px 3px;
+   border: solid 1px;   
+   background-color: #eef5fb;
+   border-color: #bdd4ec #adc6e0 #adc6e0 #daebfc;
+}
+
+.btnCargarItems{
+	-moz-appearance:none;
+	border: solid;			
+	background-color: #deedf7;
+	border-color: #518ed4;
+	border-bottom-color: #518ed4;
+	border-left-color: #518ed4;
+	border-right-color: #518ed4;
+	color: #518ed4; 
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+	font-weight: 400;
+	min-height: 35px;
+	max-height: 35px; 
+	list-style-image: url("images/btn-flechar.png");
+	-moz-border-radius-topleft: 12px;
+	-moz-border-radius-bottomleft: 12px;
+	-moz-border-radius-topright: 12px;
+	-moz-border-radius-bottomright: 12px;
+}
+listitem{	
+	font-size: 11px; font-family: tahoma, Verdana, Arial, Helvetica, sans-serif; text-align: left; height: 20px; padding: 1px 1px; border-color: #cddceb #487098 #cddceb #cddceb; border-style: none dotted none none; border-width: 1px; 
+}
+.textoOpciones{
+	color: #bf0027; font-size: 12px; font-family: tahoma, Verdana, Arial, Helvetica, sans-serif; font-weight: 700; text-align: left;	
+}
+
+/*Para Page Main*/
+.fondoMain{
+	background-color: #eef5fb;
+}
+
+/*PARA LAS PANTALLAS GENERALES*/
+
+.workdetailPG{ -moz-appearance:none; background-color: #fcfcf9; background-image: url(images/workdetail-bg.png); background-repeat: repeat-x; text-align: center; vertical-align: top; width: 100%; height: 100%; padding: 4px 6px 6px; }
+
+.btnNuevo{
+	-moz-appearance:none;	
+	border: none;
+	color: blue;
+	background-color: transparent;
+	list-style-image: url("images/btn-nuevo.png");
+}
+
+.btnBuscarPG{
+	-moz-appearance:none;	
+	border: hidden;
+	/*color: blue;*/
+	max-width: 35px;
+	min-width: 35px;
+	background-color: transparent;
+	list-style-image: url("images/btn-examinar.png");
+	}
+	
+.btnImprimirPG{
+	-moz-appearance:none;	
+	border: hidden;
+	color: blue;
+	max-height:40px; min-height:40px; max-width: 40px; min-width: 40px;
+	background-color: transparent;
+	list-style-image: url("images/btn-imprimirpg.png");
+	}
+	
+.btnEliminarPG{
+	-moz-appearance:none;	
+	border: hidden;
+	/*color: blue;*/
+	max-height:40px; min-height:40px; max-width: 35px; min-width: 35px;
+	background-color: transparent;
+	list-style-image: url("images/btn-eliminar1.ico");
+	}
+	
+.btnSalirPG{
+	-moz-appearance:none;	
+	border: hidden;
+	color: blue;
+	max-height:40px; min-height:40px; max-width: 40px; min-width: 40px;
+	background-color: transparent;
+	list-style-image: url("images/btn-salirpg.gif");
+	}
+
+.btnSalirDialog{
+	-moz-appearance:none;	
+	border: hidden;
+	color: blue;
+	max-height:40px; min-height:40px; max-width: 40px; min-width: 40px;
+	background-color: transparent;
+	list-style-image: url("images/btn-salirDialog.gif");
+	}
+	
+.btnAceptarPG{
+	-moz-appearance:none;	
+	border: hidden;
+	/*color: blue;*/
+	max-height:40px; min-height:40px; max-width: 40px; min-width: 40px;
+	background-color: transparent;
+	list-style-image: url("images/btn-aceptarpg.gif");
+	}	
+
+.toolbarPG{
+	-moz-appearance:none;
+	font-size: 11px; font-family: Arial, Verdana, tahoma, Helvetica, sans-serif; 
+	font-weight: 400; color:blue;
+	background-color: #e6db45; width: 100%; height: 50px; border-bottom: 1px solid #ccc69b;
+	padding-left: 0px;
+	padding-top: 0px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+}
+
+.sizeTextbox{
+	min-width: 200px;
+	max-width: 200px;	
+}
+
+.sizeMenu{
+	min-width: 165px;
+	max-width: 165px;
+}
+
+.alignTextLeft{
+	text-align: left;
+}
+
+.alignTextRight{
+	text-align: right;
+}
+
+.alingTextCenter{
+	text-align: center; 
+}

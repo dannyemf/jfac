@@ -1,0 +1,383 @@
+/*
+ *  @archivo    deltasystems.css
+ *  @empresa    DeltaSystems Cia. Ltda. - 2008
+ *  @autor      Johnny H. Sanchez L.
+ *  @mail       jsanchez@lahora.com.ec
+ */
+
+@import "begoro.css";
+@import "ventacar.css";
+@import "images.css"; 
+@import "controles.css";
+@import "ventanas.css";
+@import "dialogos.css";
+
+/* :::::::::::::: XBL :::::::::::::::::::::: */
+boxmainapp	{
+	-moz-box-orient: vertical;
+}
+
+.Mytextbox {
+	-moz-appearance:none;
+	-moz-border-right-colors: none;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 0px;
+	
+	margin: 0px;
+	border: 0px;
+	padding: 0px;	
+}
+
+.mytextbox {
+	-moz-appearance: none;
+	-moz-border-radius: 0px;
+	-moz-border-right-colors: none;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;		
+}
+
+.mozOff {
+	-moz-appearance: none;
+	-moz-border-radius: 0px;
+	-moz-border-right-colors: none;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;		
+}
+
+.mozImgspcr {
+	-moz-appearance: none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+}
+
+.mozRounded {
+	-moz-appearance: none;
+	-moz-border-radius: 50px;
+	-moz-border-right-colors: none;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;		
+}
+
+/* :::::::::::::: CESAR :::::::::::::::::::::: */
+
+.deltentrydoc-popup{
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	
+	display: -moz-box;
+}
+
+.delttextbox {
+	-moz-appearance:none;
+}
+.moz-agenda-bg{
+	-moz-appearance:none;
+}
+.moz-borderNotebook {
+	-moz-appearance:none;	
+	border:0px;
+	margin:0px;
+	padding:0px;
+}
+.moz-agenda-img{
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+}
+
+.agenda-richlistbox { 
+	background-color: transparent; 
+	background-repeat: repeat-y; 
+	padding: 0px 30px 20px 0px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:0px;
+	border-left:0px;
+}
+
+.menulista{
+	margin-left:0px;	
+}
+
+.caja-notas{ 
+	float: left; 
+	vertical-align: top;
+	position: relative;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+}
+
+.caja-notas1 { 
+    background-color: transparent;
+    background-repeat: repeat-x; 
+    vertical-align: top; 
+    position: relative; 
+    right: 25px; 
+    width: 470px; 
+    height: 60px; 
+    float: right; 
+    padding: 10px 20px 20px 10px; 
+    border: dotted 1px #a6bacf; 
+}
+
+/* :::::::::::::: CESAR-AGENDA :::::::::::::::::::::: */
+
+.moz-agenda-bg{
+	-moz-appearance:none;
+}
+.moz-borderNotebook {
+	-moz-appearance:none;
+	border:0px;
+	margin:0px;
+	padding:0px;
+}
+
+.moz-agenda-img{
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+}
+.agenda-richlistbox { 
+	background-color: transparent; 
+	background-repeat: repeat-y;
+	padding: 0px 30px 20px 0px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:0px;
+	border-left:0px;
+}
+
+.menulista{
+	margin-left:0px;	
+}
+.caja-notas{ 
+	float: left; 
+	vertical-align: top;
+	position: relative;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+}
+.caja-notas1 { 
+    background-color: transparent;
+    background-repeat: repeat-x; vertical-align: top; position: relative; right: 25px; width: 470px; height: 60px; float: right; padding: 10px 20px 20px 10px; border: dotted 1px #a6bacf; }
+
+/*agenda*/
+.agenda-bg { 
+	padding-top: 0px; 
+	border:0px;
+}
+.agenda-lineas { 
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;	
+}
+.agenda-hora { 
+	margin-top: 8px; 
+	margin-bottom: 0px; 
+}
+.agenda-cliente { 
+	padding: 10px 10px 10px 10px; 
+	min-height:125px;
+}
+.agenda-nombrecliente { 
+	text-align:left;
+	margin-top: 0; 
+	padding-top: 0; 
+	border:0;
+}
+.cliente-img { 
+	margin-top:10px; 
+}
+.vehiculo-img { 
+	width: 110px;  
+}
+.agenda-img { 
+	background-color: transparent; 
+	background-position: 0 0;  
+	margin-right: 0px; 
+	margin-top: 10px; 
+	margin-left: 0px; 
+	padding-top:25px;
+	/*border: 0px; */
+	min-width: 21px;
+	min-height: 29px;
+	padding:0px;
+	border:0px;
+}
+.notas-img { 
+	margin-top: -20px; 
+	margin-bottom: 5px; 
+}
+.textfield-cliente {
+	text-align:left;
+	margin-top:10px;
+	-moz-appearance:none;
+}
+
+
+
+/* :::::::::::::: CESAR-NEGOCIACION :::::::::::::::::::::: */
+.detailtoolbar {
+	text-align:right;
+}
+.nego {
+	text-align:left;
+}
+.negotext {
+	text-align:right;
+}
+.parrilla-top { 
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+}
+.parrilla-topr { 
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;	
+	-moz-border-radius-topright:6px;
+}
+.moz-negopopup1{
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	display: -moz-box;
+}
+.parrilla-topl { 
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-radius-topleft: 6px;
+}
+.moz-border {
+	background-color: #eef5fb;
+}
+.moz-texto {
+	padding:0px;
+	text-align:left;
+	font-size: 12px; 
+	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif; 
+}
+.negotextfield1{
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+}
+.imgspcr-entrydetail {
+	-moz-appearance:none;
+	border:0px;
+	padding:0px;
+}
+
+.johnny {
+	-moz-appearance:none;
+	padding:0px;
+	border-top: 0px;
+	border-left: 0px;
+	border-bottom: 0px;
+	margin: 0px;
+}
+
+
+/* :::::::::::::: CESAR-PARRILLA :::::::::::::::::::::: */
+
+
+.deltborderparrilla {
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: 0px;
+	-moz-border-left-colors: none;
+	border-top:0px;
+	display: -moz-box;
+	margin:0px;
+}
+
+.deltborder {
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	display: -moz-box;
+	margin:0px;
+}
+.deltalabel{
+	border:0px;
+	margin:0px;
+	padding:0px;
+}
+
+/* :::::::::::::: CESAR: VENTA VEHICULOS :::::::::::::::::::::: */
+
+.deltentrydoc-popup{
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	
+	display: -moz-box;
+}
+.delttextbox {
+	-moz-appearance:none;
+}
+.deltborder {
+	-moz-appearance:none;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	display: -moz-box;
+	margin:0px;
+}
+.deltalabel{
+	border:0px;
+	margin:0px;
+	padding:0px;
+}
+
+.sellcardividerv { 
+	border-right: 1px dotted #93b0ca; 
+}
+.sellcardividerh { 
+	border-bottom: 1px dotted #93b0ca; 
+}
+
+/*treechildren::-moz-tree-cell-text(texto){
+	color:black;
+	font-weight:bold;
+}*/
+
+.box { border : solid;
+border-color: blue;
+padding: 2px;
+margins: 1px;
+}
