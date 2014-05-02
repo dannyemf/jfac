@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Item" buttons="accept,cancel">	
+	
+	<hbox id="header_editar" image="imgAdministrarTransaccion" title="Editar Item Transacción" />
+	<vbox id="general_imports" />	
+	<script type="application/x-javascript" src="EditarTransaccionItem.js" />
+	
+	<vbox flex="1">
+	<hbox>
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Transaccción" />
+					<textbox id="txtTransaccion" disabled="true" width="250"/>
+				</row>
+				<row>
+					<label value="Plan" />					
+					<hbox class="boxSeleccion">
+						<textbox id="txtPlan" disabled="true" width="210"/>
+						<button id="btnSelPlan" class="itemSelect"></button>
+						<button id="btnSelAut" class="itemAutomatico"></button>
+					</hbox>
+				</row>
+				<row>
+					<label value="Aplica a" />
+					<textbox id="txtAplica" maxlength="80"/>
+					<validation for="txtAplica"></validation>
+				</row>
+				<row>
+					<label value="Tipo" />
+					<menulist id="cmbTipo">
+						<menupopup>
+							<menuitem value="Debe" label="Debe"/>
+							<menuitem value="Haber" label="Haber"/>
+						</menupopup>				
+					</menulist>
+					<spacer/>
+				</row>				
+				<row>
+					<label value="Fórmula" />
+					<textbox id="txtFormula" required="true" maxlength="250"/>
+					<validation for="txtFormula"></validation>
+				</row>				
+			</rows>
+		</grid>
+	</hbox>
+	
+	<hbox pack="center" id="boxControles">
+		<button label="Guardar" id="btnGuardar" />
+		<button label="Cancelar" id="btnCancelar" />
+	</hbox>
+	
+	</vbox>
+</window>

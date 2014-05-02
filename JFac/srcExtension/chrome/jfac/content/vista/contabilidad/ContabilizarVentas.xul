@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="ContabilizarVentas.js" />
+
+	<vbox flex="1">
+
+		<hbox id="header_administrar">
+			<image class="imgContabilizarCompras"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label value="Contabilizar Ventas" />
+			</hbox>
+			<hbox id="header_administrar_controles" align="center" pack="end" flex="1">								
+				<grid style="border: 1px solid">
+					<columns>
+						<column></column>
+						<column></column>
+						<column></column>
+						<column></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>									
+							<label value="Buscar Por"/>
+							<menulist id="listaCriterios">								
+								<menupopup>
+									<menuitem label="Todos" value="TODOS" />
+									<menuitem label="Fecha Emisión" value="FECH_EMI" />
+									<menuitem label="Fecha Caducidad" value="FECH_CAD" />
+									<menuitem label="Numero Factura" value="NUM_FAC" />
+								</menupopup>
+							</menulist>
+												
+							<label value="Fecha Incio"/>
+							<datepicker id="dtpInicio" type="popup"/>	
+							
+							<label value="Usuario" />
+							<menulist id="cmbUsuario">
+								<menupopup></menupopup>
+							</menulist>																			
+						</row>
+						
+						<row>
+							<spacer/>
+							<textbox id="txtTexto" ></textbox>
+							
+							<label value="Fecha Incio"/>
+							<datepicker id="dtpFin" type="popup"/>							
+							
+							<label value="Local" />
+							<menulist id="cmbLocal">
+								<menupopup></menupopup>
+							</menulist>						
+						</row>
+						
+					</rows>
+				</grid>	
+				
+				<pupupCliente id="popupCliente" rowTelefono="false" rowDireccion="false" rowMensaje="false"/>			
+				
+				<button label="Buscar" id="btnBuscar" />
+				<button label="Contabilizar" id="btnContabilizar" />
+			</hbox>
+
+		</hbox>
+
+		<vbox flex="1" style="color:#000000;">
+			<hbox flex="1">
+				<tree flex="1" rows="25" height="350" seltype="multiple" id="treeCompras"
+					enableColumnsDrag="true">
+					<treecols pickertooltiptext="Seleccionar columnas">						
+						<treecol label="Nº Factura" primary="true" flex="1" />
+						<splitter />
+						<treecol label="Cliente" flex="1" />
+						
+						<splitter />
+						<treecol label="Usuario" flex="1" />
+						
+						<splitter />
+						<treecol label="Local" flex="1" />
+						
+						<splitter />
+						<treecol label="Fec Emi" flex="1" />
+												
+						<splitter />
+						<treecol label="Fec Cad" flex="1" />
+						<splitter />
+						<treecol label="Estado" flex="1" />
+						
+						<splitter />
+						<treecol label="SubTotal" flex="1" />
+						
+						<splitter />
+						<treecol label="Iva" flex="1" />
+						
+						<splitter />
+						<treecol label="Descuento" flex="1" />
+						
+						<splitter />
+						<treecol label="Sobrecargo" flex="1" />
+												
+						<splitter />
+						<treecol label="Total" flex="1" />											
+					</treecols>
+					<treechildren>
+					</treechildren>
+				</tree>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

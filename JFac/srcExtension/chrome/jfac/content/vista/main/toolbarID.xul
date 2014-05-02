@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<vbox id="general_imports" />
+	
+	<script type="application/x-javascript" src="chrome://jfac/content/vista/main/RunJFac.js" />
+	
+	<toolbox id="navigator-toolbox">
+		<toolbar id="toolbarID" toolbarname="jfac" class="chromeclass-toolbar"
+			hidden="false" persist="hidden">
+			<toolbarbutton id="logo" label="JFac - Login"
+				oncommand="runJFac();" style='list-style-image: url("chrome://jfac/skin/logo32.png")' />
+		</toolbar>
+	</toolbox>
+</overlay>

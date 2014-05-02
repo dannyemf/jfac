@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Crear Ingreso/Gasto">
+
+	<hbox id="header_editar" image="imgIngresoGasto" title="Crear Ingreso/Gasto" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarIngresoGasto.js" />
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>					
+					<row>
+						<label value="LOTE CAJA" />
+						<spacer />
+						<textbox id="txtLoteCaja" readonly="true" width="250" />					
+					</row>					
+					<row>
+						<label value="DESCRIPCIÓN" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtDescripcion" required="true" multiline="true" rows="8" maxlength="250"/>						
+					</row>
+					
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtDescripcion"></validation>
+					</row>
+					
+					<row>
+						<label value="TIPO" />
+						<spacer/>
+						<menulist id="listTipo" required="true">
+							<menupopup>
+								<menuitem value="Ingreso" label="Ingreso"></menuitem>
+								<menuitem value="Gasto" label="Gasto"></menuitem>
+							</menupopup>
+						</menulist>
+					</row>
+					<row>
+						<label value="VALOR" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtValor" text="double" required="true" />
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtValor"></validation>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

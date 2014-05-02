@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Item" buttons="accept,cancel"
+	buttonlabelcancel="Cancelar" buttonlabelaccept="Aceptar"
+	ondialogaccept="return doAcept();" ondialogcancel="">
+
+	<script type="text/javascript">
+    	<![CDATA[
+    	var p = window.arguments[0];
+    	 
+    	window.onload = function(){
+    		try{
+    			document.getElementById('txtCantidad').setAttribute('value', p.cantidadEnviada);
+    			document.getElementById('txtCodigo').setAttribute('value', p.producto.codigo);
+    			document.getElementById('txtNombre').setAttribute('value', p.producto.nombre);
+    		}catch(e){
+    			alert(e);
+    		}
+    	};    	
+    	   	
+    	function doAcept(){
+    		try{
+    			var cantidad = document.getElementById('txtCantidad').value;
+    			
+	    		if(isNaN(cantidad) || cantidad <= 0) cantidad = 1;	    		
+	    		cantidad = cantidad * 1;	    		
+	    		p.cantidadEnviada = cantidad;
+	    		return true;
+    		}catch(e){    		
+    			alert(e);	
+    		}
+    		return false;
+    	};
+    	]]>
+	</script>
+
+	<hbox>
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Codigo" />
+					<textbox id="txtCodigo" disabled="true" />
+				</row>
+				<row>
+					<label value="Nombre" />
+					<textbox id="txtNombre" disabled="true" />
+				</row>
+				<row>
+					<label value="Cantidad" />
+					<textbox id="txtCantidad" />
+				</row>				
+			</rows>
+		</grid>
+	</hbox>
+</dialog>

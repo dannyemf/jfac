@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Levantamiento de Inventario">
+	
+	<vbox id="general_imports" />	
+	<script type="application/x-javascript" src="chrome://global/content/printUtils.js" />
+	<script type="application/x-javascript" src="EditarLevantamiento.js" />
+	
+	<hbox id="header_editar" image="imgReporteStock" title="Levantamiento de Inventario" />
+	
+	<vbox flex="1">
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>								
+				<row>
+					<label value="Local"  />
+					<menulist id="cmbLocal" min="1" >
+						<menupopup />
+					</menulist>
+					<spacer width="50px"/>
+					<label value="Fecha"/>
+					<textbox id="dtpFecha" disabled="true"/>	
+				</row>							
+				<row>
+					<label value="Observación"/>
+					<textbox id="txtObservacion" multiline="true"/>
+				</row>								
+			</rows>
+		</grid>						
+		<hbox style="">
+			<vbox flex="1" >											
+				<hbox pack="end" style="margin-top: 10px" align="center">
+					<validation for="treeItems"></validation>
+									
+					<hbox align="baseline"  class="boxControlesItem">								
+						<label value="Cantidad Conteo" />
+						<textbox id="txtCantidad" value="1" />
+						<label value="Código" />
+						<textbox id="txtProducto" tooltip="Ingrese el codigo del producto" />
+					</hbox>
+					<hbox align="baseline"  class="boxControlesItem">
+						<button id="btnEditarItem" class="itemEdit" tooltiptext="Editar"/>
+						<button id="btnRemoverItem"  class="itemRem"  tooltiptext="Eliminar"/>
+						<button id="btnAgregarItem"  class="itemAdd" tooltiptext="Agregar producto"/>
+						<button id="btnAgregarTodos"  class="itemAdd" tooltiptext="Agregar todos"/>
+					</hbox>
+				</hbox>
+				<vbox flex="1">									
+					<tree id="treeItems"  seltype="single" flex="1" rows="10" width="100%">
+						<treecols>
+							<treecol label="Código" />
+							<treecol label="Nombre" flex="1" />
+							<treecol label="Cantidad Actual" flex="1" text="double"/>
+							<treecol label="Cantidad Conteo" flex="1" text="double"/>
+						</treecols>
+						<treechildren />
+					</tree>
+				</vbox>								
+			</vbox>
+		</hbox>
+		<hbox pack="center" id="boxControles" class="boxControles">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

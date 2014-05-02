@@ -1,0 +1,195 @@
+@CHARSET "UTF-8";
+
+/* :::::::::: textbox :::::::::: */
+textbox {
+	border: solid 1px;
+	-moz-appearance: none;
+	/*margin: 2px;*/
+	-moz-border-radius: 4px;
+	-moz-border-top-colors: #7E7E7E #FFFFFF;
+	-moz-border-right-colors: #7E7E7E #FFFFFF;
+	-moz-border-bottom-colors: #7E7E7E #FFFFFF;
+	-moz-border-left-colors: #7E7E7E #FFFFFF;
+	/*padding: 2px;*/ /*background-color: #FFFFFF;*/
+}
+
+textbox[focused="true"] {
+	border: solid 1px;
+	-moz-border-radius: 4px;
+	-moz-border-top-colors: #39A80B #39A80B;
+	-moz-border-right-colors: #39A80B #39A80B;
+	-moz-border-bottom-colors: #39A80B #39A80B;
+	-moz-border-left-colors: #39A80B #39A80B;
+}
+
+textbox[text="double"], textbox[text="int"] {
+	text-align: right;
+	color: blue;
+}
+
+/* :::::::::: box :::::::::: */
+hvox,vbox {
+	background-color: #ffffff;
+}
+
+.limit{
+	border: 1px solid;
+	-moz-border-radius: 4px;
+}
+
+/* :::::::::: treechildren :::::::::: */
+	/*treechildren::-moz-tree-checkbox(disabled) {
+	list-style-image:
+		url("chrome://global/skin/checkbox/cbox-check-dis.gif");
+}*/
+/*treechildren::-moz-tree-image(checked) {
+	list-style-image: url("checkbox/checkbox_check.png");
+	width: 12px;
+	height: 12px;
+}
+
+treechildren::-moz-tree-image(unchecked) {
+	list-style-image: url("checkbox/checkbox_check.png");
+	width: 12px;
+	height: 12px;
+}
+
+treechildren -moz-tree-checkbox(checked) {
+	list-style-image: url("checkbox/checkbox_check.png");
+	width: 12px;
+	height: 12px;
+}
+
+treechildren::-moz-tree-checkbox(checked) {
+	list-style-image: url("checkbox/checkbox_check.png");
+	width: 12px;
+	height: 12px;	
+}
+
+treechildren::-moz-tree-image(checked) {
+	list-style-image: url("checkbox/checkbox_check.png");
+	width: 12px;
+	height: 12px;
+}*/
+
+treecol[text="double"], treecol[text="int"]{
+	text-align: right;
+} 
+
+treechildren::-moz-tree-checkbox { 
+	/* unchecked checkbox treecells */ 
+	list-style-image: url("checkbox/checkbox_uncheck.png"); 
+} 
+treechildren::-moz-tree-checkbox(checked) {
+	 /* checked checkbox treecells*/ 
+	 list-style-image: url("checkbox/checkbox_check.png");	
+ } 
+ 
+ treechildren::-moz-tree-checkbox(disabled) { 
+ 	/* disabled checkbox treecells */ 
+ 	list-style-image: none;
+ 	 	
+} 
+
+
+treechildren::-moz-tree-row(selected) {
+	background-color: #f3f2c7;
+}
+
+treechildren::-moz-tree-cell-text(selected) {
+	color: #023976;
+	font-weight: bold;
+}
+
+treechildren::-moz-tree-row(container) {
+	background-color: #CCCCCC;
+}
+
+treechildren::-moz-tree-row(container, selected) {
+	background-color: #f3f2c7;
+}
+
+/*
+saltando una linea le agrega un estilo
+treechildren::-moz-tree-row(odd) {
+	background-color: ;
+}*/ /*
+/** estilo para selected cuando la fila es odd
+treechildren::-moz-tree-row(odd, selected){
+	background-color:#fff;
+}
+treechildren::-moz-tree-cell-text(selected) {
+	color: red;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif, tahoma;
+}
+
+treechildren::-moz-tree-cell-text(odd,selected){
+	color:black;
+	font-size:11px;
+	font-family:Verdana,Arial,Helvetica,sans-serif,tahoma;
+}
+treechildren::-moz-tree-cell-text(record_closed,record_status_closed){
+	text-decoration:line-through;
+	font-weight:bold;
+}
+treechildren::-moz-tree-cell-text(record_closed) {}
+*/ /* :::::::::: button :::::::::: */
+button {
+	-moz-appearance: none;
+	-moz-border-radius: 5px !important;
+	border: 2px solid !important;
+	-moz-border-top-colors: #7E7E7E #FFFFFF;
+	-moz-border-right-colors: #7E7E7E #FFFFFF;
+	-moz-border-bottom-colors: #7E7E7E #FFFFFF;
+	-moz-border-left-colors: #7E7E7E #FFFFFF;
+	outline: 1px solid rgba(255, 255, 255, .2);
+	-moz-outline-radius: 5px;
+	margin: 6px 2px 6px 2px;
+	background-color: #e5e5e5;
+	padding: 2px;
+	min-width: 0;
+}
+
+button:hover {
+	-moz-border-top-colors: #2EC909 #FFFFFF;
+	-moz-border-right-colors: #2EC909 #FFFFFF;
+	-moz-border-bottom-colors: #2EC909 #FFFFFF;
+	-moz-border-left-colors: #2EC909 #FFFFFF;
+	outline: 1px solid rgba(46, 199, 9, .4);
+}
+
+button>.button-box {
+	border: 0px solid; /* ThreeDDarkShadow;*/
+}
+
+button:focus>.button-box {
+	border: 0px solid; /* ThreeDDarkShadow;*/
+}
+
+button:hover:active,button[open="true"] {
+	background-color: #FFFFFF;
+}
+
+
+treecol{
+	-moz-appearance:none;
+	color: #0000CD; 
+	font-size: 11px; 
+	font-weight: 700;
+	background-color: transparent;
+	background-image: url("parrilla-tab-bg.png"); 	
+	height: 15px; 	
+	border-color: #bdd4ec #adc6e0 #adc6e0 #daebfc;  
+	border-style: solid; 
+	border-width: 1px;		
+}
+
+treecolpicker{
+	-moz-appearance:none;
+	background-color: #518ed4;	
+	border: inset;
+	border-width: 1px;
+	border-color: #bdd4ec #adc6e0 #adc6e0 #daebfc;
+	
+}

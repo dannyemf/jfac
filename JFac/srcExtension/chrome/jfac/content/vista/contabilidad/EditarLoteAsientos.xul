@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Lote" width="700" height="550">
+
+	<hbox id="header_editar" image="imgAdministrarLoteAsiento" title="Editar Lote de Asientos" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarLoteAsientos.js"/>
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos" class="contenido" flex="1">
+			<grid flex="1">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="PERIODO" class="lblcampo" />
+						<textbox id="txtPeriodo" required="true" readonly="true"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtPeriodo"></validation>
+					</row>
+					<row>
+						<label value="LOCAL" class="lblcampo" />
+						<menulist id="cmbLocal">
+							<menupopup></menupopup>
+						</menulist>						
+						<label value="(*)" class="reglas" />
+						<validation for="cmbLocal"></validation>
+					</row>
+					<row>
+						<label value="DESCRIPCIÓN" class="lblcampo" />
+						<textbox id="txtDescripcion" flex="1" required="true" maxlength="100" multiline="true" width="200"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtDescripcion"></validation>
+					</row>
+					<row>
+						<label value="FECHA" class="lblcampo" />						
+						<textbox id="txtFecha" type="popup" disabled="true"></textbox>
+						<spacer/>
+						<spacer/>
+					</row>		
+					<row>
+						<label value="CONTABILIZAR" class="lblcampo" />
+						<checkbox id="chkCont" checked="false"/>	
+						<spacer/>
+						<spacer/>
+					</row>				
+				</rows>
+			</grid>
+		</hbox>
+		<hbox align="center" pack="center" style="margin-top:14px;" flex="1">
+			<vbox flex="1">				
+				<hbox pack="end" flex="1">
+					<validation for="treeItems"></validation>									
+					<button id="btnEditarItem"  class="itemEdit"  tooltiptext="Editar"/>
+					<button id="btnRemomerItem"  class="itemRem"  tooltiptext="Eliminar"/>
+					<button id="btnAgregarItem"  class="itemAdd"  tooltiptext="Agregar"/>									
+				</hbox>
+				<hbox flex="1">
+					<tree id="treeItems" height="148" seltype="single" flex="1">
+						<treecols>
+							<treecol label="Nº" flex="1" />
+							<treecol label="Plan Cód" flex="1" />
+							<treecol label="Plan Nom" flex="1" />							
+							<treecol label="Descripción" flex="1" />
+							<treecol label="Fecha" flex="1" />
+							<treecol label="Documento" flex="1" />
+							<treecol label="Debe" flex="1" />
+							<treecol label="Haber" flex="1" />
+						</treecols>
+						<treechildren />
+					</tree>
+				</hbox>
+				<hbox pack="end">
+					<vbox>
+						<grid>
+							<columns>
+								<column></column>
+								<column></column>
+							</columns>
+							<rows>
+								<row>
+									<label value="Debe"/>
+									<label value="Haber"/>
+								</row>
+								<row>
+									<textbox id="txtDebe" readonly="true"/>
+									<textbox id="txtHaber" readonly="true"/>
+								</row>								
+							</rows>
+						</grid>
+						<validation for="txtDebe"></validation>
+					</vbox>
+				</hbox>
+			</vbox>
+		</hbox>
+		<hbox pack="center" id="boxControles">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

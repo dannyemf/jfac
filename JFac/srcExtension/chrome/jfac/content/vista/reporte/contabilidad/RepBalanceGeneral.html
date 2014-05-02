@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Reporte</title>
+	<script type="text/javascript" src="../../../js/jquery/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../../js/util/Fecha.js"></script>
+	
+	<style type="text/css">
+		.tablaDatos{
+				
+		}
+		
+		.tablaDatos th{
+			border: solid 1px green;
+			background-color: #C0C0C0;
+						
+		}
+		
+		.tablaDatos td{
+			border: solid 1px green;
+		}
+	</style>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		try {					
+			var model = window.parent.model;
+			var cri = model.criterio;
+
+			$("#empresa").text(model.empresa);
+			$("#propietario").text(model.propietario);
+			$("#ruc").text(model.ruc);
+			$("#direccion").text(model.direccion);
+			$("#telefono").text(model.telefono);
+			$("#fechaInicio").text(model.fechaInicio);
+			$("#fechaFin").text(model.fechaFin);
+			
+			var debe = 0;
+			var haber = 0;
+			var saldo = 0;
+											
+			for ( var i = 0; i < model.lista.length; i++) {
+				var it = model.lista[i];
+				it.Debe = isNaN(it.Debe) ? 0 : it.Debe * 1;
+				it.Haber = isNaN(it.Haber) ? 0 : it.Haber * 1;
+
+				debe += it.Debe;
+				haber += it.Haber;
+				
+				var el = '<tr>';
+				el += '<td>' + (i+1) +'</td>';
+				el += '<td>' + (it.codigo) + '</td>';
+				el += '<td>' + (it.nombre) +'</td>';
+				el += '<td>' + (it.Debe) +'</td>';
+				el += '<td>' + (it.Haber) +'</td>';
+				el += '<td>' + (it.Debe - it.Haber) +'</td>';				
+				el += '</tr>';
+	
+				$("#detalle").append(el);	
+			}	
+
+			saldo = debe - haber;
+			
+			var el = '<tr>';
+			el += '<td align="center" colspan="3"><strong>SUMAS</strong></td>';			
+			el += '<td>'+debe+'</td>';
+			el += '<td>'+haber+'</td>';
+			el += '<td>'+saldo+'</td>';				
+			el += '</tr>';
+			$("#detalle").append(el);
+
+			var ap = '<table><tr><td><font face="Calibri"><b>';
+			if(model.periodo !=null){
+				ap += ('Periodo:</b></font></td><td><font face="Calibri">'+model.periodo.nombre+'</font></td>');
+			} else {
+				ap += ('Periodo:</b></font></td><td><font face="Calibri">Todos</font></td>');
+			}
+			ap += ('<td>&nbsp;&nbsp;</td><td><font face="Calibri"><b>');	
+			if(model.local != null){
+				ap += ('Local:</b></font></td><td><font face="Calibri">'+model.local.nombre+'</font></td>');
+			} else {
+				ap += ('Local:</b></font></td><td><font face="Calibri">Todos</font></td>');
+			}			
+			ap += '</tr></table>';
+			$('#divDatos').append(ap);
+		} catch (ex) {
+			alert("Print: " + ex);
+		}
+	});
+	</script>
+</head>
+	<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0"	marginwidth="0" marginheight="0">
+			
+		<div align="center">
+			<div style="width: 800px">
+			
+				<div style="border: solid 1px green; -moz-border-radius: 10px">
+				<table  style="width: 100%">
+					<tbody>
+						<tr>
+							<td width="16%" rowspan="5">
+								<font face="Calibri">
+									<img border="0" src="logo.png">
+								</font>
+								<p align="center">
+									<b>
+										<!--font size="5" face="Calibri">
+											<label id="empresa"></label>
+										</font>	
+										<br/-->
+										<label id="propietario"></label>
+									</b>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div align="center">
+								<table>
+									<tbody>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Ruc:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="ruc"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Dirección:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="direccion" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Teléfono:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="telefono" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								</div>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+				</div>
+				</br>
+						
+				<table width="800">
+					<tbody>				
+						<tr>
+							<td colspan="4">
+								<p align="center">
+								<span style="letter-spacing: 1px; ">
+								<font face="Broadway" color="#FF0000" style="font-size: 20pt; text-decoration: underline; font-weight:700">
+								Reporte de Balance General</font></span></td>								
+						</tr>
+						<tr>
+							<td colspan="4" align="justify" width="100">
+								<div id="divDatos">
+								</div>
+							</td>						
+						</tr>						
+					</tbody>
+				</table>
+								
+				<br/>
+			
+				<table border="1" style="border-style: solid; border-width: 1px; width: 100%; border-collapse:collapse;" cellspacing="0" cellpadding="3">
+					<col width="50">
+					<col width="100">
+					<col width="500">
+					<col width="100">
+					<col width="100">
+					<thead>
+						<tr>
+							<th style="background-color: #9BBB59">
+							<font face="Calibri" color="#FFFFFF">Ord</font></th>
+							<th style="background-color: #9BBB59">
+							<font face="Calibri" color="#FFFFFF">Código</font></th>
+							<th style="background-color: #9BBB59">
+							<font face="Calibri" color="#FFFFFF">Nombre</font></th>
+							<th style="background-color: #9BBB59">
+							<font face="Calibri" color="#FFFFFF">Debe</font></th>
+							<th style="background-color: #9BBB59">
+							<font face="Calibri" color="#FFFFFF">Haber</font></th>
+							<th style="background-color: #9BBB59">
+							<font face="Calibri" color="#FFFFFF">Saldo</font></th>
+						</tr>
+					</thead>
+					<tbody id="detalle" style="font-family: Calibri">
+					</tbody>
+				</table>
+			</div>						
+		</div>
+	</body>
+</html>

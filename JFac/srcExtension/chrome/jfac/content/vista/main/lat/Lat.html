@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Control Lateral</title>
+		
+		<link rel='stylesheet' type='text/css' href='demos.css'/>
+		<link rel='stylesheet' type='text/css' href='south-street/jquery-ui-1.8.11.custom.css'/>
+		<link rel='stylesheet' type='text/css' href='jquery.treeview.css'/>
+		
+		<link rel='stylesheet' type="text/css" href="../../../../../../skin/global/tema_jfac/imagen.css">		
+		
+		<script type="text/javascript" src="../../../js/jquery/jquery-1.5.1.js"></script>
+		<script type="text/javascript" src="../../../js/jquery/jquery-ui-1.8.11.custom.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery/jquery.treeview.js"></script>
+				
+		<script type="text/javascript">
+			
+			var opciones = window.parent.opciones;
+			
+			function Mostrar(control, id){
+				for(var m = 0; m < opciones.length; m++){
+					var opp = opciones[m];
+					if(opp.ID_OPCION == id){
+						if(opp.IS_NUEVA_VENTANA == 0){
+							window.parent.main.pageTo(window.parent.main.iframe, opp.MODULO);				
+						}else{					
+							window.parent.main.abrir(opp.MODULO);
+						}				
+					}
+				}
+			};
+			
+			function obtenerControlesLaterales(){
+				var menues = new Array();
+				for(var m = 0; m < opciones.length; m++){
+					var opp = opciones[m];
+					//if(!opp.PADRE && opp.IS_LATERAL_CONTROL == 1){
+					if(!opp.PADRE){
+						menues.push(opp);
+					}
+				}
+				return menues;
+			};
+			
+			function obtenerSubControlesLaterales (opcion){
+				var menues = new Array();
+				for(var j = 0; j < opciones.length; j++){
+					var oppx = opciones[j];
+					if(oppx.PADRE == opcion.CODIGO){
+						menues.push(oppx);
+					}
+				}
+				return menues;
+			};
+			
+			function crearControlesLaterales(){
+				var menues = obtenerControlesLaterales();
+				for(var i = 0; i < menues.length; i++){
+					var opp = menues[i];
+					//var listasub = obtenerSubControlesLaterales(opp);
+								
+					//if(listasub.length > 0){
+						//$('#accordion').append('<h3><a href="#">'+opp.ETIQUETA+'</a></h3><div id="control_'+opp.ID_OPCION+'"></div>');
+						//crearSubControles(opp);	
+					//}		
+					//$('#accordion').append('<div style="margin: 2px; padding: 2px; width: 100px; height: 50px; float: left; text-align: center;" onclick="Mostrar(this,'+opp.ID_OPCION+');" class="btnLateral ui-state-default ui-corner-all imgUsuarioLat">'+opp.ETIQUETA+'</div>');
+
+					$("#tree").append("<li><span class='folder'>"+opp.ETIQUETA+"</span><ul id='menu_"+opp.ID_OPCION+"'></ul><li>");
+
+					crearSubControles(opp);
+				}
+			};
+			
+			function crearSubControles(opcion, control){
+				var subs = obtenerSubControlesLaterales(opcion);
+				
+				for(var s = 0; s < subs.length; s++){
+					var opp = subs[s];
+					//var lista = obtenerSubControlesLaterales(opp);
+					//$('#control_'+opcion.ID_OPCION).append('<div style="margin: 2px; padding: 2px; width: 100px; height: 50px" onclick="Mostrar(this,'+opp.ID_OPCION+');" class="btnLateral ui-state-default">'+opp.ETIQUETA+'</div>');
+					/*var ctr =""; 
+					ctr += '<div style="margin: 2px; padding: 2px; width: 100px; height: 50px; float: left; text-align: center;" onclick="Mostrar(this,'+opp.ID_OPCION+');" class="btnLateral imgUsuarioLat ui-state-default ui-corner-all">';
+					ctr += opp.ETIQUETA;					
+					ctr += '</div>';
+					
+					$('#accordion').append(ctr);
+
+					crearSubControles(opp);	*/	
+
+					var lista = obtenerSubControlesLaterales(opp);
+					if(lista.length > 0){
+						$('#menu_'+opcion.ID_OPCION).append("<li><span class='folder'>"+opp.ETIQUETA+"</span><ul id='menu_"+opp.ID_OPCION+"'></ul></li>");
+						crearSubControles(opp);
+					}else{
+						$('#menu_'+opcion.ID_OPCION).append("<li id='menu_"+opp.ID_OPCION+"'><span class='file'>"+opp.ETIQUETA+"</span></li>");
+					}														
+				}
+			};
+			
+			$(document).ready(function(){
+				try{
+					$('#tabs').tabs();										
+					crearControlesLaterales();
+					$("#tree").treeview();
+					
+					//$( "#accordion" ).accordion();
+					$('.btnLateralx').hover(
+						function(){
+							$(this).removeClass('ui-state-default');
+							$(this).addClass('ui-state-hover');
+						}, 
+						function(){
+							$(this).removeClass('ui-state-hover');
+							$(this).addClass('ui-state-default');
+						}
+					);
+				}catch(e){alert(e);}
+			});
+		</script>
+	</head>
+
+	<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0"	marginwidth="0" marginheight="0">
+		
+		
+		<div id="div1" class="ui-widgetx ui-widget-contentx" style="margin: 0px">
+			<ul id="tree" class="filetree treeview-famfamfam">
+			</ul>
+		</div>				
+				
+		<div id="accordion" class="ui-widget ui-widget-content ui-corner-all" style="width: auto">
+		
+		</div>		
+	</body>
+</html>

@@ -1,0 +1,254 @@
+#wrapper-c3xuladmin-button {
+	list-style-image: url("chrome://jfac/skin/cyclone_logo.png");
+	-moz-image-region: rect(24px, 24px, 48px, 0px);
+}
+
+#c3xuladmin-button {
+	list-style-image: url("chrome://jfac/skin/cyclone_logo.png");
+	-moz-image-region: rect(0px, 24px, 24px, 0px);
+}
+
+#c3xuladmin-button
+
+
+:hover
+
+
+:not
+
+ 
+
+(
+[
+disabled
+=
+"true"
+]
+
+ 
+
+)
+{
+-moz-image-region
+
+
+:
+
+ 
+
+rect
+
+
+(24
+px
+,
+24
+px
+,
+48
+px
+,
+0
+px
+
+
+);
+}
+#c3xuladmin-button[disabled="true"] {
+	-moz-image-region: rect(48px, 24px, 72px, 0px);
+}
+
+#c3xuladmin-button
+
+
+:hover
+
+
+:active
+
+
+:not
+
+ 
+
+(
+[
+disabled
+=
+"true"
+]
+
+ 
+
+)
+{
+-moz-image-region
+
+
+:
+
+ 
+
+rect
+
+
+(72
+px
+,
+24
+px
+,
+96
+px
+,
+0
+px
+
+
+);
+}
+toolbar[iconsize="small"] #c3xuladmin-button {
+	-moz-image-region: rect(96px, 16px, 112px, 0px);
+}
+
+toolbar
+
+
+[
+iconsize
+=
+"small"
+]
+
+ 
+
+#c3xuladmin-button
+
+
+:hover
+
+
+:not
+
+ 
+
+(
+[
+disabled
+=
+"true"
+]
+
+
+	
+
+)
+{
+-moz-image-region
+
+
+:
+
+ 
+
+rect
+
+
+(112
+px
+,
+16
+px
+,
+128
+px
+,
+0
+px
+
+
+);
+}
+toolbar[iconsize="small"] #c3xuladmin-button[disabled="true"] {
+	-moz-image-region: rect(128px, 16px, 144px, 0px);
+}
+
+toolbar
+
+
+[
+iconsize
+=
+"small"
+]
+
+ 
+
+#c3xuladmin-button
+
+
+:hover
+
+
+:active
+
+
+:not
+
+ 
+
+(
+[
+disabled
+=
+"true"
+]
+
+
+	
+
+)
+{
+-moz-image-region
+
+
+:
+
+ 
+
+rect
+
+
+(144
+px
+,
+16
+px
+,
+160
+px
+,
+0
+px
+
+
+);
+}
+toolbar[iconsize="small"] #c3xuladmin-button .toolbarbutton-icon {
+	padding-left: 1px;
+}
+
+.tbox {
+	-moz-appearance: none;
+	margin: 2px 2px 2px 2px;
+	border: 1px solid;
+	-moz-border-top-colors: #aaa;
+	-moz-border-right-colors: #bbb;
+	-moz-border-bottom-colors: #bbb;
+	-moz-border-left-colors: #aaa;
+	padding: 2px 0 1px 3px;
+	background: -moz-field;
+	background-color: #fff;
+	font: icon;
+	font-size: 11px;
+}

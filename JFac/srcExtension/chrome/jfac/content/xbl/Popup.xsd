@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.jfac.xul" elementFormDefault="qualified" xmlns:p="http://www.jfac.xul" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.jfac.xul">
+
+	<xsd:annotation>
+		<xsd:appinfo>
+			<xsd:menupopup></xsd:menupopup>
+			<xsd:bbox></xsd:bbox>
+			<xsd:binding />
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:include schemaLocation=""></xsd:include>
+	<xsd:element name="pupupCliente" type="p:popupCliente">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<xsd:wizard></xsd:wizard>
+			</xsd:appinfo>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:attribute name="cliente" type="xsd:string"></xsd:attribute>
+
+	<xsd:attribute name="mensaje" type="xsd:string"></xsd:attribute>
+
+	<xsd:attribute name="rowDireccion" type="xsd:boolean"></xsd:attribute>
+
+	<xsd:simpleType name="popupCliente">
+		<xsd:restriction base="xsd:string"></xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

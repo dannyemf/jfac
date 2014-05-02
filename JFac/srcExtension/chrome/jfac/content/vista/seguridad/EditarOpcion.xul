@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Opción">
+
+	<hbox id="header_editar" image="imgOpcion" title="Editar Opción" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarOpcion.js" />
+
+	<vbox flex="1">
+		<vbox pack="center" id="boxDatos">
+			
+			<groupbox>
+				<caption label="Opción"></caption>
+				
+				<grid width="460">
+				<columns><column /><column /><column /><column /></columns>
+				<rows>
+					<!-- 
+					<row>
+						<label value="ID" />
+						<textbox id="txtId" readonly="true" />
+						<spacer />
+						<spacer />
+					</row>
+					-->
+					<row>
+						<label value="CÓDIGO" />
+						<textbox id="txtCodigo" tipo="cedula" flex="1" required="true" tooltiptext="Código único de cada opcion"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtCodigo"></validation>
+					</row>
+					<row>
+						<label value="PADRE" />
+						<textbox id="txtPadre" />
+						<spacer />
+						<spacer />
+					</row>
+										
+					<row>
+						<label value="ETIQUETA" />
+						<textbox id="txtEtiqueta" required="true" tooltiptext="Texto que debe aparecer en el menú" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtEtiqueta"></validation>
+					</row>
+					
+				</rows>
+			</grid>
+			
+			</groupbox>
+			
+			<groupbox>
+				<caption label="Control"></caption>
+				
+				<grid width="460">
+				<columns><column /><column /><column /><column /></columns>
+				<rows>					
+					<row>
+						<label value="MÓDULO" />
+						<textbox id="txtModulo" tooltiptext="Módulo o control que debe cargarse"/>
+						<spacer />
+						<spacer />
+					</row>					
+					
+					<row>
+						<label value="CÓDIGO VENTANA" control="txtCodigoVent" />
+						<textbox id="txtCodigoVent" tipo="cedula" flex="1" tooltiptext="Código de acceso rápido a una ventana"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtCodigoVent"></validation>
+					</row>
+					
+					<row>
+						<label value="ICONO LATERAL" />						
+						<menulist id="cmbIcoLat">
+							<menupopup>
+								<menuitem value="" label="--Ninguno--"/>
+								<menuitem value="imgUsuario" label="imgUsuario"/>
+								<menuitem value="imgCliente" label="imgCliente"/>
+								<menuitem value="imgRol" label="imgRol"/>
+								<menuitem value="imgLocal" label="imgLocal"/>
+								<menuitem value="imgBanco" label="imgBanco"/>
+								<menuitem value="imgCuentaBancaria" label="imgCuentaBancaria"/>
+								<menuitem value="imgProducto" label="imgProducto"/>
+								<menuitem value="imgMarca" label="imgMarca"/>								
+								<menuitem value="imgLinea" label="imgLinea"/>
+								<menuitem value="imgUbicacion" label="imgUbicacion"/>
+								<menuitem value="imgProveedor" label="imgProveedor"/>
+								<menuitem value="imgCompras" label="imgCompras"/>
+								<menuitem value="imgVentas" label="imgVentas"/>
+								<menuitem value="imgProformas" label="imgProformas"/>
+								<menuitem value="imgRetencion" label="imgRetencion"/>
+								<menuitem value="imgCuenta" label="imgCuenta"/>
+								<menuitem value="imgBuscarVentas" label="imgBuscarVentas"/>
+								<menuitem value="imgAnticipo" label="imgAnticipo"/>
+								<menuitem value="imgTransferencia" label="imgTransferencia"/>
+								<menuitem value="imgBuscarCompras" label="imgBuscarCompras"/>
+								
+								<menuitem value="imgRetencionIVA" label="imgRetencionIVA"/>
+								<menuitem value="imgRetencionIR" label="imgRetencionIR"/>
+								
+								
+								<menuitem value="imgCobroClientes" label="imgCobroClientes"/>
+								<menuitem value="imgCredito" label="imgCredito"/>
+								<menuitem value="imgBodega" label="imgBodega"/>
+								<menuitem value="imgOpcion" label="imgOpcion"/>
+								<menuitem value="imgParametro" label="imgParametro"/>
+								
+								
+								<menuitem value="imgCreditos" label="imgCreditos"/>
+								<menuitem value="imgPeriodo" label="imgPeriodo"/>
+								<menuitem value="imgEstadosPlanes" label="imgEstadosPlanes"/>
+								
+								
+								<menuitem value="imgContabilizarCompras" label="imgContabilizarCompras"/>
+								<menuitem value="imgPuntoFacturacion" label="imgPuntoFacturacion"/>
+								
+								<menuitem value="imgProductoProveedor" label="imgProductoProveedor"/>
+								
+								<menuitem value="imgReceptarTransferencia" label="imgReceptarTransferencia"/>
+								<menuitem value="imgCerrarCaja" label="imgCerrarCaja"/>
+								
+								<menuitem value="imgIngresoGasto" label="imgIngresoGasto"/>
+								<menuitem value="imgAdministracionAutorizacioSri" label="imgAdministracionAutorizacioSri"/>
+								
+								<menuitem value="imgAdministrarSecuencias" label="imgAdministrarSecuencias"/>
+								<menuitem value="imgAdministrarLoteAsiento" label="imgAdministrarLoteAsiento"/>
+								
+								<menuitem value="imgReporteProveedores" label="imgReporteProveedores"/>
+								<menuitem value="imgReporteLibroDiario" label="imgReporteLibroDiario"/>
+								<menuitem value="imgReporteCompras" label="imgReporteCompras"/>
+								<menuitem value="imgReporteCierreCaja" label="imgReporteCierreCaja"/>
+								<menuitem value="imgReporteClientes" label="imgReporteClientes"/>
+								<menuitem value="imgReporteBalance" label="imgReporteBalance"/>								
+								<menuitem value="imgReporteProforma" label="imgReporteProforma"/>
+								<menuitem value="imgReporteVentas" label="imgReporteVentas"/>
+								<menuitem value="imgReporteStock" label="imgReporteStock"/>
+								
+							</menupopup>
+						</menulist>
+						<spacer />
+						<spacer />
+					</row>
+					
+					<row>
+						<label value="CONTROL LATERAL" for="chkControlLateral" control="chkNuevaVentana" />
+						<checkbox id="chkControlLateral" tooltiptext="Indica si se debe mostrar en la barra lateral" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="NUEVA VENTANA" for="chkNuevaVentana" control="chkNuevaVentana" />
+						<checkbox id="chkNuevaVentana" tooltiptext="Indica si se debe abrir en una nueva ventana independiente, o cargarse dentro de la ventana principal" />
+						<spacer />
+						<spacer />
+					</row>
+				</rows>
+			</grid>
+			
+			</groupbox>
+		
+			
+		</vbox>
+		<hbox align="center" pack="center" style="margin-top:14px;">
+			<vbox>
+				<label value="Lista de Roles" />
+				<hbox>
+					<tree id="treeRoles" height="148" width="400" seltype="single">
+						<treecols>
+							<treecol id="asg" label="Asignar" flex="1" type="checkbox" />
+							<treecol id="nom" label="Nombre" flex="1" />
+							<treecol id="des" label="Descripción" flex="1" />
+						</treecols>
+						<treechildren />
+					</tree>
+				</hbox>
+			</vbox>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

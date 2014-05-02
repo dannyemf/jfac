@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/login.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" id="frm-login" title="Login.."
+	orient="vertical" width="400" height="300">
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="Login.js" />
+
+	<vbox id="wrap" flex="1" align="center" pack="center">
+		<vbox pack="center">
+			<label class="logoText" id="logoSistema" />
+			<label class="logoText" id="logoEmpresa" />
+		</vbox>
+		<grid id="gridx" width="610" height="120"
+			style="color:#333300;display:block;opacity:1;" pack="center">
+			<columns>
+				<column />
+			</columns>
+			<rows>
+				<row id="row_head" />
+				<row id="row_cen" width="610">
+					<hbox width="610">
+						<vbox align="center" pack="center" width="120">
+
+						</vbox>
+						<vbox align="center" orient="vertical" dir="normal" width="315">
+							<grid>
+								<columns>
+									<column />
+									<column />
+								</columns>
+								<rows>
+									<row>
+										<vbox pack="center" class="contLabel">
+											<label id="lblLogin" value="Usuario" />
+										</vbox>
+										<textbox id="txtLogin" />
+									</row>
+									<row>
+										<vbox pack="center" class="contLabel">
+											<label value="Clave" id="lblClave" />
+										</vbox>
+										<textbox id="txtClave" type="password" />
+									</row>
+									<row>
+										<spacer />
+										<label id="lblMsj" />
+									</row>
+								</rows>
+							</grid>
+						</vbox>
+					</hbox>
+				</row>
+				<row id="row_pie">
+					<hbox width="610" align="baseline" pack="center">
+						<button id="btnLogin" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<vbox>
+			<spacer height="10" />
+			<label value="Copyright © 2010 JFac. Todos los derechos reservados."
+				id="pieText" />
+		</vbox>
+	</vbox>
+
+
+</window>

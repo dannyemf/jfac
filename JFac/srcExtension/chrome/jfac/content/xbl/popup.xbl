@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+	<!--
+-->
+<!DOCTYPE bindings [
+  <!ENTITY % popup.dtd SYSTEM "chrome://jfac/locale/popup.dtd">
+  %popup.dtd;
+]>
+
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xbl="http://www.mozilla.org/xbl"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<binding id="pupupCliente">
+		<content>
+			<xul:groupbox>
+				<xul:caption label="Cliente"></xul:caption>				
+				<xul:grid>
+					<xul:columns>
+						<xul:column></xul:column>
+						<xul:column></xul:column>
+						<xul:column></xul:column>
+					</xul:columns>
+					<xul:rows>
+						<xul:row>
+							<xul:label value="CI/RUC:"/>							
+							<xul:hbox style="border: solid 1px green; -moz-border-radius: 4px">
+								<xul:textbox id="_txt_cedula" maxlength="14" style="padding: 0px; margin: 0px; height: 18px; border: 0px; width: 170px"/>
+								<xul:image class="imgPopupSelect" width="18" height="18" tooltiptext="Buscar Clientes" ></xul:image>
+								<xul:image class="imgPopupLimpiar" width="18" height="18" tooltiptext="Limpiar" ></xul:image>																		
+							</xul:hbox>
+						</xul:row>
+						<xul:row>
+							<xul:label value="NOMBRE:"/>
+							<xul:textbox id="_txt_nombre" maxlength="100" style="padding: 0px; margin: 0px; margin-top: 3px; height: 18px;" readonly="true"/>							
+						</xul:row>
+						<xul:row>
+							<xul:label value="DIRECCIÓN:"/>
+							<xul:textbox id="_txt_nombre" maxlength="100" style="padding: 0px; margin: 0px; margin-top: 3px; height: 18px" readonly="true"/>							
+						</xul:row>
+						<xul:row>
+							<xul:label value="TELÉFONO:"/>
+							<xul:textbox id="_txt_nombre" maxlength="100" style="padding: 0px; margin: 0px;margin-top: 3px; height: 18px" readonly="true"/>							
+						</xul:row>
+						<xul:row >							
+							<xul:spacer/>
+							<xul:label id="_lbl_message" value="" class="validation-message"/>				
+						</xul:row>
+					</xul:rows>
+				</xul:grid>								
+			</xul:groupbox>
+			
+		</content>
+		<implementation>
+			<field name="_cliente" readonly="true">null</field>
+			<field name="_mensajeRuc" readonly="true">""</field>
+			<field name="_mostrarTelefono">true</field>
+			<field name="_mostrarDireccion">true</field>
+			<field name="_mostrarMensaje">true</field>
+			<field name="_disabled">false</field>
+			
+			<field name="_label" readonly="true">document.getAnonymousNodes(this)[0]</field>
+			
+			<field name="_rowRuc" readonly="true">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[0]</field>
+			<field name="_rowNombre" readonly="true">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[1]</field>
+			<field name="_rowDireccion" readonly="true">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[2]</field>
+			<field name="_rowTelefono" readonly="true">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[3]</field>
+			<field name="_rowMensaje" readonly="true">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[4]</field>
+			
+			<field name="_txtCedula" readonly="true">     document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[0]</field>
+			<field name="_btnSeleccionar" readonly="true">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[1]</field>
+			<field name="_btnLimpiar" readonly="true">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[2]</field>
+			
+			<field name="_txtNom" readonly="true">        document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[1].childNodes[1]</field>
+			<field name="_txtDir" readonly="true">     document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[2].childNodes[1]</field>
+			<field name="_txtTel" readonly="true">     document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[3].childNodes[1]</field>
+			<field name="_lblMessage" readonly="true">     document.getAnonymousNodes(this)[0].childNodes[1].childNodes[1].childNodes[4].childNodes[1]</field>
+			
+			
+			
+			
+			<property name="cliente">
+				<getter>
+					return this._cliente;
+				</getter>
+				<setter>
+					this._cliente = val;
+					if(val){
+						this._txtCedula.value = this._cliente.cedula;
+						this._txtNom.value =this._cliente.nombres + " " + this._cliente.apellidos;
+						this._txtDir.value = this._cliente.direccion;
+						this._txtTel.value = this._cliente.telefono;
+					}else{
+						this._txtCedula.value = this.mensajeRuc;
+						this._txtNom.value = " --- ";
+						this._txtDir.value = " --- ";
+						this._txtTel.value = " --- ";
+					}
+				</setter>
+			</property>
+			
+			<property name="mensajeRuc">
+				<getter>
+					return this._mensajeRuc;
+				</getter>
+				<setter>
+					this._mensajeRuc = val;
+					this._txtCedula.value = this.mensajeRuc;
+				</setter>
+			</property>
+			
+			<property name="mensaje">
+				<getter>
+					return this._lblMessage.value;
+				</getter>
+				<setter>
+					this._lblMessage.value = val;					
+				</setter>
+			</property>
+			
+			<property name="rowDireccion">
+				<getter>
+					return this._mostrarDireccion;
+				</getter>
+				<setter>
+					if(typeof(val) == 'boolean' || val == 'true' || val == 'false'){
+						this._mostrarDireccion = val == true || val == 'true' ? true : false;
+						if(this._mostrarDireccion == false){
+							this._rowDireccion.setAttribute('collapsed','true');									
+						}
+					}else{
+						//alert("rowDireccion No es un booleano");
+					}
+				</setter>
+			</property>
+			
+			<property name="rowTelefono">
+				<getter>
+					return this._mostrarTelefono;
+				</getter>
+				<setter>
+					if(typeof(val) == 'boolean' || val == 'true' || val == 'false'){
+						this._mostrarTelefono = val == true || val == 'true' ? true : false;
+						if(this._mostrarTelefono == false){
+							this._rowTelefono.setAttribute('collapsed','true');									
+						}
+					}else{
+						//alert("rowTelefono No es un booleano");
+					}
+				</setter>
+			</property>
+			
+			<property name="rowMensaje">
+				<getter>
+					return this._mostrarMensaje;
+				</getter>
+				<setter>
+					if(typeof(val) == 'boolean' || val == 'true' || val == 'false'){
+						this._mostrarMensaje = val == true || val == 'true' ? true : false;
+						if(this._mostrarMensaje == false){
+							this._rowMensaje.setAttribute('collapsed','true');									
+						}
+					}else{
+						//alert("rowTelefono No es un booleano");
+					}
+				</setter>
+			</property>
+			
+			<property name="disabled">	
+				<getter>
+					return this._disabled;
+				</getter>			
+				<setter>
+					this._disabled = val;
+					if(val == true){
+						this._txtCedula.setAttribute('disabled',true);
+					}else{
+						this._txtCedula.removeAttribute('disabled');
+					}					
+				</setter>
+			</property>
+			
+			<constructor>	
+				this.cliente = null;			
+				this.rowTelefono = this.getAttribute('rowTelefono');	
+				this.rowDireccion = this.getAttribute('rowDireccion');
+				this.rowMensaje = this.getAttribute('rowMensaje');
+				this.mensajeRuc = this.getAttribute('mensajeRuc');
+								
+				var th = this;
+				var features = "chrome,modal,dependent=true,dialog,centerscreen";
+								
+				this._txtCedula.addEventListener('keyup', function(e){
+					if(e.keyCode == 13){
+						var dao = new ClienteDao();
+						var lst = dao.buscarPorCedula(th._txtCedula.value);
+						if(lst.length > 0){
+							th.cliente = lst[0];
+						}else{
+							var cliente = new Cliente();
+							cliente.cedula = th._txtCedula.value;							
+							window.openDialog("chrome://jfac/content/vista/cliente/EditarCliente.xul", "editar-cliente", features, cliente);
+							if (cliente.id > 0){
+								th.cliente = cliente;
+							}else{
+								th.cliente = null;
+							}
+						}	
+					}
+				},false);
+				
+				this._btnSeleccionar.addEventListener('click', function(){
+					if(th._disabled == false){					
+						window.openDialog("chrome://jfac/content/vista/cliente/DialogoClientes.xul", "ixxssi", features,function(cliente){
+							th.cliente = cliente;
+							return true;				
+						});					
+					}
+				}, false);
+				
+				this._btnLimpiar.addEventListener('click', function(){
+					if(th._disabled == false){
+						th.cliente = null;		
+						th._txtCedula.value = th.mensajeRuc;
+					}							
+				}, false);
+							
+			</constructor>
+			
+		</implementation>
+	</binding>
+</bindings>

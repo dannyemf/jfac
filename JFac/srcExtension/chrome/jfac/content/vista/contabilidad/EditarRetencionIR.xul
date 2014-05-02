@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Retención IR">
+
+	<hbox id="header_editar" image="imgRetencionIR" title="Editar Retención IR" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarRetencionIR.js" />
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>					
+					<row>
+						<label value="CÓDIGO" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtCodigo" flex="1" required="true" width="250" />						
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtCodigo"></validation>
+					</row>
+					
+					<row>
+						<label value="DESCRIPCIÓN" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtDescripcion" flex="1" required="true" multiline="true" rows="10"/>
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtDescripcion"></validation>
+					</row>
+					
+					<row>
+						<label value="NOMBRE" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtNombreCorto" flex="1" required="true" />						
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtNombreCorto"></validation>
+					</row>
+					
+					<row>
+						<label value="PORCENTAJE RETENCIÓN" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtPorcentajeRetencion" flex="1" required="true" text="double"/>						
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtPorcentajeRetencion"></validation>
+					</row>
+					
+					<row>
+						<label value="PLAN" />
+						<label value="(*)" class="reglas" />						
+						<hbox class="boxSeleccion">
+							<textbox id="txtPlan" disabled="true" width="220"/>
+							<button id="btnSelPlan" class="itemSelect"></button>
+							<button id="btnClrPlan" class="itemNinguno"></button>
+						</hbox>					
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtPlan"></validation>
+					</row>
+					
+				</rows>
+			</grid>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

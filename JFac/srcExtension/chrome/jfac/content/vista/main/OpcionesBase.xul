@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<prefwindow id="stockwatcher2-prefs" title="Configuración de Preferencias"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	width="600" height="300">
+		
+	<script type="application/x-javascript">		
+	</script>
+
+	<prefpane id="panelPreferencias" label="Urls">
+		<preferences>
+			<preference id="pref_server" name="jfac.server" type="string" />
+			<preference id="pref_mostrar_sql" name="jfac.mostrar_sql" type="bool" />			
+		</preferences>
+
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label control="server" value="Servidor: " />
+					<textbox preference="pref_server" id="server" maxlength="200" width="300" />
+					<spacer />
+				</row>
+				<row>
+					<label control="mostrar_sql" value="Mostrar SQL: " />
+					<checkbox preference="pref_mostrar_sql" id="mostrar_sql" />
+					<spacer />
+				</row>				
+			</rows>
+		</grid>
+	</prefpane>
+
+</prefwindow>

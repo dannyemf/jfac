@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+	<!--
+-->
+<!DOCTYPE bindings [
+  <!ENTITY % popup.dtd SYSTEM "chrome://jfac/locale/popup.dtd">
+  %popup.dtd;
+]>
+
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xbl="http://www.mozilla.org/xbl"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<binding id="validationMessage">
+		<content>
+			<xul:label value="" class="validation-message" />
+		</content>
+		<implementation>
+			<field name="_label" readonly="true">document.getAnonymousNodes(this)[0]
+			</field>
+			<property name="value" onget="return (this._label.value);"
+				onset="this._label.value = val;" />
+			<constructor>
+			</constructor>
+		</implementation>
+	</binding>
+</bindings>
+
+
+

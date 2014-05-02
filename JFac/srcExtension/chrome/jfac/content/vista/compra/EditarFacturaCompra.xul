@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Factura de Compra">
+	
+	<vbox id="general_imports" />	
+	<script type="application/x-javascript" src="chrome://global/content/printUtils.js" />
+	<script type="application/x-javascript" src="EditarFacturaCompra.js" />
+	
+	<hbox id="header_editar" image="imgCompras" title="Ingresar Factura Compra" />
+	
+	<vbox flex="1">			
+		<tabbox flex="1">
+			<tabs id="tabFac">
+				<tab label="Factura" />
+				<tab label="Vista Previa" />
+			</tabs>
+			<tabpanels>
+				<tabpanel flex="1">
+					<vbox flex="1">
+						<grid>
+							<columns>
+								<column></column>
+								<column></column>
+								<column></column>
+								<column></column>
+								<column></column>
+								<column></column>
+							</columns>
+							<rows>
+								<row>
+									<label value="Usuario:"/>
+									<textbox id="lblUsuario" disabled="true"/>
+									<label value="Local:"/>									
+									<textbox id="lblLocal" disabled="true"/>
+									<label value="Fecha Emisión" />
+									<datepicker id="dtpFechaEmision" type="popup"/>
+								</row>
+								<row>
+									<label value="Nº Factura"  />
+									<textbox value="000-000-0000000" id="txtNumeroFactura" text="factura" />									
+									<label value="Nº Autorización"  />
+									<textbox id="txtNumeroAutorizacion"  maxlength="15" />									
+									<label value="Válida Desde"  />
+									<datepicker id="dtpFechaAut" type="popup" />								
+								</row>
+								<row>
+									<spacer/>									
+									<validation for="txtNumeroFactura"></validation>
+									<spacer/>
+									<spacer/>
+									<label value="Válida Hasta"  />
+									<datepicker id="dtpFechaCaducidad" type="popup" />
+								</row>
+								<row>
+									<label value="Proveedor"  />
+									<menulist id="cmbProveedor" min="1" >
+										<menupopup />
+									</menulist>
+									<spacer/>
+									<spacer/>
+																		
+								</row>
+								<row>
+									<spacer/>
+									<validation for="cmbProveedor"></validation>
+									<spacer/>
+									<spacer/>
+									<spacer/>
+								</row>								
+							</rows>
+						</grid>						
+						<hbox style="">
+							<vbox flex="1" >								
+								<hbox pack="end" style="margin-top: 10px" align="center">
+									<validation for="treeItems"></validation>
+									<hbox class="boxControlesItem" align="baseline">									
+										<button id="btnEditarItem" class="itemEdit"   tooltiptext="Editar"/>
+										<button id="btnRemomerItem"  class="itemRem"  tooltiptext="Eliminar"/>
+										<button id="btnAgregarItem"  class="itemAdd"  tooltiptext="Agregar"/>
+									</hbox>
+								</hbox>
+								<vbox flex="1">									
+									<tree id="treeItems"  seltype="single" flex="1" rows="10" width="100%">
+										<treecols>
+											<treecol label="Código" />
+											<treecol flex="1" label="Cantidad" style="text-align: center;"/>
+											<treecol label="Descripción" flex="1" />
+											<treecol label="Costo" flex="1" text="double"/>
+											<treecol flex="1" label="Descuento" text="double"/>
+											<treecol flex="1" label="Iva" text="double"/>
+											<treecol label="Subtotal" text="double"/>
+										</treecols>
+										<treechildren />
+									</tree>
+								</vbox>
+								<hbox pack="end">
+									<grid>
+										<columns>
+											<column />
+											<column />
+											<column/>
+										</columns>
+										<rows>
+											<row>
+												<spacer/>
+												<label value="SubDoce" />
+												<textbox id="txtSubDoce" text="double" disabled="true"/>
+											</row>
+											<row>
+												<spacer/>
+												<label value="SubCero" />
+												<textbox id="txtSubCero" text="double" disabled="true"/>
+											</row>
+											<row>
+												<spacer/>
+												<label value="Subtotal" />
+												<textbox id="txtSubtotal" text="double" disabled="true"/>
+											</row>
+											<row>
+												<spacer/>
+												<label value="Descuento" />
+												<textbox id="txtDescuento" text="double" />
+											</row>
+											<row>
+												<validation for="txtIvaPorcentaje"></validation>
+												<hbox>
+													<label value="Iva %" />
+													<textbox id="txtIvaPorcentaje" text="double" disabled="true" min="0" max="100" width="40"/>
+												</hbox>												
+												<textbox id="txtIva" text="double" disabled="true"/>
+											</row>
+											<row>
+												<spacer/>
+												<label value="Sobrecargo" />
+												<textbox id="txtSobrecargo" text="double" />
+											</row>
+											<row>
+												<validation for="txtTotal"></validation>
+												<label value="TOTAL" />
+												<textbox id="txtTotal" text="double" disabled="true"/>												
+											</row>
+										</rows>
+									</grid>
+								</hbox>
+							</vbox>
+						</hbox>
+					</vbox>
+				</tabpanel>
+				<tabpanel flex="1">
+					<hbox flex="1">
+						<iframe id="print" flex="1" />
+					</hbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		<hbox pack="center" id="boxControles" class="boxControles">
+			<button label="Temporal" id="btnGuardarTemporal" />
+			<button label="Confirmar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+			<button label="Imprimir" id="btnImprimir" />
+		</hbox>
+	</vbox>
+</window>

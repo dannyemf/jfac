@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+
+/**
+* Utilizado para los bindings
+*/
+validation {
+	-moz-binding:
+		url(chrome://jfac/content/xbl/validation.xbl#validationMessage);
+}
+
+#header_editar {
+	-moz-binding: url(chrome://jfac/content/xbl/header.xbl#header_edicion);
+}
+
+pupupCliente{
+	-moz-binding: url(chrome://jfac/content/xbl/popup.xbl#pupupCliente);
+}
+
+/*textbox[text='int'] {
+	-moz-binding: url(chrome://jfac/content/xbl/text.xbl#text_int);
+}
+
+textbox[text='double'] {
+	-moz-binding: url(chrome://jfac/content/xbl/text.xbl#text_double);
+}
+
+textbox[text='cedula'] {
+	-moz-binding: url(chrome://jfac/content/xbl/text.xbl#text_cedula);
+}
+
+textbox[text='ruc'] {
+	-moz-binding: url(chrome://jfac/content/xbl/text.xbl#text_ruc);
+}
+
+textbox[text='include'] {
+	-moz-binding: url(chrome://jfac/content/xbl/text.xbl#text_include);
+}
+textbox[text='char'] {
+	-moz-binding: url(chrome://jfac/content/xbl/text.xbl#text_char);
+}
+textbox[text='factura'] {
+	-moz-binding: url(chrome://jfac/content/xbl/text.xbl#text_factura);
+}
+*/

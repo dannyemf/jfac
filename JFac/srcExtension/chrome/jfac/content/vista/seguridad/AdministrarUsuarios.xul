@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="AdministrarUsuarios.js" />
+
+	<vbox flex="1">
+		<hbox id="header_administrar">
+			<image class="imgUsuario"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label value="Administrar Usuarios" />
+			</hbox>
+			<hbox id="header_administrar_opciones" align="center" pack="end"
+				flex="1">
+				<label value="Buscar por " />
+				<menulist id="listaCriterios">
+					<menupopup>
+						<menuitem label="Todos" value="TODOS" />
+						<menuitem label="Código" value="ID" />
+						<menuitem label="Cédula" value="CEDULA" />
+						<menuitem label="Login" value="LOGIN" />
+						<menuitem label="Nombres" value="NOMBRES" />
+						<menuitem label="Apellidos" value="APELLIDOS" />
+					</menupopup>
+				</menulist>
+				<textbox id="txtTexto" />
+				<button label="Buscar" id="btnBuscar" />
+				<button label="Nuevo" id="btnNuevo" />
+				<button label="Editar" id="btnEditar" />
+				<button label="Eliminar" id="btnEliminar" />
+			</hbox>
+		</hbox>
+
+		<vbox flex="1" style="color:#000000;">
+			<hbox flex="1">
+				<tree flex="1" rows="25" height="350" seltype="single" id="treeUsuarios"
+					enableColumnsDrag="true">
+					<treecols pickertooltiptext="Seleccionar columnas">
+						<treecol label="Código" primary="true" tooltiptext="Código del usuario"
+							flex="1" />
+						<splitter />
+						<treecol label="Cédula" primary="true"
+							tooltiptext="Número de cédula del usuario" flex="1" />
+						<splitter />
+						<treecol label="Login" flex="1" />
+						<splitter />
+						<treecol label="Activo" flex="1" />
+						<splitter />
+						<treecol label="Nombres" flex="1" />
+						<splitter />
+						<treecol label="Apellidos" flex="1" />
+					</treecols>
+					<treechildren>
+					</treechildren>
+				</tree>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

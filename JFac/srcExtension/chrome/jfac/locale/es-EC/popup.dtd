@@ -1,0 +1,45 @@
+<!--
+-->
+
+<!ENTITY XBL.inherits			"id,anoid,class,style,command,observes,onbroadcast,oncommand">
+<!ENTITY TEXT.inherits			"id,class,style,command,observes,onbroadcast,oncommand,pic,include,dec,disabled,OK, required">
+
+
+<!ENTITY LABEL.masculino		"Masculino">
+<!ENTITY LABEL.femenino			"Femenino">
+<!ENTITY LABEL.si				"Si">
+<!ENTITY LABEL.no				"No">
+<!ENTITY LABEL.contado			"Contado">
+<!ENTITY LABEL.credito			"Credito">
+<!ENTITY LABEL.interno			"Interno">
+<!ENTITY LABEL.externo			"Externo">
+<!ENTITY LABEL.suma				"+">
+<!ENTITY LABEL.resta			"-">
+<!ENTITY LABEL.ninguna			"No">
+<!ENTITY LABEL.activofijo		"Activo Fijo">
+<!ENTITY LABEL.biendecontrol	"Bien de Control">
+<!ENTITY LABEL.dadodebaja		"Dado de Baja">
+<!ENTITY LABEL.debe				"Debe">
+<!ENTITY LABEL.haber			"Haber">
+<!ENTITY LABEL.movimiento		"Movimiento">
+<!ENTITY LABEL.grupo			"Grupo">
+<!ENTITY LABEL.ahorros			"De Ahorros">
+<!ENTITY LABEL.corriente		"Corriente">
+<!ENTITY LABEL.ingreso			"Ingreso">
+<!ENTITY LABEL.descuento		"Descuento">
+<!ENTITY LABEL.liquido			"Liquido">
+<!ENTITY LABEL.iva				"IVA">
+<!ENTITY LABEL.renta			"RENTA">
+<!ENTITY LABEL.bien 			"Bien">
+<!ENTITY LABEL.servicio 		"Servicio">
+<!ENTITY LABEL.cedula			"C&#233;dula">
+<!ENTITY LABEL.ruc				"Ruc">
+<!ENTITY LABEL.pasaporte		"Pasaporte">
+<!-- tipo de documento-->
+<!ENTITY LABEL.typeDocLetra		"Letra de Cambio">
+<!ENTITY LABEL.typeDocCta	    "Cuenta por Pagar">
+
+
+
+
+

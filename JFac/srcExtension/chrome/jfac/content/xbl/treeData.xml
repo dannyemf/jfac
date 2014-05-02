@@ -1,0 +1,1606 @@
+<?xml version="1.0"?>
+	<!--
+		@archivo treeData.xml @empresa DeltaSystems Cia. Ltda. @autor Based on
+		http://www.captain.at/howto-xul-tree.php and
+		dbinputsujto.xml(DeltaSystems Cia. Ltda.) Diana Maritza Ortega Salinas
+
+		@email newdmortega@hotmail.com
+	-->
+
+	<!--
+
+		@componente Ingresa datos al árbol
+
+		***********************************************************
+
+		CARACTERISTICAS XUL //choose
+
+		************************************************************ totalize
+		= PROPIEDAD QUE PERMITE VER LA COLUMNAS TOTALIZAR hidden = BOTONES DEL
+		TOOLBAR NO VISUALIZADOS maxRows = PROPIEDAD NO DE FILAS checkboxs =
+		COLUMNA TIPO CHECBOX columnNumber = COLUMNAS FORMATO NUMERICO sort =
+		PROPIEDAD QUE PERMITE ORDENAR COLUMNAS sortResource = PRIMERA COLUMNA
+		POR LA CUAL SE ORDENA
+	--> 
+<!DOCTYPE bindings [
+  <!ENTITY % deltasystems.dtd SYSTEM "chrome://begoro/locale/deltasystems.dtd">
+  %deltasystems.dtd;
+]>
+
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xbl="http://www.mozilla.org/xbl"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<binding id="treeData">
+		<resources>
+			<stylesheet src="chrome://begoro/skin/treeData.css" />
+		</resources>
+		<content>
+			<xul:vbox flex="1">
+				<xul:boxdetailtoolbar anoid="_toolbar" />
+				<xul:hbox flex="1" anoid="_h1">
+					<xul:tree anoid="_tree" rows="15" hidehscroll="true" flex="1"
+						persist="sortDirection sortResource" sortDirection="ascending">
+						<xul:treecols anonid="_treecols">
+							<children include="treecol" />
+						</xul:treecols>
+						<xul:treechildren anoid="_treechildren" class="treechildren" />
+					</xul:tree>
+				</xul:hbox>
+				<xul:tree anoid="_tree_t" rows="0" hidehscroll="true" flex="1"
+					hidecolumnpicker="true">
+					<xul:treecols anonid="_treecols_t" class="treeDatacolTotal"
+						align="left">
+					</xul:treecols>
+					<xul:treechildren>
+						<xul:treeitem>
+							<xul:treerow anonid="_treerow_t" />
+						</xul:treeitem>
+					</xul:treechildren>
+				</xul:tree>
+				<xul:treeData_boxdetailtoolbar anoid="_search" />
+			</xul:vbox>
+
+		</content>
+		<!--
+			@field _actions {xul} @field _tree {xul} @field _treecols {xul}
+			@field _treechildren {xul} @field _tree_t {xul} @field _treecols_t
+			{xul} @field _treerow_t {xul} @field _totalize {xul} {Boolean}:
+			Opcional: Determina si se mostrara fila tolalizadora @field infoView
+			{xul} {Array}:Requerido: Array de objetos asignado al treeData.
+			@field eventExtra1 {xul} {string}:Opcional: Evento adicional que
+			puede ejecutar el botón ELIMINAR o el botón BORRAR. @field sumary
+			{xul} {Array}:Opcional/Requerido: Columnas que se totalizan en el
+			TreeData. @field sql {xul} {string}:Opcional/Requerido: Consulta Sql
+			ejecutada en el treeData. @field _checkboxs {xul} {int}: Opcional:
+			Indica posición donde se visualizara el checkboxs, además debe
+			especificar en idcols el id del item check que le corresponda. Máximo
+			de checkbosx 3 ids=chk0,chk1,chk2
+		-->
+		<implementation>
+
+			<field name="_actions">document.getAnonymousNodes(this)[0].childNodes[0];
+			</field>
+			<field name="_tree">document.getAnonymousNodes(this)[0].childNodes[1].childNodes[0];
+			</field>
+			<field name="_treecols">document.getAnonymousElementByAttribute(this,
+				"anonid", "_treecols");</field>
+			<field name="_treechildren">this._tree.childNodes[1];</field>
+
+			<field name="_tree_t">document.getAnonymousNodes(this)[0].childNodes[2];
+			</field>
+			<field name="_treecols_t">document.getAnonymousElementByAttribute(this,
+				"anonid", "_treecols_t");</field>
+			<field name="_treerow_t">document.getAnonymousElementByAttribute(this,
+				"anonid", "_treerow_t");</field>
+			<field name="_search">document.getAnonymousNodes(this)[0].childNodes[3];
+			</field>
+
+			<field name="_checkboxs">null</field>
+			<field name="_winReference">null</field>
+			<field name="_totalize">false</field>
+			<!--
+				ITEM DEBE TENER PROPIEDAD choose
+			-->
+			<field name="_sort_">false</field>
+			<field name="_event">null</field>
+			<field name="_sumary">new Array()</field>
+			<field name="_idCols">new Array()</field>
+			<field name="_table">new Array()</field>
+			<field name="_bDelete">true</field>
+			<field name="_bImprimir">true</field>
+			<field name="_columofNumber">new Array()</field>
+			<field name="_format1">';'</field>
+			<field name="_format2">'|'</field>
+			<field name="_containsIndex">-1</field>
+			<field name="_columnName">null</field>	<!-- VAR SORT  -->
+			<field name="_order">-1</field>			<!-- VAR SORT  -->
+
+			<field name="infoView">new Array()</field>
+			<!--
+				DATOS QUE SE PRESENTARAN EN EL ARBOL
+			-->
+
+			<field name="eventExtraDelete">null</field>
+			<!--
+				SE EJECUTA DESPUES DE ELIMINAR
+			-->
+			<field name="eventExtraInsert">null</field><!-- SE EJECUTA ANTES DEL INSERT  -->
+			<field name="eventExtraUpdate">null</field><!-- SE EJECUTA ANTES DEL UPDATE  -->
+			<field name="eventExtraErase">null</field><!-- SE EJECUTA EN EL EVENTO  -->
+			<field name="eventExtraSelect">null</field><!-- SE EJECUTA EN EL EVENTO  -->
+
+			<field name="varDialog">null</field>
+			<field name="varSumary">null</field>
+			<!--
+				@property maxRows Filas visualizadas en treeData. @property
+				currentIndex Indice de dato del treeData seleccionada.
+			-->
+			<property name="maxRows"
+				onset="if (isNaN(val))val=15; this._tree.setAttribute('rows', val); return val;"
+				onget="return parseInt(this._tree.getAttribute('rows')) || 15;" />
+			<property name="containsIndex" onget="return this._containsIndex;" />
+			<!--
+				INDICE DE ELEMENTO BUSCADO
+			-->
+			<property name="currentIndex" onget="return this._tree.currentIndex;"
+				onset="this._tree.currentIndex=val;" />
+			<property name="sumary">
+				<getter>
+					return this._sumary;
+				</getter>
+				<setter>
+					this._sumary = new Array();
+					this.varSumary = new Object();
+					var column = null;
+					for(var names in val)
+					{
+					column = val[names];
+					eval
+					('this.varSumary.'+val[names]+'=0;');
+					this._sumary[column]=column;
+
+					}
+
+				</setter>
+			</property>
+			<property name="search">
+
+				<setter>
+					this._search.hidden(!val);
+					this._search.focus();
+									
+				</setter>
+			</property>
+			<property name="columnNumber">
+				<getter>
+					return this._columofNumber;
+				</getter>
+				<setter>
+					this._columofNumber = new Array();
+					for(var names in val)
+					{
+					column = val[names];
+					this._columofNumber[column]=column;
+
+					}
+									
+				</setter>
+			</property>
+
+			<!--
+				@property getElement Retorna elemento seleccionado.
+			-->
+			<property name="getElement">
+				<getter>
+					var vReturn = null;
+					var index = this._tree.currentIndex;
+					if
+					(index != -1 )
+					{
+					vReturn=this.infoView[index];
+
+					}
+					return vReturn;
+				</getter>
+			</property>
+			<!--
+				@property getElementN Retorna elemeneto Final.
+			-->
+			<property name="getElementN">
+				<getter>
+					var vReturn = null;
+					var index =this.infoView.length-1;
+					if
+					(index != -1 )
+					{
+					vReturn=this.infoView[index];
+
+					}
+					return vReturn;
+				</getter>
+			</property>
+
+			<method name="_treeView">
+				<parameter name="view" />
+				<body>
+		  <![CDATA[
+		  //CREAR VISTA
+		     var column_summary =this._sumary;
+		     var column_numeric =this._columofNumber;
+		     
+	       	 var treeView   =               //view _tree
+		     {
+				    rowCount :view.length ,
+				    getCellText : function(row,column)
+				    {
+				        var val;
+				        if (column.id == 'img') 
+					    {
+					         val = null;
+				        }
+				        else
+				        {
+				        	val  = view[row].get(column.id);
+				            if (column_numeric[column.id] != undefined || column_summary[column.id] != undefined)
+					        {
+						        var test = new String(val);
+						        if (test.isNumber())
+						        {
+						            val =formatOfNumber(val);
+						        }
+					        }
+				        }
+				        return (val); 	
+				    },
+				    setTree: function(treebox){ this.treebox = treebox; },
+				    isContainer: function(row){ return false; },
+				    isSeparator: function(row){ return false; },
+				    isSorted: function(){ return false; },
+				    isEditable: function(idx, column)  { return false; },
+				    getLevel: function(row){ return 0; },
+				    
+				    getRowProperties : function(row,prop){},
+                    getColumnProperties : function(column,columnElement,prop)
+                    {
+                         
+					  
+                    },
+				    getCellProperties: function(row,column,prop)
+				    {					 
+					  if( column_summary[column.id] != undefined)
+					  {
+					      var aserv=Components.classes["@mozilla.org/atom-service;1"].getService(Components.interfaces.nsIAtomService);
+				          prop.AppendElement(aserv.getAtom("makeItTotal"));
+					  }
+					},
+					
+				    getCellValue: function (row, column) 
+				    { 
+				     	   cell=view[row].get(column.id);
+				      	   if(typeof (cell) == 'boolean')
+				      	  		return (cell); 
+				        
+				      
+				        	  
+				    },
+				    getImageSrc: function(row,column)
+				    { 
+				    
+					    if (column.id == 'img') 
+					    {
+					         return 'chrome://begoro/skin/images/treeData/'+view[row].get(column.id);
+				        }
+				        else
+				        {
+				             return null;
+				        }
+				    
+				    }
+				    				   
+		    };
+		    return(treeView);
+		   
+		]]>
+				</body>
+			</method>
+
+
+			<!--
+				@method _setView fijar la vista @attr readonly {boolean} especifica
+				si el metodo es privado (true) o público (false) @param view
+				{String}
+			-->
+			<method name="_setView" readonly="true">
+				<parameter name="view" />
+
+				<body>
+	    	<![CDATA[
+	    	try
+	    	{
+		    	 //TOTALIZAR
+		    	 var column = null;
+		    	 var row    = null;
+		    	 var rta    = null;
+		    	 for(var names in this._sumary)
+				 {
+				    var sum        = 0;
+				    var val        = 0;
+			     	for (index in view)
+					{
+					   row =eval('view[index].choose');
+					   if (row)
+					   {
+						   //row=view[index].get(this.sumary[names]);
+						   //if (row !=undefined)
+						   //view[index].summarize=true;
+						   
+						   val =parseFloat(eval('view[index].'+this._sumary[names]));
+						   if(isNaN(val)) val=0;
+						   sum = sum + val;
+					   }
+					}
+					rta = formatOfNumber(sum);
+				    
+				    if (this._tree_t.columns) 
+				    {
+				     column     = this._tree_t.columns['c_'+this._sumary[names]];
+				     if(column)
+				      column.element.setAttribute("label",rta);
+				    } 
+				   
+				    eval('this.varSumary.'+this._sumary[names]+'='+ sum +';');
+						   
+				 }
+		    	
+	    	   	 
+				  //ASIGNAR VISTA  
+				 
+			      this._tree.view =this._treeView(view);
+			      
+			      if( this._bImprimir )
+			      {
+			             done = view.length!=0;
+				         this._actions.imprimir(done);
+				  }
+	     
+	      }catch(e)
+		  {
+			alert("_setView "+e);
+		  }
+	      ]]>
+
+				</body>
+			</method>
+
+			<!--
+				@method click_Adicionar evento sobre el componente adicionar, invoca
+				método openWindow().
+			-->
+			<xbl:method name="_click_Adicionar">
+				<xbl:body>
+					try
+					{
+					if(this.my._bDelete)
+					this.my._actions.eliminar(false);
+					this.my._event="insert";
+					var cod=this.my.eventExtraInsert;
+					if (cod)
+					eval(cod);
+					this.my._openWindow();
+
+					}catch(e)
+					{
+					alert("_click_Adicionar
+					"+e);
+					}				
+		</xbl:body>
+			</xbl:method>
+			<!--
+				@method click_Eliminar evento sobre el componente eliminar, invoca
+				método erase().
+			-->
+			<xbl:method name="_click_Eliminar">
+				<xbl:body>
+					try
+					{
+					this.my._actions.eliminar(false);
+					this.my._erase();
+					var
+					cod=this.my.eventExtraDelete;
+					if (cod) eval(cod);
+					this.my._setView(this.my.infoView);
+
+					}
+					catch(e)
+					{
+					alert("_click_Eliminar" +e);
+					}				
+		</xbl:body>
+			</xbl:method>
+
+			<!--
+				@method click_Imprimir evento sobre el componente imprimir, invoca
+				método print().
+			-->
+			<xbl:method name="_click_Imprimir">
+				<xbl:body>
+					try
+					{
+					if(this.my._bDelete)
+					this.my._actions.eliminar(false);
+					this.my._print();
+					this.my._tree.currentIndex=-1;
+					}
+					catch(e)
+					{
+					alert("_click_Imprimir "+e);
+					}				
+		</xbl:body>
+			</xbl:method>
+
+			<!--
+				@method _click_Actualizar evento sobre el componente actualizar,
+				invoca método openWindows().
+			-->
+			<xbl:method name="_click_Actualizar">
+				<xbl:body>
+					try
+					{
+					if(this.my._bDelete)
+					this.my._actions.eliminar(false);
+					var cod=this.my.eventExtraUpdate;
+					if (cod) eval(cod);
+					if
+					(this.my.currentIndex != -1)
+					{
+
+					this.my._openWindow();
+
+					}
+					}
+					catch(e)
+					{
+					alert("click_Tree "+e);
+					}				
+		</xbl:body>
+			</xbl:method>
+
+
+
+			<xbl:method name="_click_Select">
+				<xbl:body>
+					try
+					{
+					//logInfo("Habilitar accion
+					eliminar="+this.my._bDelete);
+					if(this.my._bDelete)
+					this.my._actions.eliminar(true);
+					this.my._event="update";
+					var
+					cod=this.my.eventExtraSelect;
+					if (cod) eval(cod);
+					}
+					catch(e)
+					{
+					alert("_click_Select "+e);
+					}				
+		</xbl:body>
+			</xbl:method>
+
+			<!--
+				@method click_Extra1 Evento adicional que puede ejecutar el botón
+				BORRAR.
+			-->
+			<xbl:method name="_click_ExtraErase">
+				<xbl:body>
+					try
+					{
+					var cod=this.my.eventExtraErase;
+					if (cod) eval(cod);
+
+					}
+					catch(e)
+					{
+					alert("_click_ExtraErase "+e);
+					}				
+		</xbl:body>
+			</xbl:method>
+			<!--
+				@method _execute_Event Ejecuta Evento @param data {string} Codigo
+			-->
+			<xbl:method name="_execute_Event">
+				<parameter name="cod" />
+				<xbl:body>
+					try
+					{
+					if (cod)
+					{
+					eval(cod);
+
+					}
+					}
+					catch(e)
+					{
+					alert("_execute_Event
+					"+e);
+					}				
+		</xbl:body>
+			</xbl:method>
+
+
+			<!--
+				@method _toolbarHidden Visualiza o esconde los botones del toolbar.
+				@attr readonly {boolean}: especifica si el metodo es privado (true)
+				o público (false) @param index {String} número de boton que va
+				esconder. @param val {boolean} true(visualiza) o false(esconde)
+			-->
+			<method name="_toolbarHidden" readonly="true">
+				<parameter name="index" />
+				<parameter name="val" />
+				<body>
+	    <![CDATA[
+	       
+		    switch(index)
+            {
+
+           			case '0':
+							this._actions.adicionar.setAttribute("hidden",val);
+							break;
+					case '1':
+							this._actions.eliminarOff.setAttribute("hidden",val);
+							this._bDelete = !val;
+						
+							break;
+					case '2':
+							this._actions.limpiar.setAttribute("hidden",val);
+							break;
+					case '3':
+							this._actions.imprimirOff.setAttribute("hidden",val);
+							this._bImprimir= !val;
+							break;		
+								
+			}
+				
+	    ]]>
+				</body>
+			</method>
+			<method name="toolbarHidden" readonly="true">
+				<parameter name="_index" />
+				<body>
+	    <![CDATA[
+	       
+	        var myIndex = new String(_index);
+		    this._toolbarHidden(myIndex,"true");
+			var oEvent = document.createEvent("MouseEvents");
+			oEvent.initEvent("focus", true, true);
+			this._actions.box.dispatchEvent(oEvent);
+			
+			
+	    ]]>
+				</body>
+			</method>
+			<!--
+				@method toolbarDispatchEvent ejecuta el evento definido en el método
+				click_Extra1 @attr readonly {boolean} especifica si el metodo es
+				privado (true) o público (false)
+			-->
+			<method name="toolbarDispatchEventErase" readonly="true">
+				<body>
+	    <![CDATA[
+		    var oEvent = document.createEvent("MouseEvents");
+			oEvent.initEvent("click", true, true);
+			this._actions.limpiar.dispatchEvent(oEvent);	
+	    ]]>
+				</body>
+			</method>
+
+			<!--
+				@method _toolbarEvent asigna los eventos a los botones. @attr
+				readonly {boolean} especifica si el metodo es privado (true) o
+				público (false)
+			-->
+			<method name="_toolbarEvent" readonly="true">
+				<body>
+	    <![CDATA[
+			
+	    	
+	    	this._actions.adicionar.addEventListener("click",this._click_Adicionar, false);
+			this._actions.adicionar.my = this;
+			
+			this._actions.eliminarOn.addEventListener("click",this._click_Eliminar, false);
+			this._actions.eliminarOn.my = this;
+			
+			this._actions.imprimirOn.addEventListener("click",this._click_Imprimir, false);
+			this._actions.imprimirOn.my = this;
+			
+			this._actions.limpiar.addEventListener("click",this._click_ExtraErase, false);
+			this._actions.limpiar.my = this;
+			
+			this._search.filter.addEventListener("keypress",this._inputFilter, false);
+			this._search.filter.my = this;
+			
+			this._search.clearFilter.addEventListener("command",this._clearFilter, false);
+			this._search.clearFilter.my = this;
+			
+	    ]]>
+				</body>
+			</method>
+
+			<!--
+				@method feature Presenta datos del treeData @attr readonly {boolean}
+				especifica si el metodo es privado (true) o público (false)
+			-->
+			<method name="feature" readonly="true">
+				<body>
+	    <![CDATA[	
+			try 
+		    { 
+		        
+		        var index   =0;
+		        var item    = null;
+		        var newInfo = new Array();
+		       	for (index=0;index < this.infoView.length;index++)
+				{
+				   item=this._newObject(this.infoView[index]);
+				   this.infoView.splice(index,1,item);
+				}
+			    this._setView(this.infoView);
+			    this._table = this.infoView; 	
+		        
+		    } catch(e) {
+				alert("treeData.feature "+e);	
+		    }
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method add Ingresa datos del treeData. Ejemplo:.
+				this.myTree.add(element); @attr readonly {boolean}: especifica si el
+				metodo es privado (true) o público (false) @param data {variant}
+				Datos que se van a ingresar en el tree data.
+			-->
+			<method name="add" readonly="true">
+				<parameter name="data" />
+				<body>
+	    <![CDATA[	
+			try 
+		    {
+		    
+		        var item = this._newObject(data);
+		    	this.infoView.push(item);
+		    	this._setView(this.infoView);
+		    	this._tree.currentIndex=-1;
+		    	this._event=null;
+		        //logInfo('add='+this._tree.currentIndex);
+		    } catch(e) {
+				alert("treeData.add "+e);	
+		    }
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method update Modifica los datos del treeData seleccionado(index
+				seleccionado),Ejemplo:. this.myTree.update(element); @attr readonly
+				{boolean} Especifica si el metodo es privado (true) o público
+				(false) @param data {variant} Datos que se van a modificar en el
+				tree data.
+			-->
+			<method name="update" readonly="true">
+				<parameter name="data" />
+				<body>
+	    <![CDATA[	
+			try 
+		    {
+		       	var index=this.currentIndex;
+		       	var item = this._newObject(data);
+		    	if (index != -1)
+		    	{	
+					this.infoView.splice(index,1,item);
+					this._setView(this.infoView);
+					this._tree.currentIndex=-1;
+					this._event=null;
+					//logInfo('update='+this._tree.currentIndex);
+		    	}
+		    			    	
+		    } catch(e) {
+				alert("treeData.update "+e);	
+		    }
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method erase Eliminar index del tree data. @attr readonly {boolean}
+				Especifica si el metodo es privado (true) o público (false)
+			-->
+			<method name="_erase" readonly="true">
+				<body>
+	    <![CDATA[	
+			try 
+			    {
+			       	var index =this._tree.currentIndex;
+			       	//logInfo('TreeData:'+index);
+			       	if (index != -1 )
+			    	{
+				      this.infoView.splice(index,1);
+				      this._tree.currentIndex=-1;
+				      this._event=null;
+			        }
+			      	
+			    } catch(e) {
+					alert("treeData._erase "+e);	
+			    }
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method print imprime datos del tree data. @attr readonly {boolean}:
+				especifica si el metodo es privado (true) o público (false)
+			-->
+			<method name="_print" readonly="true">
+				<body>
+	    <![CDATA[	
+			try 
+			{
+			   var w='550';
+			   var h='550';  
+			   var t='50';
+			   			   
+			   var p_f = this._tree.view;
+			   var p_c = this._tree.columns;
+			   
+			   var strFeatures=",width=" + w   + ",height= " + h + ", top= " +  t  + ",centerscreen";
+			   window.openDialog("chrome://begoro/content/xul/DialogPrint.xul","showPrint","chrome,modal"+strFeatures,p_c,p_f);		
+			  	 	
+		  	} catch(e) {
+				alert("treeData._print " + e);
+		    } 
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method _dimens especifica las dimensiones de la pantall donde se
+				presenta el árbol. @attr readonly {boolean}: especifica si el metodo
+				es privado (true) o público (false)
+			-->
+			<method name="_dimens" readonly="true">
+				<body>
+	    <![CDATA[	
+			try 
+		    {
+		       var w='400';
+			   var h='300';  
+			   var t='20'; 
+			   var d='';
+			   var d_user = this.getAttribute("sizeDialog");
+		       if (d_user.length != 0)
+		       {
+		          //validar standar ::width=450,height=450
+		          d ="," + d_user +", top= " +  t  + ",centerscreen";
+			   }
+			   else
+			   {
+			    d =",width=" + w   + ",height= " + h + ", top= " +  t  + ",centerscreen";
+			   }
+			 
+			   return(d);
+		    	
+		    } catch(e) 
+		    {
+				alert("treeData._dimens "+e);
+					
+		    }
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method _openWindow abrir pantalla de acuerdo a lo que se indica en
+				el parámetro. @param operation {String} update/insert.
+			-->
+			<method name="_openWindow">
+				<body>
+		<![CDATA[	
+		 try 
+		 {
+		   
+			if (this._event)
+			{
+				if(this._winReference == null || this._winReference.closed)
+				{
+					
+					var dialog = this.getAttribute("dialog");
+					var obj = new Object();	
+					obj.my = this;
+					if (dialog == undefined || dialog.length == 0 || /^\s+$/.test(dialog))
+				    { 
+				      if (this._event=="insert")
+				        alert("TreeData._openWindow ReferenceError: Attribute dialog is undefined");  
+				    }
+				    else
+				    {
+				      
+				      var varXul = this.getAttribute("varXul");
+				      if (varXul == undefined || varXul.length == 0 || /^\s+$/.test(varXul))
+				          varXul=-1; 
+				       
+				       this._winReference  = window.openDialog("chrome://" + dialog +".xul","dialog","dependent=true,chrome"+this._dimens(),obj,this._event,varXul);		
+				      
+				    }
+				    
+			    }
+			    else
+			    {
+			        this._winReference.focus();
+			    }
+		    }
+		 }
+		 catch(e)
+		 {
+			alert("TreData._openWindow "+e);
+		 }
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method _createElement crea una columna o una fila con los elemento
+				y atributos especificados. @param element {String} @param attrs
+				{String} @param isTotal {String} indica en que arbol se crea la fila
+				o columna.
+			-->
+			<method name="_createElement">
+				<parameter name="element" />
+				<parameter name="attrs" />
+				<parameter name="isTotal" />
+				<body>
+	     <![CDATA[
+	     try {
+	      
+	      var item = document.createElement(element);
+	      var aAttrs=eval(attrs);
+	      if(aAttrs)
+	      {
+			   for (var name in aAttrs[0])
+			   {
+			       item.setAttribute(name, aAttrs[0][name]);
+			   }
+	      }
+	      switch(element) 
+		  {
+           
+            case 'treecol':
+				   {
+				     if (isTotal)
+				     {
+				       this._treecols_t.appendChild(item);
+				     }
+				     else
+				     { 
+				         if (item.getAttribute('class')=='sortDirectionIndicator')
+				         {
+				         	item.addEventListener("click",this._sort, false);
+				            item.my=this;
+				         }
+				         this._treecols.appendChild(item);
+				     }
+					 break;
+				   }
+			  
+			  case 'menuitem':
+				   {
+				      
+				      this._search.popupMenu.appendChild(item);
+					  break;
+				   }
+		  }
+	      
+	      
+	      return item;
+	      } 
+	      catch(e) {
+				alert(' TreData._createElement \n' + e);
+		  }
+	      
+	     ]]>
+				</body>
+			</method>
+			<!--
+				@method _newObject Crea objeto que maneja TreeData @param data
+				{variant} Datos que se van a ingresar en el tree data.
+			-->
+			<method name="_newObject" readonly="true">
+				<parameter name="item" />
+				<body>
+	    <![CDATA[	
+			try 
+		    {
+		        eval("item.get = function( field ){return ( eval('this.'+field) );}");
+		       	return(item);
+		       	
+		    } catch(e) {
+				alert("treeData._newObject "+e);	
+		    }
+		 ]]>
+				</body>
+			</method>
+
+			<!--
+				@method createColums crea columnas @attr readonly {boolean}
+				especifica si el metodo es privado (true) o público (false) @param
+				ids {String} los values de las columnas. @param names {String}
+				labels de las columnas. @param checkboxs {int}: Indica que columna
+				es un chekboxs
+			-->
+			<method name="_createColums" readonly="true">
+				<parameter name="ids" />
+				<parameter name="names" />
+				<parameter name="checkboxs" />
+				<body>
+		 <![CDATA[
+	     try {
+	     
+	        var element    =  null;
+			var name       =  null;
+			var index_chk  =  0;
+			var index_aux  =  0;
+			var list_ids   =  ids.split(this._format1); 
+			var list_name  =  names.split(this._format1);
+			var list_chk   =  null;
+		    var param      =  null;
+		    var tmp        =  null;
+		    var id         =  null;
+		   
+		    
+		    if (checkboxs)
+			 list_chk =  checkboxs.split(this._format1);
+			
+			 
+		   	//param_t       =	 "flex: 1,persist:'width ordinal hidden'";   
+			for(var index=0;index< list_ids.length;index++) 
+			{
+			    name  = "undefined";
+			    param = "flex: '1',persist:'width ordinal hidden'";
+			    id    = list_ids[index];
+			   
+			    //:::ASIGNAR Nombres a las columnas
+			    if ( (list_name) && (index < list_name.length))
+			    {
+			        name=list_name[index];
+			    }
+			   	tmp=id.split(this._format2);
+			    if (tmp.length==2)
+			    {
+			        id    = tmp[0];
+			        param = tmp[1];
+			        
+			    }
+			    this._idCols.push(id);
+			  
+			  		 
+			    //propiedades de la columna
+			    element="[{id: '"+ id +"',align:'right',label: '"+ name +"',"+param;
+			   
+			    //:::CREAR  checkbox si existen indices en los parametros
+			    if (list_chk)
+				{
+				   index_aux = 0;
+		    	   while((index_aux <list_chk.length)&&(list_chk.length!=0))
+				   {
+					  index_chk=parseInt(list_chk[index_aux]);
+					  if (!isNaN(index_chk)&& (index == index_chk))
+					   { 
+					   	 element=element+",type:'checkbox',width:'5px'";
+					  	 list_chk.splice(index_aux,1);
+					  	 break;
+					   }
+					   index_aux=index_aux+1;
+					   
+				   }
+							   	
+				}
+				
+				if (this._sort_ && id.indexOf('img') == -1 && id.indexOf('chk') == -1 )
+				{
+				   element += ",persist:'width ordinal hidden',class:'sortDirectionIndicator',sortDirection:'ascending'}]";
+				}
+				else
+				{  
+				  if (id.indexOf('img') != -1) 
+			  		element +=",class:'treecol-image',cycler:'true'";
+			  		
+				  element += "}]";
+				}	
+				//::CREAR COLUMNAS
+				this._createElement("treecol",element,false);
+			   
+			    //element='[{class:"_tree-splitter"}]';
+			    //this._createElement("splitter",element,false);
+			    
+			    (index==0)? this._addSumary(id,"label:'TOTALES',hideheader:'true',"+param):this._addSumary(id,"label:'',class:'treeDatacolTotal',"+param);
+			   
+                //::POPUP ITEM
+                this._createElement("menuitem","[{id: '"+ id +"',type:'radio',checked:'false',label: '"+ name +"'}]",false);
+			
+                   
+			}
+			
+			//::POPUP ITEM , itempopup.setAttribute('checked', true);
+			//this._search.popupFilter.selectedIndex=0; 
+			
+   		  }catch(e) {
+				alert(' TreData._createElement \n' + e);
+		  }
+	      
+	     ]]>
+				</body>
+			</method>
+
+			<!--
+				@method _addSumary crea las columnas que le pertenecen al árbol
+				totalizador. @param id {String}
+			-->
+			<xbl:method name="_addSumary">
+				<parameter name="id" />
+				<parameter name="param" />
+				<xbl:body>
+					try
+					{
+					this._createElement("treecol","[{id: 'c_"+ id +"'," +
+					param + "}]",true);
+
+					}
+					catch(e)
+					{
+					alert("_addSumary "+e);
+					}				
+		</xbl:body>
+			</xbl:method>
+
+			<!--
+				@method _addItemSumary crea celdas al árbol totalizador
+				especificando el num de celdas (lenght) @param length {int}
+			-->
+			<xbl:method name="_addItemSumary">
+				<parameter name="length" />
+				<xbl:body>
+	    <![CDATA[	
+		 try 
+		 {
+		  	this._tree_t.setAttribute('rows', 1);
+		  	for(var index=1; index < length;index++) 
+			{
+			    this._treerow_t.appendChild(this._createElement('treecell','[{label: ""}]',true));
+			}
+			        
+		 }
+		 catch(e)
+		 {
+			alert("_addItemSumary "+e);
+		 }	
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+			<!--
+				@method _createTree crear un arbol @param idcols {String} define ids
+				columnas @param namecols {String} define names columnas
+			-->
+			<method name="_createTree" readonly="true">
+				<parameter name="idcols" />
+				<parameter name="namecols" />
+				<body>
+			<![CDATA[
+			try {
+					 
+			    //::CREAR COLUMNAS
+				if (idcols != undefined || idcols.length != 0 ||/^\s+$/.test(idcols))
+			    { 
+			         if (!namecols)
+			             namecols='undefined';
+			         
+			         if (!this._checkboxs)   
+			           this._checkboxs=null;
+			            
+			         this._createColums(idcols,namecols,this._checkboxs);
+			    }
+			    else
+			    {
+			       alert("TreeData._createTree ReferenceError: Attribute idcols is undefined");
+			    }
+			       
+		     }catch(e) {
+				alert(' TreData.init \n' + e);
+		     }
+		    ]]>
+				</body>
+			</method>
+
+			<!--
+				@method _initTree: inicializa el arbol @attr readonly {boolean}:
+				especifica si el metodo es privado (true) o público (false)
+			-->
+			<method name="_initTree" readonly="true">
+				<body>
+			<![CDATA[
+			try {
+			
+					      
+			    //::CREAR COLUMNAS
+			    var idcols =this.getAttribute("idcols");
+			    var namecols = this.getAttribute("namecols");
+			    this._createTree(idcols,namecols);
+			    this._tree.currentIndex=-1;
+			    
+			    //::EVENTOS TREE
+			    
+			    this._setView(this.infoView);
+			    this._tree.addEventListener("dblclick",this._click_Actualizar, false);
+			    this._tree.addEventListener("select",this._click_Select, false);
+			    this._tree.my = this;
+			    
+			    //::HIDDEN
+			    var buttons =null;
+			    buttons = this.getAttribute("buttonsHidden");
+			    if (buttons != undefined || buttons.length != 0 )
+			    {
+			       buttons=buttons.split(this._format1);
+			       for(var i=0;i<buttons.length;i++)
+			         this._toolbarHidden(buttons[i],"true");
+			   }
+			   	    
+		     }catch(e) {
+				alert(' TreData.init \n' + e);
+		     }
+		    ]]>
+				</body>
+			</method>
+
+			<xbl:method name="doSelect">
+				<parameter name="index_i" />
+
+				<xbl:body>
+					var boxobject = this._tree.boxObject;
+					boxobject.QueryInterface(Components.interfaces.nsITreeBoxObject);
+					boxobject.scrollToRow(index_i);
+					this._tree.view.selection.select(index_i);
+
+		</xbl:body>
+			</xbl:method>
+
+			<xbl:method name="notSelect">
+				<xbl:body>
+					try
+					{
+					this._setView(this.infoView);
+					this._tree.currentIndex=-1;
+
+					}
+					catch(e)
+					{
+					alert("notSelect "+e);
+					}
+				</xbl:body>
+			</xbl:method>
+
+
+			<!--
+				@method doSelect selecciona un rango de filas del arbol @param
+				index_i {int} obtiene el número de rango inicial. @param index_f
+				{int} obtiene el número de rango final.
+			-->
+			<xbl:method name="rangedSelect">
+				<parameter name="index_i" />
+				<parameter name="index_f" />
+				<xbl:body>
+					this._tree.view.selection.rangedSelect(index_i,index_f,true);
+				</xbl:body>
+			</xbl:method>
+
+			<!--
+				@method doSelect deselecciona el rango que define. @param index_i
+				{int} número de rango inicial. @param index_f {int} número de rango
+				final.
+			-->
+			<xbl:method name="notRangedSelect">
+				<parameter name="index_i" />
+				<parameter name="index_f" />
+				<xbl:body>
+					this._tree.view.selection.clearRange(index_i,index_f);
+				</xbl:body>
+			</xbl:method>
+
+			<!--
+				@method adjustHeight: ajusta el largo (tamaño) del arbol
+			-->
+			<method name="adjustHeight">
+				<body>
+		  <![CDATA[
+		  
+		    var bx = this._tree.treeBoxObject;
+		    var view = this._tree.view;
+		    if (!view)
+		        return;
+		    var rows = this.maxRows;
+		    if (!view.rowCount || (rows && view.rowCount < rows))
+		      rows = view.rowCount;
+		    var height = rows * bx.rowHeight;
+	
+		    if (height == 0)
+		    {
+		       this._tree.setAttribute("collapsed", "true");
+		    }
+		    else 
+		    {
+		     if (this._tree.hasAttribute("collapsed"))
+		       this._tree.removeAttribute("collapsed");
+	
+		     this._tree.setAttribute("height", height);
+		    }
+		  this._tree.setAttribute("hidescrollbar", view.rowCount <= rows);
+		]]>
+				</body>
+			</method>
+			<xbl:method name="contains">
+				<parameter name="criterio" />
+				<parameter name="valor" />
+				<xbl:body>
+	    	<![CDATA[
+	    	try 
+	    	{
+	   	     var done = false;
+	   	     this._containsIndex = -1;
+	   	     if (valor != undefined ||valor.length != 0 ||valor.length != null )
+	   	     {
+	   	        
+				 for (var index in this.infoView)
+				 {
+				      campo =eval('this.infoView[index].'+criterio);
+				      if (campo == valor)
+					   {
+					       this._containsIndex = index;
+						   done=true;
+						   break;
+					   }
+				
+				 }
+			 }
+		     return(done);
+		    }catch(e)
+	    	{
+				alert("treeData:contains \n" + e);
+	    	}
+	   	  ]]>
+
+				</xbl:body>
+			</xbl:method>
+			<!--
+				@method adjustHeight: obtiene propiedades generales del árbol. @attr
+				readonly {boolean}: especifica si el metodo es privado (true) o
+				público (false)
+			-->
+			<method name="_getProperties" readonly="true">
+				<body>
+        	<![CDATA[
+        	   // PROPIEDAD QUE PERMITE VER LA COLUMNAS TOTALIZAR 
+			   var totalize = this.getAttribute("totalize");
+		       if (totalize == "true")
+		       {
+		            this._totalize= true;
+		            this._tree_t.setAttribute("hidden", false);
+		       }
+		       else
+		       {
+		        this._tree_t.setAttribute("hidden", true);
+		        this._totalize= false;
+		       }
+		    
+		      	
+		       //PROPIEDAD NO DE FILAS		       
+		       var maxRows= this.getAttribute("maxRows");
+		       if (maxRows != undefined)
+		            this.maxRows= parseInt(maxRows); 
+		            
+		       this._checkboxs = this.getAttribute("checkboxs");
+		        
+		        var isColNumber = this.getAttribute("columnNumber");
+			    if (isColNumber != undefined ||isColNumber.length != 0 )
+			    {
+			       isColNumber=isColNumber.split(this._format1);
+			       this.columnNumber =isColNumber;
+			    }
+			   
+			   //PROPIEDAD QUE PERMITE ORDENAR COLUMNAS
+		       var sort    = this.getAttribute("sort");
+		       this._sort_ = (sort == "true");
+			   
+			   //PROPIEDAD sortResource
+			   var  sortResource = this.getAttribute("sortResource");
+		       if ( sortResource != undefined)
+		       {
+		           this._tree.setAttribute("sortResource",sortResource );
+		       }
+			    
+		    ]]>
+				</body>
+			</method>
+
+			<xbl:method name="setData">
+				<parameter name="info" />
+				<xbl:body>
+					try
+					{ var item =null;
+					var data =null;
+
+					for(var i in info)
+					{
+					data = new Object();
+					for(var j in this._idCols){
+					index=this._idCols[j];
+					eval('data.'+index+'= info[i].'+index);
+					}
+					item
+					= this._newObject(data);
+					this.infoView.push(item);
+					}
+					this._setView(this.infoView);
+
+					}
+					catch(e)
+					{
+					alert("setData"+e);
+					}
+				</xbl:body>
+			</xbl:method>
+
+			<xbl:method name="_prepareForComparison">
+				<parameter name="o" />
+				<xbl:body>
+	    <![CDATA[	
+		 try 
+		 {     
+		       if (typeof o == "string") {
+		       
+						return o.toLowerCase();
+			   }
+			   return o;
+    		    
+		 }
+		 catch(e)
+		 {
+			alert("_prepareForComparison "+e);
+		 }	
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+			<xbl:method name="_getTopVisibleRow">
+				<xbl:body>
+	    <![CDATA[	
+		 try 
+		 {     
+		     this._tree.treeBoxObject.getFirstVisibleRow();
+    		    
+		 }
+		 catch(e)
+		 {
+			alert("_getTopVisibleRow "+e);
+		 }	
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+
+
+			<xbl:method name="_setTopVisibleRow">
+				<parameter name="topVisibleRow" />
+				<xbl:body>
+	    <![CDATA[	
+		 try 
+		 {     
+		      this._tree.treeBoxObject.scrollToRow(topVisibleRow);
+    		    
+		 }
+		 catch(e)
+		 {
+			alert("_setTopVisibleRow "+e);
+		 }	
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+
+
+			<!--sort -->
+			<xbl:method name="_sort">
+				<xbl:body>
+	    	<![CDATA[
+			
+			var self   = new Object();
+			var my     = (this.my == undefined)? this:this.my;
+			var tree   = my._tree;
+		    var column = this;
+			
+			
+					my._order = tree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
+				
+					if (column) 
+					{
+							my._columnName = column.id;
+							if (tree.getAttribute("sortResource") == my._columnName) {
+							my._order *= -1;
+					}
+					} else 
+					{
+							my._columnName = tree.getAttribute("sortResource");
+							column =tree.columns[my._columnName];
+							
+					}
+					
+				    self._columnSort = function(a,b)
+				    { 
+				          if (my._prepareForComparison(a[my._columnName]) > my._prepareForComparison(b[my._columnName])) return 1 * my._order;
+					      if (my._prepareForComparison(a[my._columnName]) < my._prepareForComparison(b[my._columnName])) return -1 * my._order;
+					    
+							if (my._columnName != "name") {
+								if (my._prepareForComparison(a["name"]) > my._prepareForComparison(b["name"])) return 1;
+								if (my._prepareForComparison(a["name"]) < my._prepareForComparison(b["name"])) return -1;
+							}
+						 return 0;
+				    };        
+		            my._table.sort(self._columnSort);
+					
+					tree.setAttribute("sortDirection", my._order == 1 ? "ascending" : "descending");
+					tree.setAttribute("sortResource", my._columnName);
+				
+					column.setAttribute("sortDirection", my._order == 1 ? "ascending" : "descending");
+					//FALTA REMOVER  sordireccion alos demas item!!
+					
+					
+					tree.view = my._treeView(my._table);
+			
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+			<xbl:method name="_clearFilter">
+				<parameter name="event" />
+				<xbl:body>
+	    <![CDATA[	
+		 try 
+		 {     
+		        var my = this.my;
+		       
+	            my._search.filter.focus();
+	            my._search.filter.value = "";
+	            my._setFilter("");
+	            
+	           this.disabled = true;
+		 }
+		 catch(e)
+		 {
+			alert("_clearFilter"+e);
+		 }	
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+			<xbl:method name="_inputFilter">
+				<parameter name="event" />
+				<xbl:body>
+	    <![CDATA[	
+		 try 
+		 {     
+		    if((event.which == event.DOM_VK_RETURN ) || (event.keyCode == event.DOM_VK_RETURN)) 
+		    {
+    		    var value = this.my._prepareForComparison(event.target.value);
+	            this.my._setFilter(value);
+	            this.my._search.clearFilter.disabled = value.length == 0;
+	        }
+		 }
+		 catch(e)
+		 {
+			alert("_inputFilter "+e);
+		 }	
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+			<xbl:method name="_setFilter">
+				<parameter name="filterText" />
+				<xbl:body>
+	    <![CDATA[	
+		 try 
+		 {     
+		    //this._tree.treeBoxObject.scrollToRow(topVisibleRow);
+    		
+    		if (filterText == "") 
+    		{
+				this._table =  this.infoView;
+	        } 
+	        else 
+	        {
+			    var campo;
+		    	this._table =  new Array();  
+		    	criterio    =  (this._search.selectedId != null)? this._search.selectedId:'none';
+		        
+		       	if (criterio !='none')
+		       	{
+		       		filterText = this._prepareForComparison(filterText);
+			       	for (var index in this.infoView)
+					{
+					           campo  = eval('this.infoView[index].'+criterio);
+					           campo  = this._prepareForComparison(campo);
+					  	   	   switch(typeof campo)
+					           {
+					
+					           			case 'string':
+											  	 	 if (campo.indexOf(filterText) != -1) 
+							   						 {
+							       						this._table.push(this.infoView[index]);
+							   						 } 	   
+													 break;
+										default:
+													if (campo == filterText) 
+								   					{
+								       						this._table.push(this.infoView[index]);
+								   					} 
+													break;
+										
+													
+								}
+					  	   	   
+					  	   	   
+					     
+					}
+			      
+		        }
+		        else
+		        {
+		        	alert('Seleccione item');
+		        }
+			}
+			if (this._sort_)
+			{
+				this._sort();
+			}
+			else
+			{
+			   this._tree.view =this._treeView(this._table);
+			}
+		 }catch(e)
+		 {
+			alert("_setFilter "+e);
+		 }	
+		 ]]>
+				</xbl:body>
+			</xbl:method>
+
+			<!--construct ejecuta componente treedata -->
+			<constructor>
+       	<![CDATA[
+	    	try 
+	    	{
+	    	   
+			   this._getProperties();
+			   this._initTree();
+		       this._toolbarEvent();
+		       
+	    	}catch(e)
+	    	{
+				alert("treeData: \n" + e);
+	    	}
+	     ]]>	
+	  </constructor>
+		</implementation>
+
+	</binding>
+</bindings>
+
+

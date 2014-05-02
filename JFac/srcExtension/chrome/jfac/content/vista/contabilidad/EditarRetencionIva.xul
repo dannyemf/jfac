@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Retención Iva">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgRetencionIVA" title="Editar Retención Iva" />
+	<script type="application/x-javascript" src="EditarRetencionIva.js" />
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="AGENTE RETENCIÓN" />
+						<label value="(*)" class="reglas" />
+						<menulist id="cmbTipoAgente" required="true">
+							<menupopup></menupopup>
+						</menulist>												
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="cmbTipoAgente"></validation>
+					</row>
+					<row>
+						<label value="TIPO PROVEEDOR" />
+						<label value="(*)" class="reglas" />
+						<menulist id="cmbTipoProvee" required="true">
+							<menupopup></menupopup>
+						</menulist>												
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="cmbTipoProvee"></validation>
+					</row>
+					<row>
+						<label value="BIEN(%)" />
+						<spacer/>
+						<textbox id="txtBien" required="true" text="double"/>
+												
+						<label value="PLAN:"/>
+						<hbox class="boxSeleccion">
+							<textbox id="txtPlanBien" disabled="true" width="220"/>
+							<button id="btnPlanBien" class="itemSelect" style="margin: 0; padding: 0"></button>
+							<button id="btnPlanBienNiguna" class="itemNinguno" style="margin: 0; padding: 0"></button>
+						</hbox>						
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtBien"></validation>
+						<spacer/>
+						<validation for="txtPlanBien"></validation>
+					</row>
+					<row>
+						<label value="SERVICIO(%)" />
+						<spacer/>
+						<textbox id="txtServicio" required="true" text="double"/>
+						<label value="PLAN:"/>
+						<hbox class="boxSeleccion">
+							<textbox id="txtPlanServicio" disabled="true" width="220"/>
+							<button id="btnPlanServicio" class="itemSelect" style="margin: 0; padding: 0"></button>
+							<button id="btnPlanServicioNiguna" class="itemNinguno" style="margin: 0; padding: 0"></button>
+						</hbox>	
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtServicio"></validation>
+						<spacer/>
+						<validation for="txtPlanServicio"></validation>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

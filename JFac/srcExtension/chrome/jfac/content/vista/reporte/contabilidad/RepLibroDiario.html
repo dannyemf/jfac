@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Reporte</title>
+	<script type="text/javascript" src="../../../js/jquery/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../../js/util/Fecha.js"></script>
+	
+	<style type="text/css">
+		.tablaDatos{
+				
+		}
+		
+		.tablaDatos th{
+			border: solid 1px green;
+			background-color: #C0C0C0;
+						
+		}
+		
+		.tablaDatos td{
+			border: solid 1px green;
+		}
+	</style>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		try {					
+			var model = window.parent.model;
+			var cri = model.criterio;
+
+			$("#empresa").text(model.empresa);
+			$("#propietario").text(model.propietario);
+			$("#ruc").text(model.ruc);
+			$("#direccion").text(model.direccion);
+			$("#telefono").text(model.telefono);
+			$("#fechaInicio").text(model.fechaInicio);
+			$("#fechaFin").text(model.fechaFin);
+								
+			for ( var i = 0; i < model.lotes.length; i++) {
+				var it = model.lotes[i];
+
+				var debe = 0;
+				var haber = 0;
+				var saldo = 0;
+				var re = '<font face= "Calibri">Registro Nro. ' + it.id + ': ' + it.descripcion + '</font>';
+
+				var el = '<br/><table border="1" style="border-style: solid; border-width: 1px; width: 100%; border-collapse:collapse;" cellspacing="0" cellpadding="3"><thead><tr><th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Código</font></th><th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Cuenta</font></th><th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Debe</font></th><th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Haber</font></th></tr></thead>';
+					el += '<tbody>';
+
+					for (var j = 0; j < it.items.length; j++){
+						var as = it.items[j];
+						el += '<tr>';
+						el += '<td>'+ as.codigo  +'</td>';
+						el += '<td>'+ as.nombre  +'</td>';
+						if (as.tipo == 'Debe'){
+							debe += (as.monto * 1);
+							el += '<td align = "right">'+ as.monto  +'</td>';
+							el += '<td></td>';							
+						} else {
+							haber += (as.monto * 1);
+							el += '<td></td>';
+							el += '<td align = "right">'+ as.monto  +'</td>';							
+						}												
+						el += '</tr>';
+					}
+					
+					el += '</tr>';
+					el += '<td colspan = "2"; align = "right"><b>Total</b></td><td align = "right">'+ debe;
+					el += '</td><td align = "right">'+ haber  +'</td>';
+					
+					el += '</tbody>';
+					el += '</table><br/>';
+
+				$("#detalle").append(re);
+				$("#detalle").append(el);	
+			}
+			var ap = '<table>';
+			switch(cri){
+				case 'TODOS': break;				
+				
+				case 'PERIODO_LOCAL_FECHA':
+					if(model.periodo !=null){
+						ap += ('<tr><td><font face="Calibri"><b>Periodo:</b></font></td><td><font face="Calibri">'+model.periodo.nombre+'</font></td></tr>');
+					} else {
+						ap += ('<tr><td><font face="Calibri"><b>Periodo:</b></font></td><td><font face="Calibri">Todos</font></td></tr>');
+					}
+					
+					if(model.local != null){
+						ap += ('<tr><td><font face="Calibri"><b>Local:</b></font></td><td><font face="Calibri">'+model.local.nombre+'</font></td></tr>');
+					} else {
+						ap += ('<tr><td><font face="Calibri"><b>Local:</b></font></td><td><font face="Calibri">Todos</font></td></tr>');
+					}
+
+					ap += ('<tr><td><font face="Calibri"><b>Fecha Inicio:</b></font></td><td><font face="Calibri">'+model.fechaInicio.toString('dd/MM/yyyy')+'</font></td>');
+					ap += ('<td>&nbsp;&nbsp;</td>');
+					ap += ('<td><font face="Calibri"><b>Fecha Fin:</b></font></td><td><font face="Calibri">'+model.fechaFin.toString('dd/MM/yyyy')+'</font></td><tr/>');
+					
+					break;
+					
+				case 'PERIODO_LOCAL':
+					if(model.periodo !=null){
+						ap += ('<tr><td><font face="Calibri"><b>Periodo:</b></font></td><td><font face="Calibri">'+model.periodo.nombre+'</font></td></tr>');
+					} else {
+						ap += ('<tr><td><font face="Calibri"><b>Periodo:</b></font></td><td><font face="Calibri">Todos</font></td></tr>');
+					}
+					
+					if(model.local != null){
+						ap += ('<tr><td><font face="Calibri"><b>Local:</b></font></td><td><font face="Calibri">'+model.local.nombre+'</font></td></tr>');
+					} else {
+						ap += ('<tr><td><font face="Calibri"><b>Local:</b></font></td><td><font face="Calibri">Todos</font></td></tr>');
+					}
+					break;					
+			}
+			ap += '</tr></table>';
+			$('#divDatos').append(ap);
+		} catch (ex) {
+			alert("Print: " + ex);
+		}
+	});
+	</script>
+</head>
+	<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0"	marginwidth="0" marginheight="0">
+			
+		<div align="center">
+			<div style="width: 800px">
+			
+				<div style="border: solid 1px green; -moz-border-radius: 10px">
+				<table  style="width: 100%">
+					<tbody>
+						<tr>
+							<td width="16%" rowspan="5">
+								<font face="Calibri">
+									<img border="0" src="logo.png">
+								</font>
+								<p align="center">
+									<b>
+										<!--font size="5" face="Calibri">
+											<label id="empresa"></label>
+										</font>	
+										<br/-->
+										<label id="propietario"></label>
+									</b>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div align="center">
+								<table>
+									<tbody>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Ruc:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="ruc"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Dirección:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="direccion" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Teléfono:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="telefono" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								</div>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+				</div>
+				</br>
+						
+				<table width="800">
+					<tbody>				
+						<tr>
+							<td colspan="4">
+								<p align="center">
+								<span style="letter-spacing: 1px; ">
+								<font face="Broadway" color="#FF0000" style="font-size: 20pt; text-decoration: underline; font-weight:700">
+								Reporte de Libro Diario</font></span></td>								
+						</tr>
+						<tr>
+							<td colspan="4" align="justify" width="100">
+								<div id="divDatos">
+								</div>
+							</td>						
+						</tr>
+					</tbody>
+				</table>
+								
+				<br/>			
+				<div id="detalle" style="font-family: Calibri">
+				</div>
+			</div>						
+		</div>
+	</body>
+</html>

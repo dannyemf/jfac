@@ -1,0 +1,528 @@
+@CHARSET "UTF-8";
+
+.imgUsuario {
+	list-style-image: url("edicion/usuario.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCliente {
+	list-style-image: url("edicion/cliente.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgRol {
+	list-style-image: url("edicion/rol.png");
+	width: 64px;
+	height: 64px;
+}
+
+
+.imgPopupSelect{
+	list-style-image: url("iconos/checkmark_002.gif");
+	width: 16px;
+	height: 16px;
+}
+
+.imgPopupSelect:hover{
+	list-style-image: url("iconos/checkmark_004.gif");
+	width: 16px;
+	height: 16px;
+}
+
+.imgPopupLimpiar{
+	list-style-image: url("iconos/trash_002.gif");
+	width: 16px;
+	height: 16px;
+}
+
+.imgPopupLimpiar:hover{
+	list-style-image: url("iconos/trash_005.gif");
+	width: 16px;
+	height: 16px;
+}
+
+.imgLocal {
+	list-style-image: url("edicion/local.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgBanco {
+	list-style-image: url("edicion/banco.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgRetencionIVA {
+	list-style-image: url("edicion/retencion_iva.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgRetencionIR {
+	list-style-image: url("edicion/retencion_ir.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCuentaBancaria {
+	list-style-image: url("edicion/cuenta_bancaria.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCobroClientes {
+	list-style-image: url("edicion/cobro_clientes.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCredito {
+	list-style-image: url("edicion/cuota_credito.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgBodega {
+	list-style-image: url("edicion/bodega.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgOpcion {
+	list-style-image: url("edicion/opcion.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgParametro {
+	list-style-image: url("edicion/parametro.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgProducto {
+	list-style-image: url("edicion/producto.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgMarca {
+	list-style-image: url("edicion/marca.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgLinea {
+	list-style-image: url("edicion/linea.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgUbicacion {
+	list-style-image: url("edicion/ubicacion.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgProveedor {
+	list-style-image: url("edicion/proveedor.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCompras {
+	list-style-image: url("edicion/compras.png");
+	width: 32px;
+	height: 32px;
+}
+
+.imgVentas {
+	list-style-image: url("edicion/ventas.png");
+	width: 32px;
+	height: 32px;
+}
+.imgProformas {
+	list-style-image: url("edicion/proforma.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgRetencion {
+	list-style-image: url("edicion/retencion.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCreditos {
+	list-style-image: url("edicion/credito.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgPeriodo {
+	list-style-image: url("edicion/periodo.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgEstadosPlanes {
+	list-style-image: url("edicion/estados_planes.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCuenta {
+	list-style-image: url("edicion/cuenta.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgContabilizarCompras {
+	list-style-image: url("edicion/contabilizar_compras.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgPuntoFacturacion {
+	list-style-image: url("edicion/punto_facturacion.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgAnticipo {
+	list-style-image: url("edicion/anticipo.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgTransferencia {
+	list-style-image: url("edicion/transferencia.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgProductoProveedor {
+	list-style-image: url("edicion/producto_proveedor.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReceptarTransferencia {
+	list-style-image: url("edicion/receptar_transferencia.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgCerrarCaja {
+	list-style-image: url("edicion/cerrar_caja.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgBuscarVentas {
+	list-style-image: url("edicion/buscar_ventas.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgIngresoGasto {
+	list-style-image: url("edicion/ingreso_gasto.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgAdministracionAutorizacioSri {
+	list-style-image: url("edicion/adminis_autorizacion_sri.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgBuscarCompras {
+	list-style-image: url("edicion/buscar_compras.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgAdministrarSecuencias {
+	list-style-image: url("edicion/adminis_secuencia.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgAdministrarTransaccion {
+	list-style-image: url("edicion/adminis_transaccion.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgAdministrarTransaccionAplicada {
+	list-style-image: url("edicion/adm_transaccion_aplicada.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgAdministrarLoteAsiento {
+	list-style-image: url("edicion/adm_lote_asiento.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteProveedores {
+	list-style-image: url("edicion/reporte_proveedor.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteLibroDiario {
+	list-style-image: url("edicion/libro_diario.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteCompras {
+	list-style-image: url("edicion/compra.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteCierreCaja {
+	list-style-image: url("edicion/maquina_registradora.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteClientes {
+	list-style-image: url("edicion/clientes.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteBalance {
+	list-style-image: url("edicion/balance.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteProforma {
+	list-style-image: url("edicion/reporte_proforma.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteVentas {
+	list-style-image: url("edicion/venta.png");
+	width: 64px;
+	height: 64px;
+}
+
+.imgReporteStock {
+	list-style-image: url("edicion/reporte_stock.png");
+	width: 64px;
+	height: 64px;
+}
+
+#btnBuscar {
+	list-style-image: url("iconos/buscar0.png");	
+}
+
+#btnBuscar:hover {
+	list-style-image: url("iconos/buscar1.png");	
+}
+
+.boxSeleccion{
+	border: 1px solid #7E7E7E;
+	-moz-border-radius: 3px !important;
+	margin: 3px;
+	padding: 0;
+}
+
+.boxSeleccion textbox{
+	background-color: transparent;
+	border: 0px none;
+}
+
+/**Botones de seleccion*/
+.itemSelect, .itemAutomatico, .itemNinguno{	
+	width: 24px;
+	height: 24px;
+	margin: 0px;
+	padding: 0px;
+	
+	-moz-appearance: none;
+	-moz-border-radius: 4px !important;
+	border: 0px none !important;
+	-moz-border-top-colors: #7E7E7E #FFFFFF;
+	-moz-border-right-colors: #7E7E7E #FFFFFF;
+	-moz-border-bottom-colors: #7E7E7E #FFFFFF;
+	-moz-border-left-colors: #7E7E7E #FFFFFF;
+	outline: 0px solid rgba(255, 255, 255, .2);
+	-moz-outline-radius: 4px;	
+	background-color: transparent;	
+}
+
+.itemSelect{
+	list-style-image: url("iconos/item-seleccionar.gif");
+}
+
+.itemAutomatico{
+	list-style-image: url("iconos/item-automatico.png");
+}
+
+.itemNinguno{
+	list-style-image: url("iconos/item-ninguno.png");
+}
+
+.itemSelect:hover, .itemAutomatico:over, .itemNinguno:over {
+	-moz-border-top-colors: #2EC909 #FFFFFF;
+	-moz-border-right-colors: #2EC909 #FFFFFF;
+	-moz-border-bottom-colors: #2EC909 #FFFFFF;
+	-moz-border-left-colors: #2EC909 #FFFFFF;
+	outline: 0px solid rgba(46, 199, 9, .4);
+}
+/**End botones seleccion*/
+
+.itemAdd {
+	-moz-appearance: none;		
+	list-style-image: url("iconos/item_add.png");
+	width: 32px;
+	height: 32px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.itemRem {
+	-moz-appearance: none;
+	list-style-image: url("iconos/item_delete.png");
+	width: 32px;
+	height: 32px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.itemEdit {
+	-moz-appearance: none;
+	list-style-image: url("iconos/item_edit.png");
+	width: 32px;
+	height: 32px;
+	margin: 0px;
+	padding: 0px;
+}
+
+#btnAnular {
+	list-style-image: url("iconos/anular_anticipo.png");
+}
+
+#btnNuevo {
+	list-style-image: url("iconos/nuevo.png");
+}
+
+#btnEstadoInicial {
+	list-style-image: url("iconos/estado_inicial.png");
+}
+
+#btnAbrirPeriodo {
+	list-style-image: url("iconos/abrir_periodo.png");
+}
+
+#btnCerrarPeriodo {
+	list-style-image: url("iconos/cerrar_periodo.png");
+}
+
+#btnDevolver{
+	list-style-image: url("iconos/devolver_anticipo.png");
+}
+
+#btnContabilizar {
+	list-style-image: url("iconos/procesar.png");
+}
+
+#btnPdf {
+	list-style-image: url("iconos/pdf.png");
+}
+
+
+#btnAceptar {
+	list-style-image: url("iconos/aceptar.png");
+}
+
+#btnLogOff {
+	list-style-image: url("iconos/logoff.png");
+}
+
+#btnPrefsBase, #btnPrefsExte, #btnEjecutar {
+	list-style-image: url("iconos/prefs.png");
+}
+
+#btnLimpiar {
+	list-style-image: url("iconos/limpiar.png");
+}
+
+#btnFullScreen {
+	list-style-image: url("iconos/pantalla.png");
+}
+
+#btnErrorConsole {
+	list-style-image: url("iconos/consola.png");
+}
+
+#btnRetencion {
+	list-style-image: url("iconos/retenciones.png");
+}
+
+
+#btnEditar {
+	list-style-image: url("iconos/editar.png");
+}
+
+#btnEliminar {
+	list-style-image: url("iconos/eliminar.png");
+}
+
+#btnGuardar {
+	list-style-image: url("iconos/guardar.png");
+}
+
+#btnGuardar[disabled] {
+	list-style-image: url("iconos/guardar-disabled.png");	
+}
+
+#btnGuardarTemporal {
+	list-style-image: url("iconos/guardar.png");
+}
+
+#btnGuardarTemporal[disabled] {
+	list-style-image: url("iconos/guardar-disabled.png");	
+}
+
+#btnImprimir {
+	list-style-image: url("iconos/imprimir.png");
+}
+
+#btnCerrar {
+	list-style-image: url("iconos/cerrar.png");
+}
+
+#btnCancelar {
+	list-style-image: url("iconos/cerrar.png");	
+}
+
+.boxControles{
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:#CCCCFF;
+}
+
+.boxControlesItem{
+	border: 1px solid; 
+	-moz-border-radius: 5px; 
+	padding: 2px;
+}
+
+.imgEsperar {
+	list-style-image: url("ajax-loader.gif");	
+	width: 100px;
+	height: 100px;
+}

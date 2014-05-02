@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="chrome://global/content/printUtils.js" />
+	<script type="application/x-javascript" src="RepProforma.js" />
+
+	<vbox flex="1">
+
+		<hbox id="header_administrar">
+			<image class="imgReporteProforma"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label value="Reporte de Proformas" />
+			</hbox>
+			<hbox id="header_administrar_controles" align="center" pack="end" flex="1">								
+				<grid style="border: 1px solid">
+					<columns>
+						<column></column>
+						<column></column>
+						<column></column>
+						<column></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>									
+							<label value="Filtrar Fecha"/>
+							<menulist id="listaCriterios">								
+								<menupopup>
+									<menuitem label="--No Filtar--" value="TODOS" />
+									<menuitem label="Fecha Emisión" value="fecha" />
+									<menuitem label="Fecha Vencimiento" value="fechaVencimiento" />
+								</menupopup>
+							</menulist>
+							
+							<label value="Usuario"/>
+							<menulist id="cmbUsuario">
+								<menupopup></menupopup>
+							</menulist>
+							
+							
+						</row>
+						
+						<row>
+							<label value="Desde"/>
+							<datepicker id="dtpInicio" type="popup"/>
+							
+							<label value="Local"/>
+							<menulist id="cmbLocal">
+								<menupopup></menupopup>
+							</menulist>
+							
+							
+														
+						</row>						
+						
+						<row>
+							<label value="Hasta"/>
+							<datepicker id="dtpFin" type="popup"/>
+							
+							<label value="Nº Proforma"/>
+							<textbox id="txtTexto" ></textbox>
+						</row>
+					</rows>
+				</grid>	
+				
+				<pupupCliente id="popupCliente" rowTelefono="false" rowDireccion="false" rowMensaje="false"/>			
+				
+				<button label="Buscar" id="btnBuscar" />
+				<button label="Imprimir" id="btnImprimir" />
+				<button label="Pdf" id="btnPdf" />
+			</hbox>
+		</hbox>
+
+		<vbox flex="1" style="color:#000000;">
+			<hbox flex="1">
+				<iframe id="frameReporte" flex="1"/>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

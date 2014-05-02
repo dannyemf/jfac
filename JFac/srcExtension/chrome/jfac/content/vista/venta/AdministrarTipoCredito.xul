@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="AdministrarTipoCredito.js" />
+
+	<vbox flex="1">
+
+		<hbox id="header_administrar">
+			<image class="imgCreditos"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label value="Administrar Tipos de Crédito" />
+			</hbox>
+			<hbox id="header_administrar_controles" align="center" pack="end"
+				flex="1">
+				<label value="Buscar por " />
+				<menulist id="listaCriterios">
+					<menupopup>
+						<menuitem label="Todos" value="TODOS" />
+						<menuitem label="Descripción" value="DESCRIPCION" />
+					</menupopup>
+				</menulist>
+				<textbox id="txtTexto" />
+				<button label="Buscar" id="btnBuscar" />
+				<button label="Nuevo" id="btnNuevo" />
+				<button label="Editar" id="btnEditar" />
+				<button label="Eliminar" id="btnEliminar" />
+			</hbox>
+		</hbox>
+
+		<vbox flex="1" style="color:#000000;">
+			<hbox flex="1">
+				<tree flex="1" rows="25" height="350" seltype="single" id="treeTipoCredito"
+					enableColumnsDrag="true">
+					<treecols pickertooltiptext="Seleccionar columnas">
+						<treecol label="Id" primary="true" tooltiptext="Código del tipo de crédito"
+							flex="1" />
+						<splitter />
+						<treecol label="Descripción" tooltiptext="Descripción del tipo de crédito" flex="1" />
+						<splitter />
+						<treecol label="Tipo" tooltiptext="Tipo de crédito diario, semanal o mensual"
+							flex="1" />
+						<splitter />
+						<treecol label="Número de cuotas" tooltiptext="Número de cuotas del tipo de crédito"
+							flex="1" />
+						<splitter />
+						<treecol label="Interés" tooltiptext="Interés a cobrar en este tipo de crédito"
+							flex="1" />
+						<splitter />
+						<treecol label="Mora" tooltiptext="Interés por mora a cobrar en este tipo de credito"
+							flex="1" />
+						<splitter />						
+					</treecols>
+					<treechildren>
+					</treechildren>
+				</tree>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

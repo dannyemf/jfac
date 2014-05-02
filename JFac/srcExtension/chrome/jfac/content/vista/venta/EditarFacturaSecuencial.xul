@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Secuencial">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgAdministrarSecuencias" title="Editar Factura Seccuencial" />
+	<script type="application/x-javascript" src="EditarFacturaSecuencial.js" />
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="DESDE" />
+						<textbox id="txtDesde" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtDesde"></validation>
+					</row>
+					<row>
+						<label value="HASTA" />
+						<textbox id="txtHasta" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtHasta"></validation>
+					</row>
+					<row>
+						<label value="SECUENCIAL" />
+						<textbox id="txtSecuencial" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtSecuencial"></validation>
+					</row>
+					<row>
+						<label value="AUTORIZACIÓN SRI" />
+						<menulist id="cmbAutorizacion" required="true"><menupopup></menupopup></menulist>						
+						<label value="(*)" class="reglas" />
+						<validation for="cmbAutorizacion"></validation>
+					</row>
+					<row>
+						<label value="PUNTO FACTURACIÓN" />
+						<menulist id="cmbPunto" required="true"><menupopup></menupopup></menulist>						
+						<label value="(*)" class="reglas" />
+						<validation for="cmbPunto"></validation>
+					</row>
+					<row>
+						<label value="TIPO DOCUMENTO" />
+						<menulist id="cmbTipo" required="true">
+							<menupopup>
+								<menuitem value="1" label="Factura"/>
+								<menuitem value="7" label="Comprobante de Retención"/>
+							</menupopup>
+						</menulist>						
+						<label value="(*)" class="reglas" />
+						<validation for="cmbTipo"></validation>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

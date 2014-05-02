@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+#gridx {
+	border: 0;
+}
+
+#row_head {
+	background: url(images/img_01.png);
+	height: 35px;
+}
+
+#row_cen {
+	background: url(images/img_02.png);
+	background-repeat: repeat-y;
+}
+
+#row_pie {
+	background: url(images/img_03.png);
+	height: 35px;
+}
+
+#txtLogin,#txtClave {
+	-moz-appearance: none;
+	background: url(images/txtElegante.png);
+	background-repeat: none;
+	border: 0px none;
+	width: 157px;
+	height: 39px;
+}
+
+#lblLogin,#lblClave {
+	font-size: 14.0pt;
+	font-family: Arial;
+	color: #376092;
+	font-weight: bold;
+	height: 39px;
+}
+
+.logoText {
+	font: italic 36px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #215968;
+}
+
+#pieText {
+	margin: -5px 0 0 0;
+	padding: 0;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 10px;
+	font-weight: bold;
+	color: #D4C792;
+}

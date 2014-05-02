@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Pagar Crédito Diferido"
+	width="800" height="550">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgCredito" title="Pagar Crédito Diferido" />
+	<script type="application/x-javascript" src="PagarCreditoDiferido.js" />
+	<vbox flex="1">		
+		<hbox flex="1">
+			<tabbox flex="1">
+				<tabs id="tabFac">
+					<tab label="Cuotas" />
+					<tab label="Pago" />
+					<tab label="Vista Previa" />
+				</tabs>
+				<tabpanels flex="1">
+					<tabpanel>
+						<vbox flex="1">
+							<description value="Seleccione las cuotas a pagar con Ctrl + Click"></description>
+							<checkbox id="chkMora" label="Cobrar Mora (Solo en cuotas vencidas)" checked="true"/>
+							<hbox>
+								<label value="Fecha Registro"/>
+								<textbox id="txtFechaReg" disabled="true"/>
+							</hbox>
+							<hbox>
+								<label value="Mora(%)"/>
+								<textbox id="txtMoraP" disabled="true"/>
+							</hbox>
+							<tree id="tree" flex="1" rows="10">
+								<treecols>
+									<treecol label="N°" flex="1"/>
+									
+									<splitter/>
+									<treecol label="Fecha Pago" flex="1"/>
+									
+									<splitter/>
+									<treecol label="Vencida" flex="1"/>
+									
+									<splitter/>
+									<treecol label="Monto Inicial" flex="1" text="double"/>																	
+									
+									<splitter/>
+									<treecol label="Interes" flex="1" text="double"/>
+									
+									<splitter/>
+									<treecol label="Mora" flex="1" text="double"/>
+									
+									<splitter/>
+									<treecol label="Monto a Pagar" flex="1" text="double"/>
+								</treecols>
+								<treechildren></treechildren>
+							</tree>	
+						</vbox>				
+					</tabpanel>
+					<tabpanel>
+						<vbox flex="1">
+							<hbox id="boxDatos">
+								<grid>
+									<columns>
+										<column />
+										<column />
+										<column />
+										<column />
+									</columns>
+									<rows>
+										<row>
+											<label value="CLIENTE" />
+											<textbox id="txtCliente" disabled="true" width="250"/>											
+										</row>
+										<row>
+											<label value="Nº FACTURA" />
+											<textbox id="txtFactura" required="true" disabled="true"/>											
+										</row>
+										
+										<row>
+											<label value="FORMA PAGO" />
+											<textbox id="txtFormaPago" disabled="true"/>											
+										</row>
+										
+										<row>
+											<label value="MONTO INICIAL" />
+											<textbox id="txtMonto" text="double" disabled="true"/>											
+										</row>
+										
+										<row>
+											<label value="SALDO ANTERIOR" />
+											<textbox id="txtSaldo" text="double" may="0" disabled="true"/>
+										</row>
+										
+										<row>
+											<label value="VALOR A PAGAR" />
+											<textbox id="txtValorAPagar" required="true" text="double" may="0" disabled="true" style="font-size: 16px; font-weight: bold"/>
+											<label value="(*)" class="reglas" />
+											<validation for="txtValorAPagar"></validation>
+										</row>
+										
+										<row>
+											<label value="FORMA PAGO" />
+											<menulist id="cmbFormaPago">
+												<menupopup>
+													<menuitem value="EFECTIVO" label="Efectivo"/>
+													<menuitem value="CHEQUE" label="Cheque"/>
+													<menuitem value="DEPOSITO" label="Depósito"/>
+													<menuitem value="TRANSFERENCIA" label="Transferncia"/>
+												</menupopup>
+											</menulist>						
+											<label value="(*)" class="reglas" />
+											<validation for="cmbFormaPago"></validation>
+										</row>
+										
+										<!-- Cheques, Depósito, Transferencia -->
+										
+										<row>
+											<label value="FECHA EMISIÓN" />
+											<datepicker id="dpkFechaEmision" type="popup"></datepicker>						
+											<label value="(*)" class="reglas" />
+											<validation for="dpkFechaEmision" ></validation>
+										</row>
+										
+										<row>
+											<label value="FECHA VENCIMIENTO" />
+											<datepicker id="dpkFechaVencimiento" type="popup"></datepicker>						
+											<label value="(*)" class="reglas" />
+											<validation for="dpkFechaVencimiento"></validation>
+										</row>
+																	
+										<row>
+											<label value="BANCO" />
+											<menulist id="cmbBanco">
+												<menupopup></menupopup>
+											</menulist>
+											<label value="(*)" class="reglas" />
+											<validation for="cmbBanco"></validation>
+										</row>
+										
+										<row>
+											<label value="CUENTA EMPRESA" />
+											<menulist id="cmbCuenta">
+												<menupopup></menupopup>
+											</menulist>
+											<label value="(*)" class="reglas" />
+											<validation for="cmbCuenta"></validation>
+										</row>
+										
+										<row>
+											<label value="CUENTA CLIENTE"/>
+											<textbox id="txtNumeroCuenta"/>						
+											<label value="(*)" class="reglas" />
+											<validation for="txtNumeroCuenta"></validation>
+										</row>
+										
+										<row>
+											<label value="NÚMERO REFERENCIA" />
+											<textbox id="txtNumeroReferencia"/>												
+											<label value="(*)" class="reglas" />
+											<validation for="txtNumeroReferencia"></validation>
+										</row>
+									</rows>
+								</grid>
+							</hbox>
+					
+							<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+								<button label="Guardar" id="btnGuardar" />
+								<button label="Cancelar" id="btnCancelar" />
+							</hbox>
+						</vbox>
+					</tabpanel>
+					<tabpanel>
+						<hbox flex="1">
+							<iframe id="print" flex="1" />
+						</hbox>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</hbox>
+	</vbox>	
+</window>

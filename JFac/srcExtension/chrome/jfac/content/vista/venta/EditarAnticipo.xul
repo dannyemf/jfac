@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Anticipo"
+	width="800" height="550">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgAnticipo" title="Editar Anticipo" />
+	<script type="application/x-javascript" src="EditarAnticipo.js" />
+	<vbox flex="1">		
+		<hbox flex="1">
+			<tabbox flex="1">
+				<tabs id="tabFac">
+					<tab label="Proforma" />
+					<tab label="Vista Previa" />
+				</tabs>
+				<tabpanels flex="1">
+					<tabpanel>
+	<vbox flex="1">
+		<hbox id="boxDatos">
+			<grid>
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="CLIENTE" />
+						<pupupCliente id="popupCliente" mensajeRuc="--Seleccione--"></pupupCliente>
+						<spacer/>
+						<grid>
+							<rows>
+								<row>
+									<label value="ESTADO" />
+									<textbox id="txtEstado" readonly="true"/>
+								</row>
+								<row>
+									<label value="FECHA" />
+									<textbox id="txtFecha" readonly="true"/>							
+								</row>
+								<row>
+									<label value="DESCRIPCIÓN" />
+									<textbox id="txtDescripcion" required="true" multiline="true"/>								
+								</row>
+								<row>
+									<spacer/>
+									<hbox>									
+										<label value="(*)" class="reglas" />
+										<validation for="txtDescripcion"></validation>
+									</hbox>
+								</row>
+							</rows>						
+						</grid>																					
+					</row>
+					<row>
+					</row>
+					<row>
+						<label value="FORMA PAGO" />
+						<menulist id="cmbFormaPago">
+							<menupopup>
+								<menuitem value="Efectivo" label="Efectivo"/>
+								<menuitem value="Cheque" label="Cheque"/>
+								<menuitem value="Deposito" label="Depósito"/>
+								<menuitem value="Transferencia" label="Transferncia"/>
+							</menupopup>
+						</menulist>						
+						<label value="(*)" class="reglas" />
+						<validation for="cmbFormaPago"></validation>
+					</row>
+					<row>
+						<label value="MONTO" />
+						<textbox id="txtMonto" required="true" text="double" may="0"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtMonto"></validation>
+					</row>
+					
+					<!-- Cheques, Deposito, Transferencia -->
+					
+					<row>
+						<label value="FECHA EMISIÓN" />
+						<datepicker id="dpkFechaEmision" type="popup"></datepicker>						
+						<label value="(*)" class="reglas" />
+						<validation for="dpkFechaEmision" ></validation>
+					</row>
+					
+					<row>
+						<label value="FECHA VENCIMIENTO" />
+						<datepicker id="dpkFechaVencimiento" type="popup"></datepicker>						
+						<label value="(*)" class="reglas" />
+						<validation for="dpkFechaVencimiento"></validation>
+					</row>
+					
+					<row>
+						<label value="BANCO" />
+						<menulist id="cmbBanco">
+							<menupopup></menupopup>
+						</menulist>
+						<label value="(*)" class="reglas" />
+						<validation for="cmbBanco"></validation>
+					</row>
+					
+					<row>
+						<label value="CUENTA EMPRESA" />
+						<menulist id="cmbCuenta">
+							<menupopup></menupopup>
+						</menulist>
+						<label value="(*)" class="reglas" />
+						<validation for="cmbCuenta"></validation>
+					</row>
+					
+					<row>
+						<label value="CUENTA CLIENTE"/>
+						<textbox id="txtNumeroCuenta"/>						
+						<label value="(*)" class="reglas" />
+						<validation for="txtNumeroCuenta"></validation>
+					</row>
+					
+					<row>
+						<label value="NÚMERO REFERNCIA" />
+						<textbox id="txtNumeroReferencia"/>												
+						<label value="(*)" class="reglas" />
+						<validation for="txtNumeroReferencia"></validation>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+	</tabpanel>
+	<tabpanel>
+						<hbox flex="1">
+							<iframe id="print" flex="1" />
+						</hbox>
+					</tabpanel>
+	</tabpanels>
+	</tabbox>
+	</hbox>
+	</vbox>		
+		
+			
+				
+					
+</window>

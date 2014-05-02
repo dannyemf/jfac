@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+	<!--
+-->
+<!DOCTYPE bindings [
+  <!ENTITY % popup.dtd SYSTEM "chrome://jfac/locale/popup.dtd">
+  %popup.dtd;
+]>
+
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xbl="http://www.mozilla.org/xbl"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<binding id="text">
+		<implementation>
+			<field name="_text" readonly="true">document.getAnonymousNodes(this)[0]
+			</field>
+			<field name="OK" readonly="true">'OK'</field>
+			<field name="SI" readonly="true">'S'</field>
+			<field name="NO" readonly="true">'N'</field>
+			<field name="REQUIRED" readonly="true">'required'</field>
+
+			<property name="value" onget="return (this._text.value);"
+				onset="this._text.value = val;" />
+			<method name="$">
+				<parameter name="anoid" />
+				<body>
+					return(document.getAnonymousElementByAttribute(this,
+					"anoid",anoid));
+				</body>
+			</method>
+
+			<method name="InitRequired">
+				<body>
+				 <![CDATA[ 
+		   		  try
+					{ 
+						if (this.getAttribute(this.REQUIRED)==this.SI)
+						{ 
+					  		this.setAttribute(this.OK,this.NO);
+						}
+						else
+						{ 
+					  		this.setAttribute(this.OK,this.SI);
+					  
+						}
+					}
+					catch(e) {
+						alert("InitRequired " + e);
+			    	}
+				]]>
+				</body>
+			</method>
+
+			<method name="setOk">
+				<parameter name="elem" />
+				<body>
+				 <![CDATA[ 
+		   		   try{ 	
+					  	if (elem){ 
+						  //this.setAttribute(this.OK,this.SI);
+						  this.setAttribute('style','background-color: none;');
+						}else{ 
+						  //this.setAttribute(this.OK,this.NO);
+						  this.setAttribute('style','background-color:  #dc6680;');
+						}
+				 	}catch(e) {
+						alert("setOk " + e);
+				    }
+				]]>
+				</body>
+			</method>
+
+			<method name="isChar">
+				<parameter name="elem" />
+				<body>
+				<![CDATA[ 
+					var done = false;
+					var number = parseFloat(elem);
+					done=isNaN(number);
+		            return done;
+				]]>
+				</body>
+			</method>
+
+			<method name="InputMaskString">
+				<parameter name="mask" />
+				<parameter name="cadena" />
+				<body>
+				<![CDATA[
+			    try {
+			        var i = 0;
+					var c = null;
+					var m = null;			             
+					var n = 0;
+			       	var done = true; 
+			    	
+			    	
+			    	if (mask==undefined)
+			    	    mask='';
+			    	
+			    	i = cadena.length-1;
+					c = cadena.charAt(i);
+					m = mask.charAt(i);			             
+					n = mask.length-1;			
+							
+					if(mask.charAt(0)=="@")
+					{
+						m=mask.charAt(1);
+						n=-1;
+					}
+						 
+					switch(m) {								   
+						
+						
+						case '#':         		
+						case '9':// Mayusculas
+						{
+							done=!(this.isChar(c));
+							break;
+						}
+						
+						case 'W'://Minusculas
+						{
+							cadena=cadena.toLowerCase();
+							break;
+						}
+						case '!':         		
+						case 'U':// Mayusculas
+						{
+							cadena=cadena.toUpperCase();
+							break;
+						} 
+						default: {
+							cadena = cadena.substring(0,i)+ c; 
+							if (n!=-1)
+								 done=(m==c);
+							else
+								done=(i!=-1);
+							break;
+						}
+					}
+				
+					if ((n!=-1)&&(n+1) == i) //Formato n
+					{
+						cadena = cadena.substring(0,i);
+					}
+						
+					this.setOk(done);	
+						  
+					return(cadena);
+				} catch(e) {
+					alert("InputMaskString "+e);
+				} 
+				]]>
+				</body>
+			</method>
+
+
+			<method name="InputMaskNum">
+				<parameter name="cadena" />
+				<parameter name="mask" />
+				<parameter name="type" />
+				<body>
+			<![CDATA[
+				try 
+				{
+				  
+				  	var i = 0;
+					var c = null;
+					var p = null;
+					var n = 0;
+					var done = true;
+					var permitidos = "-()[]";
+					
+					if (mask==undefined)
+			    	    mask='';
+			    	    
+			    	i = cadena.length-1;
+					c = cadena.charAt(i);
+					p = mask.charAt(i);
+					n = mask.length-1;    
+			    	
+ 					cadena = cadena.substring(0,i);
+					if ((!type )&&(i!=0)&&((c=='.') &&(cadena.indexOf('.')==-1)))
+					{
+					      cadena = cadena +'.';
+					}
+  				   
+  				   	done=((n!=-1)&&(permitidos.indexOf(c) != -1)&&(p==c));
+					if(done)
+					{
+					  cadena = cadena + c;
+					}
+					
+					done=!(this.isChar(c));
+					
+					if(done)
+					{ 
+						     if (n!=-1) //Existe formato n
+						     {
+							     if (p=='#')
+								  done=(n >= i);
+								 else
+								  done=(n==i);
+								
+							 }
+							 else
+							 {
+							     done=true;
+							 }
+							  cadena = cadena + c;	
+							 						  
+					}
+									
+					this.setOk(done);	
+					return(cadena);	
+				} 
+				catch(e) 
+				{
+					alert("text_input: " + e);
+				}
+			]]>
+				</body>
+			</method>
+
+			<method name="isEMailAddr">
+				<parameter name="elem" />
+				<body>
+				       <![CDATA[
+					    var str = elem;
+					    var re = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+					    var done = str.match(re);
+					    done= !(done==null);
+					    return done;
+					    ]]>
+				</body>
+			</method>
+
+			<method name="isRuc">
+				<parameter name="val" />
+				<body>
+			<![CDATA[
+				switch (val.charAt(2))
+				{
+					// Persona Juridica Privada, Compania, Sociedad
+					case '9': done = this.isRucEmpresaPrivada(val);
+		            break;
+		    
+					// Persona Juridica Publica
+					case '6': done = this.isRucEmpresaPublica(val);
+		            break;
+	
+					// Persona Natural (0 y 1)	    
+					default: done = this.isRucPersonaNatural(val);
+				}
+				return done;
+			]]>
+				</body>
+			</method>
+
+			<method name="isRucEmpresaPrivada">
+				<parameter name="val" />
+				<body>
+			<![CDATA[
+				var done = false;
+				var f = 4;
+				var l = 9;
+				var suma = 0;
+				var digito = val.charCodeAt(l) - 48;
+
+				for (var i=0; i < l; i++)
+				{
+					suma += (f * (val.charCodeAt(i) - 48));
+					f = (f == 2)? 7 : (f-1);
+				}
+				f = suma % 11;
+
+				if (f == 0 && digito == 0)
+					done = true;
+	
+				if (f != 1 && digito == (11-f))
+					done = true;
+        
+				return done;
+			]]>
+				</body>
+			</method>
+
+			<method name="isRucEmpresaPublica">
+				<parameter name="val" />
+				<body>
+			<![CDATA[
+				var done = false;
+				var f = 3;
+				var l = 8;
+				var suma = 0;
+				var digito = val.charCodeAt(l) - 48;
+
+				for (var i=0; i < l; i++)
+				{
+					suma += (f * (val.charCodeAt(i) - 48));
+					f = (f == 2)? 7 : (f-1);
+				}
+				f = suma % 11;
+
+				if (f == 0 && digito == 0)
+					done = true;
+	
+				if (f != 1 && digito == (11-f))
+					done = true;
+        
+				return done;
+			]]>
+				</body>
+			</method>
+
+			<method name="isRucPersonaNatural">
+				<parameter name="val" />
+				<body>
+			<![CDATA[
+				var done = false;
+				var f = 2;
+				var l = 9;
+				var suma = 0;
+				var digito = val.charCodeAt(l) - 48;
+
+				for (var i=0; i < l; i++)
+				{
+					d = (f * (val.charCodeAt(i) - 48));
+					suma += (d > 9)? (d-9) : d;
+					f = (f == 2)? 1 : 2;
+				}
+				f = suma % 10;
+
+				if (f == 0 && digito == 0)
+					done = true;
+
+				if (f != 1 && digito == (10-f))
+					done = true;
+        
+				return done;
+			]]>
+				</body>
+			</method>
+			<method name="isRequired">
+				<parameter name="value" />
+				<body>
+				       <![CDATA[
+					    var done = true;
+					    if (this.getAttribute(this.my.REQUIRED))
+					    {
+					       done= !( value == null || value.length == 0 || /^\s+$/.test(value) );
+                        
+                        }
+					    return done;
+					    ]]>
+				</body>
+			</method>
+			<constructor>
+			 //this._text.my = this;	
+			 this.InitRequired();
+		   </constructor>
+		</implementation>
+	</binding>
+	<binding id="text_factura" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<xul:textbox xbl:inherits="&TEXT.inherits;" />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+			<![CDATA[
+			try 
+			{
+			        cad = this.value;
+					cad=cad.replace(/\D/g,"");
+ 		            cad=cad.replace(/^(\d{3})(\d)/,"$1-$2");   
+ 		            cad=cad.replace(/^(\d{3})\-(\d{3})(\d)/,"$1-$2-$3");
+
+		    	    if( cad.length  >15)
+	    		    {
+	    				cad =  cad.substring(0,15);
+	    			}
+	    	
+	    			this.value=cad;
+			} 
+			catch(e) 
+			{
+				alert("text_input: " + e);
+			}
+			]]>
+				</body>
+			</method>
+			<constructor>
+			this._text.addEventListener('input', this._text_input, false);
+			this._text.my = this;
+		</constructor>
+		</implementation>
+	</binding>
+	<binding id="text_char" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<html:input type="text" xbl:inherits="&TEXT.inherits;" />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+				<![CDATA[
+				try 
+				{
+				    
+				  	this.value = this.my.InputMaskString(this.getAttribute('pic'),this.value);
+				  
+				}
+				catch(e) 
+				{
+					alert("text_input_char: " + e);
+				}
+				]]>
+				</body>
+			</method>
+			<constructor>
+				this._text.addEventListener('input', this._text_input, false);
+				this._text.my = this;
+		</constructor>
+		</implementation>
+	</binding>
+
+
+	<binding id="text_alpha" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<html:input type="text" xbl:inherits="&TEXT.inherits;" />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+				<![CDATA[
+				try 
+				{ 
+			        var c = this.value.charAt(this.value.length-1);
+					if (this.my.isChar(c))
+					{	
+							
+						 this.value = this.my.InputMaskString(this.getAttribute('pic'),this.value);
+				            
+					}
+									
+				}
+				catch(e) 
+				{
+					alert("text_input_char: " + e);
+				}
+				]]>
+				</body>
+			</method>
+
+
+			<constructor>
+				this._text.addEventListener('input', this._text_input, false);
+				this._text.my = this;
+		</constructor>
+		</implementation>
+	</binding>
+
+	<binding id="text_int" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<xul:textbox />
+		</content>
+		<implementation>
+
+
+			<method name="_text_input">
+				<body>
+			<![CDATA[
+				try 
+				{
+				   var v = this.value.replace(/\D/g,"");
+				   if(v == ''){
+				   	 v  = 0;
+				   }
+				   this.value = v;
+					
+				} 
+				catch(e) 
+				{
+					alert("text_input_int: " + e);
+				}
+			]]>
+				</body>
+			</method>
+
+			<constructor>
+				this._text.addEventListener('input', this._text_input, false);
+				this._text.my = this;
+			</constructor>
+		</implementation>
+	</binding>
+
+	<binding id="text_double" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<xul:textbox />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+			<![CDATA[
+				try 
+				{
+				    var cad = new String (this.value);
+				    if (cad.search(/[.]/g)==-1)
+					{
+						this.my.tmp = cad.replace(/\D/g,"");
+					}
+					else
+					{
+						cad = cad.split('.');
+                   		this.my.tmp = cad[0].replace(/\D/g,"") +'.'+ cad[1].replace(/\D/g,"");
+                    }
+                    this.value  = this.my.tmp;   
+                    if(this.value == ''){
+                    	this.value = '0';
+                    }
+				} 
+				catch(e) 
+				{
+					alert("text_input_input: " + e);
+				}
+			]]>
+				</body>
+			</method>
+			<method name="_text_blur">
+				<body>
+			<![CDATA[
+				try 
+				{
+					var n   = this.getAttribute('decimalplaces');
+					var txt = this.value;
+				   
+				    if (txt.search(/[.]/g)==-1)
+					{
+					   var decimal='0';
+					   if (n)
+					   { 
+					      n= parseInt(n);
+					      decimal='';
+					      for (var i=0;i<n;i++)
+					      {
+					       decimal=decimal+'0';
+					      }
+					   }	
+					   if (txt.length==0)	
+					   		txt='0';   
+					   this.value=txt+'.'+decimal;
+					     
+					}
+				   
+				} 
+				catch(e) 
+				{
+					alert("_text_blur: " + e);
+				}
+			]]>
+				</body>
+			</method>
+			<constructor>
+				this._text.addEventListener('input', this._text_input, false);
+				this._text.addEventListener('blur', this._text_blur, true);
+				this._text.my = this;
+		</constructor>
+		</implementation>
+	</binding>
+	<binding id="text_mail" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<html:input type="text" xbl:inherits="&TEXT.inherits;" />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+			<![CDATA[
+			try 
+			{
+				done= this.my.isEMailAddr(this.value);
+				this.my.setOk(done);
+			} 
+			catch(e) 
+			{
+			  alert("text_input_mail: " + e);
+			}
+			]]>
+				</body>
+			</method>
+
+			<constructor>
+			this._text.addEventListener('blur', this._text_input, true);
+			this._text.my = this;
+		</constructor>
+		</implementation>
+	</binding>
+	<binding id="text_cedula" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<xul:textbox type="text" pic='9999999999' xbl:inherits="&TEXT.inherits;" />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+					<![CDATA[
+						try {
+						   this.value=this.my.InputMaskNum(this.value,this.getAttribute('pic'),true);
+						   if (this.value.length==10){
+						      this.my.setOk(this.my.isRuc( this.value));
+						   }else{
+						   		this.my.setOk(false);
+						   }
+						} catch(e){
+							alert("text_input_cedula: " + e);
+						}
+					]]>
+				</body>
+			</method>
+			<constructor>
+				this._text.addEventListener('input', this._text_input, true);
+				this._text.my = this;
+			</constructor>
+		</implementation>
+	</binding>
+
+	<binding id="text_ruc" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<html:input type="text" pic='9999999999999' xbl:inherits="&TEXT.inherits;" />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+				<![CDATA[
+				try {
+				
+				   this.value=this.my.InputMaskNum(this.value,this.getAttribute('pic'),true);
+				   if (this.value.length==13)
+				   {
+				       this.my.setOk(this.my.isRuc( this.value));
+				     
+				   }	
+				   
+				} 
+				catch(e) 
+				{
+					alert("text_input_ruc: " + e);
+				}
+				]]>
+				</body>
+			</method>
+
+			<constructor>
+			this._text.addEventListener('input', this._text_input, false);
+			this._text.my = this;
+		</constructor>
+		</implementation>
+	</binding>
+
+
+
+	<binding id="text_include" extends="chrome://jfac/content/xbl/text.xbl#text">
+		<content>
+			<html:input type="text" xbl:inherits="&TEXT.inherits;" />
+		</content>
+		<implementation>
+			<method name="_text_input">
+				<body>
+			<![CDATA[
+			try 
+			{
+					
+			} 
+			catch(e) 
+			{
+			alert("text_input: " + e);
+			}
+			]]>
+				</body>
+			</method>
+
+			<constructor>
+			this._text.addEventListener('input', this._text_input, false);
+			this._text.my = this;
+		</constructor>
+		</implementation>
+	</binding>
+</bindings>
+
+
+

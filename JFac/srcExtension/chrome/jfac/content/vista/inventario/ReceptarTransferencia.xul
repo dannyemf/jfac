@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Transferencia">
+	
+	<vbox id="general_imports" />	
+	<script type="application/x-javascript" src="chrome://global/content/printUtils.js" />
+	<script type="application/x-javascript" src="ReceptarTransferencia.js" />
+	
+	<hbox id="header_editar" image="imgReceptarTransferencia" title="Receptar Transferencia" />
+	
+	<vbox flex="1">		
+		<vbox flex="1">
+			<grid width="600">
+				<columns>
+					<column></column>
+					<column></column>
+					<column></column>
+					<column></column>
+					<column></column>
+					<column></column>
+				</columns>
+				<rows>
+					<row>
+						<label value="Id:"/>
+						<textbox id="txtId" disabled="true"/>									
+					</row>
+					<row>
+						<label value="Observación"/>									
+						<textbox id="txtObservacion"/>
+					</row>
+					<row>
+						<label value="Local de origen" />
+						<menulist value="1" id="cmbLocalOrigen" disabled="true"/>
+					</row>
+					<row>
+						<label value="Usuario"  />
+						<textbox id="txtUsuario" disabled="true"/>									
+					</row>											
+				</rows>
+			</grid>	
+			
+			<hbox style="margin-top: 10px">
+				<vbox flex="1" >
+					<vbox flex="1">									
+						<tree id="treeItems"  seltype="single" flex="1" rows="20" width="100%">
+							<treecols>
+								<treecol label="Código" />
+								<treecol flex="1" label="Cantidad Enviada" />
+								<treecol label="Descripción" flex="1" />
+								<treecol label="Cantidad Recibida" flex="1" />											
+							</treecols>
+							<treechildren />
+						</tree>
+					</vbox>								
+				</vbox>
+			</hbox>
+		</vbox>
+
+		<hbox pack="center" id="boxControles" class="boxControles">
+			<button label="Recibir" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

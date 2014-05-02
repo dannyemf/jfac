@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Ingresar Factura de Venta">
+	
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="chrome://global/content/printUtils.js" />
+	<script type="application/x-javascript" src="EditarFacturaVenta.js" />
+
+	<hbox id="header_editar" image="imgVentas" title="Ingresar Factura Venta" />
+
+	<vbox flex="1" style="">
+		<hbox flex="1">
+			<tabbox flex="1">
+				<tabs id="tabFac">
+					<tab label="Factura" />
+					<tab label="Vista Previa" />
+				</tabs>
+				<tabpanels flex="1" id ="tabpanels">
+					<tabpanel>
+						<vbox flex="1">							
+							<hbox pack="start">
+								<pupupCliente id="pupupCliente"/>
+								<groupbox>
+									<caption>Datos</caption>
+									<grid>
+										<columns>
+											<column></column>
+											<column></column>
+										</columns>										
+										<rows>
+											<row>
+												<label value="Nº Factura" width="60" />
+												<textbox value="000-000-0000000" id="txtNumeroFactura" width="140" text="factura" disabled="true"/>										
+											</row>
+											<row>
+												<label value="Fecha Emisión" width="80" />
+												<textbox disabled="true" id="dtpFechaEmision"/>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</hbox>
+							
+							<hbox pack="end" align="center">
+								<validation for="treeItems"></validation>
+								
+								<hbox align="center"  class="boxControlesItem">								
+									<label value="Cantidad" />
+									<textbox id="txtCantidad" value="1" />
+									<label value="Codigo" />
+									<textbox id="txtProducto" tooltip="Ingrese el codigo del producto" />								
+									<image id="btnProductos" class="imgPopupSelect"></image>
+									<spacer width="5"/>
+								</hbox>
+								
+								<spacer width="10"/>
+								
+								<hbox class="boxControlesItem">
+									<button id="btnEditarItem" class="itemEdit"></button>
+									<button id="btnEliminarItem" class="itemRem"></button>
+								</hbox>								
+							</hbox>
+							
+							<hbox width="460">
+								<vbox flex="1">
+									
+									<tree width="357" id="treeItems" rows="10"  seltype="single" flex="1">
+										<treecols>
+											<treecol label="Código" />
+											<treecol flex="1" label="Cantidad" style="text-align: center;"/>
+											<treecol label="Descripción Producto" flex="1" />
+											<treecol label="Costo" flex="1" text="double"/>
+											<treecol flex="1" editable="true" hidden="false" label="Descuento" text="double"/>
+											<treecol label="Subtotal" text="double"/>
+										</treecols>
+										<treechildren />
+									</tree>
+								</vbox>
+							</hbox>
+							<hbox pack="end">
+								<grid>
+									<columns>
+										<column />
+										<column />
+									</columns>
+									<rows>
+										<row>
+											<label value="SubDoce" />
+											<textbox id="txtSubDoce" text="double" disabled="true"  style="text-align: right"/>
+										</row>
+										<row>
+											<label value="SubCero" />
+											<textbox id="txtSubCero" text="double" disabled="true"  style="text-align: right"/>
+										</row>
+										<row>
+											<label value="Descuento" />
+											<textbox id="txtDescuento" text="double" disabled="true"  style="text-align: right"/>
+										</row>
+										<row>
+											<label value="Subtotal" />
+											<textbox id="txtSubtotal" text="double" disabled="true"  style="text-align: right"/>
+										</row>										
+										<row>
+											<label value="Iva" />
+											<hbox>
+												<textbox id="txtIvaP" text="double" disabled="true" width="50"  style="text-align: right"/>
+												<label value="%"/>
+												<textbox id="txtIva" text="double" disabled="true"  style="text-align: right"/>												
+											</hbox>											
+										</row>
+										<row>
+											<label value="Sobrecargo" />
+											<textbox id="txtSobrecargo" text="double"  style="text-align: right"/>
+										</row>
+										<row>
+											<label value="TOTAL" />
+											<textbox id="txtTotal" text="double" disabled="true"  style="text-align: right"/>
+										</row>
+									</rows>
+								</grid>
+							</hbox>
+						</vbox>
+					</tabpanel>										
+					<tabpanel>
+						<hbox flex="1">
+							<iframe id="print" flex="1" />
+						</hbox>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</hbox>
+
+		<hbox pack="center" id="boxControles"
+			style="padding-top:10px;padding-bottom:10px;background-color:#CCCCFF;">
+			<button label="Temporal" id="btnGuardarTemporal" />
+			<button label="Facturar" id="btnGuardar" />
+			<button label="Imprimir" id="btnImprimir" hidden="true" />
+			<button label="Cancelar" id="btnCancelar" />
+			
+		</hbox>
+	</vbox>
+</window>

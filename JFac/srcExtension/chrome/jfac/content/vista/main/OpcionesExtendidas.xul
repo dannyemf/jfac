@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<prefwindow id="stockwatcher2-prefs" title="Configuración de Preferencias"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	width="600" height="600" onload="onLoad()">
+
+	<script type="application/x-javascript" src="chrome://jfac/content/vista/js/LocaleControl.js" />
+	<script type="application/x-javascript" src="chrome://global/content/printUtils.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/PreferenciasImpresion.js" />
+	
+	<script type="application/x-javascript">
+		function SetPrintSettings(tipo){
+			/*try {				
+				var settings = PrintUtils.getPrintSettings();
+				loadPrintSetting(settings, tipo);				
+				var PRINTPROMPTSVC = Components.classes['@mozilla.org/embedcomp/printingprompt-service;1'].getService(Components.interfaces.nsIPrintingPromptService);
+	    		PRINTPROMPTSVC.showPageSetup(window, settings, null);								
+			} catch (e) {
+				alert(e);
+			}*/
+		};
+	</script>
+
+	<prefpane id="panelPreferencias" label="Urls">
+		<preferences>
+			<preference id="pref_server" name="jfac.server" type="string" />
+			<preference id="pref_mostrar_sql" name="jfac.mostrar_sql" type="bool" />
+			
+			<preference id="pref_facventa_numCopies" name="jfac.facventa.numCopies" type="int" />
+			<preference id="pref_facventa_printerName" name="jfac.facventa.printerName" type="string" />
+			<preference id="pref_facventa_title" name="jfac.facventa.title" type="string" />
+			<preference id="pref_facventa_orientation" name="jfac.facventa.orientation" type="string" />
+			<preference id="pref_facventa_adjust_width" name="jfac.facventa.adjust_width" type="bool" />
+			<preference id="pref_facventa_marginTop" name="jfac.facventa.marginTop" type="string" />
+			<preference id="pref_facventa_marginLeft" name="jfac.facventa.marginLeft" type="string" />
+			<preference id="pref_facventa_marginBottom" name="jfac.facventa.marginBottom" type="string" />
+			<preference id="pref_facventa_marginRight" name="jfac.facventa.marginRight" type="string" />
+			<preference id="pref_facventa_paperName" name="jfac.facventa.paperName" type="string" />
+			
+			
+			<preference id="pref_reporte_numCopies" name="jfac.reporte.numCopies" type="int" />
+			<preference id="pref_reporte_printerName" name="jfac.reporte.printerName" type="string" />
+			<preference id="pref_reporte_title" name="jfac.reporte.title" type="string" />	
+			
+			
+		</preferences>
+
+		<groupbox >
+			<caption>General</caption>
+			<grid>
+				<columns></columns><columns></columns><columns></columns>
+				<rows>
+					<row>
+						<label control="server" value="Servidor: " />
+						<textbox preference="pref_server" id="server" maxlength="200" width="300" />
+						<spacer />
+					</row>
+					<row>
+						<label control="mostrar_sql" value="Mostrar SQL: " />
+						<checkbox preference="pref_mostrar_sql" id="mostrar_sql" />
+						<spacer />
+					</row>
+					<row>
+						<label value="Locale" />
+						<menulist id="locale-combo">
+							<menupopup id="locale-popup"></menupopup>
+						</menulist>
+						<button label="Cambiar" oncommand="changeLocale()" />
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<caption>Factura de Venta</caption>
+			<grid>
+				<columns>
+					<column></column>
+					<column></column>
+					<column></column>
+					<column></column>
+				</columns>
+				<rows>
+					<row>
+						<label value="Impresora"/>
+						<textbox preference="pref_facventa_printerName" width="160"/>
+						
+						<label value="Nº Copias"/>
+						<textbox preference="pref_facventa_numCopies" width="60"/>
+					</row>					
+					<row>
+						<label value="Titulo"/>
+						<textbox preference="pref_facventa_title" width="160"/>
+						
+						<label value="Orientacion"/>
+						<menulist preference="pref_facventa_orientation">
+							<menupopup>
+								<menuitem label="Vertical" value="portrait"/>
+								<menuitem label="Horizontal" value="landscape"/>								
+							</menupopup>
+						</menulist>
+												
+						<checkbox label="Ajustar" preference="pref_facventa_adjust_width" width="60" tooltiptext="Ajustar ancho de página"/>
+											
+					</row>
+					
+					<row>
+						<label value="Margen(mm)" tooltiptext="En milimetros"/>
+						<hbox>
+							<textbox preference="pref_facventa_marginTop" width="40" tooltiptext="Superior" type="number" decimalplaces="2" increment="0.01"/>
+							<textbox preference="pref_facventa_marginRight" width="40" tooltiptext="Derecho" type="number" decimalplaces="2" increment="0.01"/>
+							<textbox preference="pref_facventa_marginLeft" width="40" tooltiptext="Izquierdo" type="number" decimalplaces="2" increment="0.01"/>
+							<textbox preference="pref_facventa_marginBottom" width="40" tooltiptext="Inferior" type="number" decimalplaces="2" increment="0.01"/>
+						</hbox>		
+						
+						<label value="Papel"></label>
+						<menulist preference="pref_facventa_paperName">
+							<menupopup>
+								<menuitem value="A4" label="A4"/>
+								<menuitem value="A3" label="A3"/>
+							</menupopup>
+						</menulist>				
+					</row>
+					
+					<!--
+						<row>
+							<spacer/>
+							<button label="Configuración de Pagina" oncommand="SetPrintSettings('facventa');"></button>
+						</row>	
+					-->				
+				</rows>
+			</grid>	
+		</groupbox>		
+		
+		<groupbox>
+			<caption>Reportes</caption>
+			<grid>
+				<columns>
+					<column></column>
+					<column></column>
+					<column></column>
+					<column></column>
+				</columns>
+				<rows>
+					<row>
+						<label value="Impresora"/>
+						<textbox preference="pref_reporte_printerName" width="160"/>
+						
+						<label value="Nº Copias"/>
+						<textbox preference="pref_reporte_numCopies" width="60"/>
+					</row>					
+					<row>
+						<label value="Titulo"/>
+						<textbox preference="pref_reporte_title" width="160"/>
+						
+						<spacer/>
+						<button label="Configuración de Pagina" oncommand="SetPrintSettings('reporte');"></button>
+					</row>					
+				</rows>
+			</grid>	
+		</groupbox>			
+	</prefpane>
+
+</prefwindow>

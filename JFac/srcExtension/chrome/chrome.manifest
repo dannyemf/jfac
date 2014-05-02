@@ -1,0 +1,8 @@
+# Esta archivo es para hacerlo correr con xulrunner
+content jfac file:jfac/content/
+skin jfac global file:jfac/skin/global/
+
+locale jfac es-EC file:jfac/locale/es-EC/
+locale jfac en-US file:jfac/locale/en-US/
+
+resource rec file:jfac/components/

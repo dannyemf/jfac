@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<wizard xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	title="Generador de reportes"
+	width="1000"
+	height="800"
+	id="wizard"	
+	onwizardfinish="return self.finalizar();"
+	>
+	
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="Generador.js" />	
+	
+		
+	<wizardpage id="wizTablas" description="Selección de Tablas">
+		<description value="Presione Ctrl+Click para seleccionar más de una tablla."></description>			
+			
+		<tree flex="1" rows="20" seltype="multiple" id="treeTablas"
+			enableColumnsDrag="true" width="500">
+			<treecols pickertooltiptext="Seleccionar columnas">
+				<treecol label="Nombre" primary="true" tooltiptext="Nombre de la tabla" flex="1" />
+			</treecols>
+			<treechildren />
+		</tree>	
+	
+	</wizardpage>
+	
+	<wizardpage id="wizCampos" description="Selección de Campos" onpageshow="self.showCampos();">							
+		<description value="Seleccione una tabla, luego un campo y finalmente el boton > para seleccionar las columnas."></description>
+		
+		<hbox>
+			<label value="Tabla"/>
+			<menulist id="cmbTablasCampos">
+				<menupopup></menupopup>
+			</menulist>			
+		</hbox>	
+		
+		<hbox flex="1">
+			
+			<grid flex="1">
+				<columns>
+					<column></column>
+					<column></column>
+					<column></column>
+				</columns>
+				<rows>
+					<row>
+						<tree id="treeCampos" flex="1" rows="10" width="350">
+							<treecols>
+								<treecol label="Nombre" primary="true" flex="1"/>					
+							</treecols>
+							<treechildren>
+							</treechildren>
+						</tree>	
+					
+						<vbox>														
+							<button id="btnAddCampo" label=">"></button>
+							<button id="btnRemCampo" label="&lt;"></button>
+						</vbox>
+					
+						<tree id="treeCamposSel" seltype="single" flex="1" rows="10" width="350">
+							<treecols>
+								<treecol label="Tabla" primary="true" flex="1"/>
+								<treecol label="Campo" primary="true" flex="1"/>
+								<treecol label="Titulo" primary="true" flex="1"/>
+							</treecols>
+							<treechildren>
+							</treechildren>
+						</tree>
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<vbox>
+							<grid>
+								<columns>
+									<column></column>
+									<column></column>
+								</columns>
+								<rows>
+									<row>
+										<label value="Titulo:"/>
+										<textbox id="txtTitulo" value=""/>
+									</row>
+									<row>
+										<label value="Ordenar:"/>
+										<menulist id="cmbOrdernar">
+											<menupopup>
+												<menuitem value="" label="--Seleccione--"/>
+												<menuitem value="ASC" label="Ascendente"/>
+												<menuitem value="DESC" label="Descendente"/> 
+											</menupopup>											
+										</menulist>									
+									</row>
+								</rows>
+							</grid>
+							
+							
+							
+							<hbox pack="center">
+								<button id="btnAceptarCampo" label="Aceptar"></button>
+							</hbox>													
+						</vbox>
+					</row>
+				</rows>
+			</grid>
+			
+			
+		</hbox>
+			
+	</wizardpage>
+	
+	<wizardpage id="wizFiltros" description="Selección de Filtros" onpageshow="self.showFiltros();">
+		<description value="Seleccione una tabla, luego un campo, los criterios filtro, etc y luego presione aceptar."></description>
+			
+		<hbox>
+			<label value="Tabla"/>
+			<menulist id="cmbTablaFiltros">
+				<menupopup></menupopup>
+			</menulist>
+			
+			<label value="Campo"/>
+			<menulist id="cmbFiltroCampo">
+				<menupopup></menupopup>
+			</menulist>
+			
+			<button id="btnNuevoFiltro" label="Nuevo"></button>
+		</hbox>
+		
+		<hbox>
+			<label value="Operador"/>
+			<menulist id="cmbFiltro">
+				<menupopup>
+					<menuitem value="eq" label="="/>
+					<menuitem value="men" label="&lt;"/>
+					<menuitem value="meneq" label="&lt;="/>
+					<menuitem value="may" label="&gt;"/>
+					<menuitem value="mayeq" label="&gt;="/>					
+					<menuitem value="between" label="Between"/>
+					<menuitem value="like" label="Like"/>
+					<menuitem value="llike" label="Left Like"/>
+					<menuitem value="rlike" label="Rigth Like"/>
+					<menuitem value="in" label="In"/>
+				</menupopup>
+			</menulist>			
+			
+			<label value="Unir Filtros con"/>
+			<menulist id="cmbFiltroTipo">
+				<menupopup>
+					<menuitem value="AND" label="And"/>
+					<menuitem value="OR" label="Or"/>					
+				</menupopup>
+			</menulist>						
+			
+			<checkbox id="chkFiltroPredefinido" label="Predefinido" tooltip="Permite definir el valor del filtro de forma estática o, bien indicar que el valor se ingresará por el usuario al momento de ejecutar el reporte."/>
+			
+			<label id="lblFiltroValor1" value="Valor"/>
+			<textbox id="txtFiltroValor1"/>
+			
+			<label id="lblFiltroValor2" value="Valor"/>
+			<textbox id="txtFiltroValor2"/>
+			
+			<button id="btnAgregarFiltro" label="Aceptar"></button>
+			<button id="btnRemoverFiltro" label="Remover"></button>
+		</hbox>
+		
+		<hbox>
+			<tree id="treeFiltros" flex="1" rows="10" width="350">
+				<treecols>
+					<treecol label="Tabla" primary="true" flex="1"/>
+					<treecol label="Campo" primary="true" flex="1"/>
+					<treecol label="Filtro" primary="true" flex="1"/>
+				</treecols>
+				<treechildren>
+				</treechildren>
+			</tree>
+		</hbox>
+		
+	</wizardpage>
+	
+	<wizardpage id="wizRelaciones" description="Datos Reporte" onpageshow="self.showReporte();">
+		<description value="Datos del reporte."></description>
+		
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Nombre"/>
+					<textbox id="txtRepNombre" required="true" width="250"/>
+					<label value="(*)" class="reglas" />
+					<validation for="txtRepNombre"></validation>
+				</row>
+				<row>
+					<label value="Titulo"/>
+					<textbox id="txtRepTitulo" required="true" width="250"/>
+					<label value="(*)" class="reglas" />
+					<validation for="txtRepTitulo"></validation>
+				</row>
+				<row>
+					<label value="Descripción"/>
+					<textbox id="txtRepDescripcion" multiline="true" width="400"/>
+					<label value="(*)" class="reglas" />
+					<validation for="txtRepDescripcion"></validation>
+				</row>
+				<row>
+					<label value="Sql"/>
+					<textbox id="txtRepSql" multiline="true" disabled="true" required="true" width="400" height="100"/>
+					<label value="(*)" class="reglas" />
+					<validation for="txtRepSql"></validation>					
+				</row>
+			</rows>
+		</grid>
+		
+	</wizardpage>
+	
+	<!--
+	<wizardpage id="wizRelaciones" description="Relaciones" onpageshow="self.showRelaciones();">							
+		<description value="Presione Ctrl+Click para seleccionar más de una tablla."></description>
+		
+		<hbox>
+			<label value="Tabla(Izq)"/>
+			<menulist id="tablaIzq">
+				<menupopup></menupopup>
+			</menulist>
+			<label value="Tabla(Der)"/>
+			<menulist id="tablaDer">
+				<menupopup></menupopup>
+			</menulist>		
+		</hbox>	
+		
+		<hbox>
+			<label value="Campo(Izq)"/>
+			<menulist id="campoIzq">
+				<menupopup></menupopup>
+			</menulist>
+			<label value="Campo(Der)"/>
+			<menulist id="campoDer">
+				<menupopup></menupopup>
+			</menulist>		
+		</hbox>
+		
+		<hbox>
+			<button id="btnAddRelacion" label="Agregar"></button>
+			<button id="btnAddRelacion" label="Remover"></button>
+		</hbox>
+		<hbox>
+			<tree id="treeRelaciones" flex="1" rows="10">
+				<treecols>
+					<treecol label="Tabla Izq" primary="true" flex="1"/>
+					<treecol label="Campo Izq" primary="true" flex="1"/>
+					<treecol label="Tabla Der" primary="true" flex="1"/>
+					<treecol label="Campo Der" primary="true" flex="1"/>
+				</treecols>
+				<treechildren>
+				</treechildren>
+			</tree>
+		</hbox>
+			
+	</wizardpage>
+	-->
+	
+</wizard>

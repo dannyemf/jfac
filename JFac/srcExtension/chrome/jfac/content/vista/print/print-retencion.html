@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>FacturaVenta</title>
+<script type="text/javascript" src="../../js/jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../../js/util/Date.js"></script>
+<script type="text/javascript" src="../../js/util/Fecha.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		try {					
+			
+			var model = window.parent.model;
+			var ret = model.retencion;
+			var con = model.contexto;
+			var aut = ret.autorizacionSri;
+			
+			$("#numero").text(ret.numero);
+			$("#autorizacion").text(aut.numero);
+			$("#numeroCompra").text(ret.compra.numeroFactura);
+			$("#tipoDocumento").text(model.tipoDocumento);
+			
+			$("#fechaAutorizacion").text(ret.fechaInicio.toString('dd-MM-yyyy'));
+			$("#fecEmi").text(ret.fechaEmision.toString('dd-MM-yyyy'));
+			$("#fecCad").text(ret.fechaCaducidad.toString('dd-MM-yyyy'));
+			
+			$("#cliNom").text(ret.proveedor.razonSocial);
+			$("#cliCed").text(ret.proveedor.identificacion);
+			$("#cliDir").text(ret.proveedor.direccion);
+			$("#cliTel").text(ret.proveedor.telefono);
+			
+			$("#total").text(ret.total);
+						
+			$("#empresa").text(model.empresa);
+			$("#propietario").text(model.propietario);
+			$("#direccion").text(model.direccion);
+			$("#ruc").text(model.ruc);
+			$("#telefono").text(model.telefono);
+			$("#contribuyente").text(model.contribuyente);
+			
+			for ( var i = 0; i < ret.items.length; i++) {
+				var it = ret.items[i];
+				var el = '<tr>';
+				el += '<td align="center">' + (i+1) +'</td>';
+				el += '<td align="center">' + (it.ejercicioFiscal) + '</td>';
+				el += '<td style="text-align: right">' + (it.baseImponible) + '</td>';
+				el += '<td style="text-align: right">' + (it.impuesto) + '</td>';
+				el += '<td style="text-align: right">' + (it.descripcion) + '</td>';
+				el += '<td style="text-align: right">' + (it.porcentaje) + '</td>';
+				el += '<td style="text-align: right">' + (it.valor) + '</td>';	
+				el += '</tr>';
+	
+				$("#detalle").append(el);	
+			}		
+		} catch (ex) {
+			alert("Print: " + ex);
+		}
+	});
+	</script>
+<style type="text/css">
+.auto-style1 {
+	font-size: small;
+}
+
+.auto-style2 {
+	border-collapse: collapse;
+	border-left: 1px solid #808080;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top: 1px solid #808080;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+.auto-style3 {
+	text-align: center;
+}
+</style>
+</head>
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0"
+	marginwidth="0" marginheight="0">
+
+<div align="center">
+<div style="width: 800px">
+<div style="border: solid 1px green; -moz-border-radius: 10px">
+<table style="width: 100%">
+	<tbody>
+		<tr>
+			<td colspan="5" class="auto-style3"><label><font face="Calibri" size="4"><b>COMPROBANTE 
+			DE RETENCIÓN</b></font></label></td>
+		</tr>
+		<tr>
+			<td width="30%" rowspan="9" colspan="2">
+			<p align="center"><font face="Calibri"> <img border="0"
+				src="logo.png"> </font> <b> <label id="propietario"></label> <br />
+			<br />
+			<font face="Calibri" size="2"> <b>Dirección:</b> </font> </b> <label
+				id="direccion" style="font-family: Calibri; font-size: 10pt"></label>
+			<br />
+			<font face="Calibri" size="2"><b>Teléfono:</b></font> <font
+				face="Calibri" size="2"> <label id="telefono"
+				style="font: Calibri"></label> <br />
+			<label id="localidad">Loja - Ecuador</label> </font></p>
+
+			</td>
+			<td width="536">
+			<table width="555" align="center">
+				<tbody>		
+					<tr>
+						<td width="2%"></td>
+						<td width="15%"><font face="Calibri" size="2"><b>Ruc:</b></font></td>
+						<td width="46%"><font face="Calibri" size="2"> <label
+							id="ruc"></label> </font></td>
+						<td width="17%"><font face="Calibri" size="2"><b>Fecha
+						Emisión:</b></font></td>
+						<td width="17%"><font face="Calibri" size="2"> <label
+							id="fecEmi" style="font: Calibri"></label> </font></td>
+					</tr>
+					<tr>
+						<td width="2%"></td>
+						<td width="15%"><font face="Calibri" size="2"><b>Retención
+						Nº </b></font></td>
+						<td width="46%"><font face="Calibri" size="2"> <label
+							id="numero" style="font: Calibri"></label> </font></td>
+						<td width="17%"><font face="Calibri" size="2"><b>Fecha
+						Caducidad:</b></font></td>
+						<td width="17%"><font face="Calibri" size="2"> <label
+							id="fecCad" style="font: Calibri"></label> </font></td>
+					</tr>
+					<tr>
+						<td width="2%"></td>
+						<td width="15%"><font face="Calibri" size="2"><b>Aut.
+						SRI Nº </b></font></td>
+						<td width="81%" colspan="3"><font face="Calibri" size="2">
+						<label id="autorizacion" style="font: Calibri"></label> </font></td>
+					</tr>
+
+					<tr>
+						<td width="2%"></td>
+						<td width="15%"></td>
+						<td width="81%" colspan="3">
+							<table align="right" class="auto-style2">
+								<tr>
+									<td style="width: 196px"><font face="Calibri" size="2"><b>Tipo
+									Comprobante Venta</b></font></td>
+									<td><font face="Calibri" size="2"> <label
+										id="tipoDocumento" style="font: Calibri"></label> </font></td>
+								</tr>
+								<tr>
+									<td style="width: 196px"><font face="Calibri" size="2"><b>Número
+									Comprobante Venta</b></font></td>
+									<td><font face="Calibri" size="2"> <label
+										id="numeroCompra" style="font: Calibri"></label> </font></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="2%"></td>
+						<td width="15%"></td>
+						<td width="81%" colspan="3"></td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td colspan="4">
+						<div style="border-top: 1px solid green"></div>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="2%" style="height: 23px"></td>
+						<td width="15%" style="height: 23px"><font face="Calibri"
+							size="2"><b> Proveedor:</b></font></td>
+						<td width="46%" style="height: 23px"><font face="Calibri" 
+							size="2"> <label id="cliNom" style="font: Calibri"></label> </font></td>
+						<td width="17%"><font face="Calibri" size="2"><b>Cédula:</b></font></td>
+						<td width="17%"><font face="Calibri" size="2">
+						<label id="cliCed" style="font: Calibri"></label> </font></td>
+					</tr>
+					<tr>
+						<td width="2%">&nbsp;</td>
+						<td width="15%"><font face="Calibri" size="2"><b>
+						Dirección:</b></font></td>
+						<td width="46%"><font face="Calibri" size="2">
+						<label id="cliDir" style="font: Calibri"></label> </font></td>
+						<td width="17%"><font face="Calibri" size="2"><b>
+						Teléfono:</b></font></td>
+						<td width="17%" colspan="3"><font face="Calibri" size="2">
+						<label id="cliTel" style="font: Calibri"></label> </font></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>
+<br />
+
+<table border="1"
+	style="border-style: solid; border-width: 1px; width: 100%; border-collapse: collapse;"
+	cellspacing="0" cellpadding="3">
+	<col width="50">
+	<col width="100">
+	<col width="500">
+	<col width="100">
+	<col width="100">
+	<thead>
+		<tr style="font-family: Calibri">
+			<th bgcolor="#9BBB59" bordercolor="#9BBB59"><font face="Calibri"
+				color="#FFFFFF">Nº</font></th>
+			<th bgcolor="#9BBB59" bordercolor="#9BBB59"><font face="Calibri"
+				color="#FFFFFF">Ejercicio Fiscal</font></th>
+			<th bgcolor="#9BBB59" bordercolor="#9BBB59"><font face="Calibri"
+				color="#FFFFFF">Base imponible para la retención</font></th>
+			<th bgcolor="#9BBB59" bordercolor="#9BBB59"><font face="Calibri"
+				color="#FFFFFF">Impuesto</font></th>
+			<th bgcolor="#9BBB59" bordercolor="#9BBB59"><font face="Calibri"
+				color="#FFFFFF">Descripción</font></th>
+			<th bgcolor="#9BBB59" bordercolor="#9BBB59"><font face="Calibri" color="#FFFFFF">% de retención</font></th>
+			<th bgcolor="#9BBB59" bordercolor="#9BBB59"><font face="Calibri" color="#FFFFFF">Valor Retenido</font></th>			
+		</tr>
+	</thead>
+	<tbody id="detalle" style="font-family: Calibri">
+	</tbody>
+</table>
+
+<div align="right">
+<table>
+	<tbody>
+		<tr style="font-family: Calibri">
+			<td width="600" height="22"></td>
+			<td width="135" height="22"></td>
+			<td height="22"><b><font size="2">Subtotal:</font></b></td>
+			<td align="right" height="22"><font size="2"> <label
+				id="total"></label> </font></td>
+		</tr>
+
+		<tr style="font-family: Calibri">
+			<td><font face="Calibri" size="2"> <b>FECHA DE
+			AUTORIZACIÓN: </b> </font> <font face="Calibri" size="2"> <label
+				id="fechaAutorizacion" style="font: Calibri"></label> </font></td>
+			<td width="135">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td align="right"></td>
+		</tr>
+		<tr style="font-family: Calibri">
+			<td width="600"><b><font size="2">ORIGINAL:</font></b><font
+				size="2"> Adquiriente <b>/</b> </font><b><font size="2">COPIA:</font></b><font
+				size="2"> Emisor</font></td>
+			<td width="135">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td align="right"></td>
+		</tr>
+		<tr style="font-family: Calibri">
+			<td width="72">&nbsp;</td>
+			<td width="135">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td align="right"><font size="2"> </font></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<table width="319">
+	<tbody>
+		<tr style="font-family: Calibri">
+			<td valign="bottom" align="center" style="height: 60px"><b>
+			<font size="2">...............................................</font></b></td>
+		</tr>
+		<tr style="font-family: Calibri">
+			<td width="149" align="center">
+			<p class="auto-style1" style="width: 308px">
+			<font size="2">Firma del agente de retención</font>
+			</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>

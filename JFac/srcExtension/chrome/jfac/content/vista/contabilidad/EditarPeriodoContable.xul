@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Periodo Contable">
+
+	<hbox id="header_editar" image="imgPeriodo" title="Editar Periodo Contable" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarPeriodoContable.js" />
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="CÓDIGO" />
+						<textbox id="txtCodigo" readonly="true" required="true" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="NOMBRE" />
+						<textbox id="txtNombre" flex="1" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtNombre"></validation>
+					</row>
+					<row>
+						<label value="FECHA INICIAL" />
+						<datepicker id="dtpFechaInicial" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="dtpFechaInicial"></validation>
+					</row>
+					<row>
+						<label value="FECHA FINAL" />
+						<datepicker id="dtpFechaFinal" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="dtpFechaFinal"></validation>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

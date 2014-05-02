@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="AdministrarParametros.js" />
+	<vbox flex="1">
+
+		<hbox id="header_administrar">
+			<image class="imgParametro"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label value="Administrar Parámetros" />
+			</hbox>
+			<hbox id="header_administrar_controles" align="center" pack="end" flex="1">
+				<button label="Nuevo" id="btnNuevo" />
+				<button label="Editar" id="btnEditar" />
+				<button label="Eliminar" id="btnEliminar" />
+			</hbox>
+		</hbox>
+
+		<vbox flex="1">
+			<hbox flex="1">
+				<tree flex="1" rows="25" height="350" seltype="single" id="treeParametros"
+					enableColumnsDrag="true">
+					<treecols pickertooltiptext="Seleccionar columnas">
+						<treecol label="Código" primary="true" tooltiptext="Código del parámetro" flex="1" />
+						<splitter />						
+						<treecol label="Tipo" primary="true" tooltiptext="Tipo de parámetro" flex="1" />
+						<splitter />
+						<treecol label="Valor" primary="true" tooltiptext="Valor del parámetro" flex="1" />
+						<splitter />
+						<treecol flex="1" label="Descripción" tooltiptext="Descripción del parámetro" />
+					</treecols>
+					<treechildren />
+				</tree>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

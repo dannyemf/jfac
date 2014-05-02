@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Crear: Estado de Situación Inicial" buttons="accept,cancel">	
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgEstadosPlanes" title="Estado de Situación Inicial" />	
+	<script type="application/x-javascript" src="CrearEstadoSituacionInicial.js" />
+	<vbox flex="1">
+		<hbox>
+			<grid>
+				<columns>
+					<column></column>
+					<column></column>
+					<column></column>
+				</columns>
+				<rows>
+					<row>
+						<label value="Tipo" />
+						<textbox id="txtTipo" disabled="true" width="250"/>
+						<validation for="txtTipo"></validation>
+					</row>
+					
+					<row>
+						<label value="Local" />
+						<textbox id="txtLocal" disabled="true" width="250"/>
+						<validation for="txtLocal"></validation>
+					</row>
+					
+					<row>
+						<label value="Descripción" />
+						<textbox id="txtDescripcion" required="true" multiline="true"/>
+						<validation for="txtDescripcion"></validation>					
+					</row>
+									
+					<row>
+						<label value="Fecha" />
+						<textbox id="dtpFecha" disabled="true"></textbox>
+						<validation for="dtpFecha"></validation>
+					</row>				
+				</rows>
+			</grid>
+		</hbox>
+		
+		<label value=""/>
+			
+		<hbox width="650" height="400" style="overflow:scroll;">		
+			<grid flex="1">
+				<columns>
+					<column width="150"></column>
+					<column width="300"></column>
+					<column width="100"></column>
+					<column width="100"></column>
+				</columns>
+				<rows id="rowsItems">
+					<row style="font-weight: bold; background-color: #D4D0C8;">
+						<label value="Código"/>
+						<label value="Descripción"/>
+						<label value="Debe"/>
+						<label value="Haber"/>
+					</row>						
+				</rows>
+			</grid>
+		</hbox>
+		
+		<hbox pack="end">
+			<spacer width="150"/>		
+			<label value="TOTAL" width="300" style="font-weight: bold;"/>
+			<textbox id="txtTotalDebe" disabled="true" value="0.000" width="100" style="text-align: right"/>
+			<textbox id="txtTotalHaber" disabled="true" value="0.000" width="100" style="text-align: right"/>
+		</hbox>
+		
+		<hbox pack="center" id="boxControles">
+			<button label="Crear" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

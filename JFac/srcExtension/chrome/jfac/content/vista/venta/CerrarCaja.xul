@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Cerrar Caja" width="600" height="500">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgCerrarCaja" title="Cerrar Caja" />
+	<script type="application/x-javascript" src="CerrarCaja.js" />
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos" flex="1">
+			<grid flex="1">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<hbox flex="1">
+						<vbox flex="1">									
+							<tree width="357" id="treeItems" rows="10"  seltype="single" flex="1">
+								<treecols>
+									<treecol label="Documento" />
+									<splitter/>									
+									<treecol label="Descripción" flex="1" />
+									<splitter/>
+									<treecol label="Ingreso" flex="1" text="double"/>
+									<splitter/>
+									<treecol label="Salida" flex="1" text="double"/>
+								</treecols>
+								<treechildren />
+							</tree>
+						</vbox>
+					</hbox>
+					<row></row>
+					<row>
+						<label value="VALOR APERTURA" />
+						<textbox id="txtValorApertura" readonly="true" text="double" decimalplaces="2"/>
+					</row>
+					<row>
+						<label value="VALOR CIERRE" />
+						<textbox id="txtValorCierre" readonly="true" text="double" decimalplaces="2"/>
+					</row>
+					<row>
+						<label value="VALOR REAL" />
+						<textbox id="txtValorReal" required="true" text="double" decimalplaces="2"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtValorReal"></validation>
+					</row>
+					<row>
+						<label value="VALOR FALTANTE" />
+						<textbox id="txtValorFaltante" readonly="true" text="double" decimalplaces="2"/>
+					</row>				
+				</rows>
+			</grid>
+		</hbox>
+
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Cerrar" id="btnGuardar" />
+		</hbox>
+	</vbox>
+</window>

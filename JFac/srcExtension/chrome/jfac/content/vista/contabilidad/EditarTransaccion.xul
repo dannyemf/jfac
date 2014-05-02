@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Transacción">
+
+	<hbox id="header_editar" image="imgAdministrarTransaccion" title="Editar Transacción" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarTransaccion.js" />
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos" class="contenido">
+			<grid width="600">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="CÓDIGO" class="lblcampo" />
+						<textbox id="txtCodigo" maxlength="45" required="true" width="250"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtCodigo"></validation>
+					</row>
+					<row>
+						<label value="DESCRIPCIÓN" class="lblcampo" />						
+						<textbox id="txtDescripcion" flex="1" required="true" maxlength="100" multiline="true"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtDescripcion"></validation>
+					</row>
+					<row>
+						<label value="TEXTO ASIENTO" class="lblcampo" />						
+						<textbox id="txtTexto" flex="1" required="true" maxlength="250" multiline="true"/>
+						<label value="(*)" class="reglas" />
+						<validation for="txtTexto"></validation>
+					</row>
+					<row>
+						<label value="ESTADO" class="lblcampo" />
+						<menulist id="cmbEstado">
+							<menupopup>
+								<menuitem value="Activa" label="Activa"/>
+								<menuitem value="Inactiva" label="Inactiva"/>
+							</menupopup>
+						</menulist>						
+						<label value="(*)" class="reglas" />						
+					</row>
+					<row>
+						<label value="FECHA CREACIÓN" class="lblcampo" />
+						<hbox>
+							<datepicker id="txtFecha" type="popup" disabled="true"></datepicker>
+						</hbox>
+						<spacer/>
+						<spacer/>
+					</row>					
+				</rows>
+			</grid>
+		</hbox>
+		<hbox align="center" pack="center" style="margin-top:14px;">
+			<vbox>
+				<label value="Lista de Items" />
+				<hbox pack="end">
+					<button id="btnEditarItem" class="itemEdit"   tooltiptext="Editar"/>
+					<button id="btnRemomerItem"  class="itemRem"  tooltiptext="Eliminar"/>
+					<button id="btnAgregarItem"  class="itemAdd"  tooltiptext="Agregar"/>									
+				</hbox>
+				<hbox>
+					<tree width="600" id="treeItems" height="148" seltype="single">
+						<treecols>
+							<treecol id="tran" label="Código Plan" flex="1" />
+							<treecol id="plan" label="Nombre Plan" flex="1" />						
+							<treecol id="tipo" label="Tipo" flex="1" />
+							<treecol id="form" label="Fórmula" flex="1" />
+							<treecol id="apli" label="Aplica A" flex="1" />							
+						</treecols>
+						<treechildren />
+					</tree>
+				</hbox>
+			</vbox>
+		</hbox>
+		<hbox pack="center" id="boxControles">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

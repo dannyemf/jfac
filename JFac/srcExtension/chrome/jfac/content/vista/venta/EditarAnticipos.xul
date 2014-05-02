@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Anticipos">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgPuntoFacturacion" title="Editar Anticipos" />
+	<script type="application/x-javascript" src="EditarAnticipos.js" />
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">			
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+				
+					<row>
+						<label value="TOTAL ANTICIPOS" />
+						<textbox id="cmbTotalAnticipos" disabled="true"/>						
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="MONTO A CUBRIR" />
+						<textbox id="cmbMontoCubrir" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>	
+					<row>
+						<label value="MONTO SELECCIONADO" />
+						<textbox id="cmbMontoTotal" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="MONTO SOBRANTE" />
+						<textbox id="cmbMontoSobrante" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="DEVOLVER SOBRANTE" />
+						<checkbox id="chkDevolverSobrante"/>
+						<spacer/>
+						<spacer/>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		
+		<vbox flex="1">
+			<tree id="treeItems" flex="1" rows="10">
+				<treecols>
+					<treecol id="asg" type="checkbox" width="30px"/>					
+					<treecol label="Fecha" id="fecha" flex="1"/>
+					<splitter/>
+					<treecol label="Monto Inicial" id="monto" flex="1"/>
+					<splitter/>
+					<treecol label="Saldo Disponible" id="saldo" flex="1"/>
+				</treecols>
+				<treechildren>							
+				</treechildren>
+			</tree>
+		</vbox>
+
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Aceptar" id="btnAceptar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

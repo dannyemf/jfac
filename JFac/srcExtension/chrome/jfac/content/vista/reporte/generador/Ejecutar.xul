@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	width="1024"
+	height="800"
+	title="Ejecutar Reporte"
+	>
+
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="chrome://global/content/printUtils.js" />
+	<script type="application/x-javascript" src="Ejecutar.js" />
+
+	<vbox flex="1">
+
+		<hbox id="header_administrar">
+			<image class="imgReporteCompras"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label id="lblTitulo" value="Reporte" />
+			</hbox>
+			<hbox id="header_administrar_controles" align="center" pack="end" flex="1">
+				<button label="Ejecutar" id="btnEjecutar" />
+				<button label="Imprimir" id="btnImprimir" />
+				<button label="Pdf" id="btnPdf" />
+			</hbox>
+		</hbox>
+		<vbox flex="1" style="color:#000000;">
+			<hbox flex="1">
+				<iframe id="frameReporte" flex="1"/>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="AdministrarOpciones.js" />
+	<vbox flex="1">
+
+		<hbox id="header_administrar">
+			<image class="imgOpcion"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label value="Administrar Opciones" />
+			</hbox>
+			<hbox id="header_administrar_controles" align="center" pack="end"
+				flex="1">
+				<button label="Nuevo" id="btnNuevo" />
+				<button label="Editar" id="btnEditar" />
+				<button label="Eliminar" id="btnEliminar" />
+			</hbox>
+		</hbox>
+
+		<vbox flex="1">
+			<hbox flex="1">
+				<tree flex="1" rows="25" height="350" seltype="single" id="treeOpciones"
+					enableColumnsDrag="true">
+					<treecols pickertooltiptext="Seleccionar columnas">
+
+						<treecol label="Código" primary="true"
+							tooltiptext="Número de cédula del usuario" flex="1" />
+						<splitter />
+						<treecol label="Padre" flex="1" />
+						<splitter />
+						<treecol label="Módulo" flex="1" />
+						<splitter />
+						<treecol label="Etiqueta" flex="1" />
+						<splitter />
+						<treecol label="Código Ventana" flex="1" />
+					</treecols>
+					<treechildren />
+				</tree>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

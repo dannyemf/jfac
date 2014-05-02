@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Item" buttons="accept,cancel"
+	buttonlabelcancel="Cancelar" buttonlabelaccept="Aceptar"
+	ondialogaccept="return doAcept();" ondialogcancel="">
+
+	<script type="text/javascript">
+    	<![CDATA[
+    	var p = window.arguments[0];
+    	 
+    	window.onload = function(){
+    		try{
+    			document.getElementById('txtCantidadEnviada').setAttribute('value', p.cantidadEnviada);
+    			document.getElementById('txtCodigo').setAttribute('value', p.producto.codigo);
+    			document.getElementById('txtNombre').setAttribute('value', p.producto.nombre);
+    			document.getElementById('txtCantidadRecibida').setAttribute('value', p.cantidadRecibida);
+    		}catch(e){
+    			alert(e);
+    		}
+    	};    	
+    	   	
+    	function doAcept(){
+    		try{
+    			var cantidad = document.getElementById('txtCantidadRecibida').value;
+    			var aux = document.getElementById('txtCantidadEnviada').value;
+    			
+	    		if(isNaN(cantidad) || cantidad <= 0) cantidad = 0;	    		
+	    		cantidad = cantidad * 1;
+	    		
+	    		if(cantidad > aux){
+	    			alert("La cantidad recibida no puede ser mayor a la cantidad enviada");
+	    			p.cantidadRecibida = aux;
+	    			return false;
+	    		}
+	    		 		
+	    		p.cantidadRecibida = cantidad;	    		
+	    		return true;
+    		}catch(e){    		
+    			alert(e);	
+    		}
+    		return false;
+    	};
+    	]]>
+	</script>
+
+	<hbox>
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Codigo" />
+					<textbox id="txtCodigo" disabled="true" />
+				</row>
+				<row>
+					<label value="Nombre" />
+					<textbox id="txtNombre" disabled="true" />
+				</row>
+				<row>
+					<label value="Cantidad Enviada" />
+					<textbox id="txtCantidadEnviada" disabled="true"/>
+				</row>
+				<row>
+					<label value="Cantidad Recibida" />
+					<textbox id="txtCantidadRecibida" />
+				</row>
+			</rows>
+		</grid>
+	</hbox>
+</dialog>

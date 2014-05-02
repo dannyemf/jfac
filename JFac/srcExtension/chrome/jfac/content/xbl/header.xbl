@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+	<!--
+-->
+<!DOCTYPE bindings [
+  <!ENTITY % popup.dtd SYSTEM "chrome://jfac/locale/popup.dtd">
+  %popup.dtd;
+]>
+
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xbl="http://www.mozilla.org/xbl"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<binding id="header_edicion">
+		<content>
+			<xul:hbox id="header_edicion" xbl:inherits="titulo,title,image">
+				<xul:image id="headerImage" />
+				<xul:hbox flex="1" pack="center">
+					<xul:label id="headerTitulo" />
+				</xul:hbox>
+			</xul:hbox>
+		</content>
+		<implementation>
+			<field name="fheader">document.getElementById("header_edicion")</field>
+			<field name="fimage">document.getElementById("headerImage")</field>
+			<field name="ftitulo">document.getElementById("headerTitulo")</field>
+
+			<property name="image" onset="this.fimage.setAttribute('class' , val);"
+				onget="return this.fimage.getAttribute('class');" />
+			<property name="title" onset="this.ftitulo.value=val;"
+				onget="return this.ftitulo.value;" />
+			<constructor>
+				<![CDATA[
+					this.title = fheader.getAttribute('title');
+					this.image = fheader.getAttribute('image');
+				]]>
+			</constructor>
+		</implementation>
+	</binding>
+</bindings>
+
+
+
+

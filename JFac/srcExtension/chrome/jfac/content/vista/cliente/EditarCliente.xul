@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Cliente">
+
+	<hbox id="header_editar" image="imgCliente" title="Editar Cliente" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarCliente.js" />
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="CÓDIGO" />
+						<textbox id="txtId" readonly="true" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="CÉDULA" />
+						<textbox id="txtCedula" flex="1" required="true" cedula="true"
+							maxlength="10" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtCedula"></validation>
+					</row>
+					<row>
+						<label value="NOMBRES" />
+						<textbox id="txtNombres" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtNombres"></validation>
+					</row>
+					<row>
+						<label value="APELLIDOS" />
+						<textbox id="txtApellidos" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtApellidos"></validation>
+					</row>
+					<row>
+						<label value="DIRECCIÓN" />
+						<textbox id="txtDireccion" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtDireccion"></validation>
+					</row>
+					<row>
+						<label value="TELÉFONO" />
+						<textbox id="txtTelefono" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtTelefono"></validation>
+					</row>
+					<row>
+						<label value="CELULAR" />
+						<textbox id="txtCelular" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="FAX" />
+						<textbox id="txtFax" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="MAIL" />
+						<textbox id="txtMail" mail="true" />
+						<spacer />
+						<spacer />
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

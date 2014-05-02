@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE overlay SYSTEM "chrome://jfac/locale/jfac.dtd">
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="window-main" xmlns:html="http://www.w3.org/1999/xhtml" width="1000"
+	height="700" sizemode="maximized" title="JFac v 1.0" windowtype="jfac:main">
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="Main.js" />
+	<script type="application/x-javascript" src="Menu.js" />
+	<!--
+	<menubar id="menuBar" />
+	-->
+	<toolbox class="toolbar">
+		<toolbar flex="1" pack="end">
+			<toolbarbutton id="btnPrefsBase" tooltiptext="&BTN.PREFS;" />
+			<toolbarbutton id="btnPrefsExte" tooltiptext="&BTN.PREFS;" />			
+			<toolbarbutton tooltiptext="Limpiar Pantalla" id="btnLimpiar" />
+			<toolbarseparator />
+			<toolbarbutton id="btnFullScreen" tooltiptext="Pantalla Completa" />
+			<toolbarseparator />
+			<toolbarbutton id="btnErrorConsole" tooltiptext="Consola de Errores" />
+			<toolbarseparator />
+			<toolbaritem hidden="true" id="toolBarInf" align="center">
+				<!-- label value="Local" />
+				menulist id="cmbLocales">
+					<menupopup>
+					</menupopup>
+				</menulist-->
+				<toolbarseparator />
+				<toolbarbutton id="lblUsuario" label="Bienvenido [Usuario]" />
+				<toolbarbutton tooltiptext="Cerrar Sesión" id="btnLogOff" />
+			</toolbaritem>
+		</toolbar>
+	</toolbox>
+	<!--
+		toolbox> <toolbar id="toolBarComandos" pack="end" > </toolbar>
+		<toolbar id="toolBarInf" hidden="false" pack="end"> <toolbaritem>
+		<hbox align="center"> </hbox> </toolbaritem> </toolbar> </toolbox
+	-->
+	
+	<hbox flex="1">
+		<vbox>
+			<label value="VENTANA"></label>
+			<textbox id="txtAbrirControl"></textbox>
+			
+			<tabbox>
+				<tabs>
+					<tab label="Menú(+)"/>					
+					<tab label="Menú(-)"/>
+				</tabs>
+				<tabpanels>							
+					<tabpanel>
+						<tree flex="1" id="treeMenu"  hidecolumnpicker="true" seltype="single">
+							<treecols>
+								<treecol label="Menu" primary="true"  flex="1"/>			
+							</treecols>
+							<treechildren id="treeMenuCont">			
+							</treechildren>
+						</tree>
+					</tabpanel>
+					
+					<tabpanel>
+						<vbox id="boxControlesLaterales" flex="1"></vbox>
+					</tabpanel>										
+				</tabpanels>
+			</tabbox>						
+		</vbox>
+		
+		<splitter collapse="before">
+			<grippy/>
+		</splitter>				
+		
+		<vbox flex="1">
+			<iframe id="ifmContenido" flex="1" />
+		</vbox>	
+	</hbox>	
+</window>

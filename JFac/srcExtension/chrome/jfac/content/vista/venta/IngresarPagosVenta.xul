@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window 
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+xmlns:html="http://www.w3.org/1999/xhtml" title="Pagar Venta"
+>
+	<vbox id="general_imports"/>
+	<hbox id="header_editar" image="imgPuntoFacturacion" title="Ingresar - Pagar Venta"/>
+	<script type="application/x-javascript" src="IngresarPagosVenta.js"/>
+	
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<label value="TOTAL VENTA"/>
+						<textbox id="txtValorPagar" text="double" decimalplaces="3" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="VALOR PAGAR"/>
+						<textbox id="txtTotal" readonly="true" text="double" decimalplaces="3" style="font-size: 22px; font-weight: bold"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="Recibe"/>
+						<textbox id="txtRecibe" text="double" decimalplaces="3"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="Cambio"/>
+						<textbox id="txtCambio" text="double" decimalplaces="3" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row id="rowTotAntDis">
+						<label value="Tot.Ant Disponibles"/>
+						<textbox id="txtAnticiposCli" text="double" decimalplaces="3" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row id="rowTotAntUsa">
+						<label value="Tot.Ant Usados"/>
+						<textbox id="txtAnticiposUsa" text="double" decimalplaces="3" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row id="rowTotAntSob">
+						<label value="Sobrante Anticipos"/>
+						<textbox id="txtAnticiposSob" text="double" decimalplaces="3" disabled="true"/>
+						<checkbox label="Devolver Sobrante" id="chkDevolverSob"/>
+						<spacer/>
+					</row>					
+					<row>
+						<label value="Saldo"/>
+						<textbox id="txtSaldo" text="double" decimalplaces="3" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<spacer height="10"/>
+		
+		<tabbox>
+		<tabs>
+			<tab label="Pagos"/>
+			<tab label="Retenciones"/>
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+			<vbox>
+		<hbox pack="end" style="border: 1px solid green" align="center">
+			<label value="Monto"/>
+			<textbox value="0" id="txtMonto" text="double" decimalplaces="3"/>
+			<menulist id="cmbFormaPago">
+				<menupopup>
+					<menuitem value="EFECTIVO" label="Efectivo"/>
+					<menuitem value="ANTICIPO" label="Anticipo"/>
+					<menuitem value="CHEQUE" label="Cheque"/>
+					<menuitem value="CREDITO_CORRIENTE" label="Crédito Corriente"/>
+					<menuitem value="CREDITO_DIFERIDO" label="Crédito Diferido"/>
+				</menupopup>
+			</menulist>
+			<button id="btnAdd">Agregar</button>
+			<button id="btnRem">Remover</button>
+		</hbox>
+		<spacer height="10"/>
+		<hbox>
+			<tree id="treeItems" flex="1" rows="10" height="200">
+				<treecols>
+					<treecol flex="1" label="Tipo" tooltiptext="Id del docuemnto (cheque, anticipo, etc)"/>
+					<splitter/>
+					<treecol label="Fecha" flex="1"/>
+					<splitter/>
+					<treecol label="Monto" flex="1" text="double"/>
+					<splitter/>
+					<treecol label="Saldo" text="double"/>
+					<splitter/>
+					<treecol label="Documento(ID)" text="double"/>
+				</treecols>
+				<treechildren>
+				</treechildren>
+			</tree>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Facturar" id="btnGuardar"/>
+			<button label="Cancelar" id="btnCancelar"/>
+		</hbox>
+		</vbox>
+		</tabpanel>
+		
+		<tabpanel>
+			<vbox flex="1">
+				<hbox pack="end">
+					<label value="Nº Retención"/>
+					<textbox value="000-000" id="txtNumeroRet"/>
+				</hbox>
+				<hbox pack="end">
+					<label value="%"/>
+					<textbox value="1" id="txtPorcentajeRet" text="double"/>
+					<button label="IR" id="btnAddRetIr" style="margin: 0"></button>
+					<button label="IVA" id="btnAddRetIva" style="margin: 0"></button>
+					<button label="Remover" id="btnRemRet" style="margin: 0"></button>
+				</hbox>
+				<tree id="treeRetenciones" rows="5">
+					<treecols>
+						<treecol label="Impuesto" flex="1"/>
+						<treecol label="Porcentaje(%)" flex="1"/>
+						<treecol label="Valor" flex="1"/>
+					</treecols>
+					<treechildren></treechildren>
+				</tree>
+				<hbox pack="end">
+					<label value="TOTAL"/>
+					<textbox id="txtTotaRet" disabled="true" text="double" value="0"/>
+				</hbox>
+			</vbox>
+		</tabpanel>
+					
+		</tabpanels>
+		</tabbox>
+	</vbox>
+</window>

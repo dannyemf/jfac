@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Usuario">
+
+	<hbox id="header_editar" image="imgUsuario" title="Editar Usuario" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarUsuario.js" />
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos" class="contenido">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="CÓDIGO" class="lblcampo" />
+						<textbox id="txtCodigo" readonly="true" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="CÉDULA" class="lblcampo" />
+						<textbox id="txtCedula" flex="1" required="true" cedula="true"
+							maxlength="10" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtCedula"></validation>
+					</row>
+					<row>
+						<label value="LOGIN" class="lblcampo" />
+						<textbox id="txtLogin" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtLogin"></validation>
+					</row>
+					<row>
+						<label value="CLAVE" class="lblcampo" />
+						<textbox id="txtClave" type="password" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtClave"></validation>
+					</row>
+					<row>
+						<label value="ACTIVO" class="lblcampo" />
+						<checkbox id="chkActivo" tooltiptext="Indica si el usuario puede iniciar sesión" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="NOMBRES" class="lblcampo" />
+						<textbox id="txtNombres" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtNombres"></validation>
+					</row>
+					<row>
+						<label value="APELLIDOS" class="lblcampo" />
+						<textbox id="txtApellidos" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtApellidos"></validation>
+					</row>
+					<row>
+						<label value="LOCAL" class="lblcampo" />
+						<menulist id="cmbLocal"><menupopup></menupopup></menulist>						
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="PUNTO FACTURACIÓN" class="lblcampo" />
+						<menulist id="cmbPunto"><menupopup></menupopup></menulist>						
+						<spacer/>
+						<spacer/>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<hbox align="center" pack="center" style="margin-top:14px;">
+			<vbox>
+				<label value="Lista de Roles" />
+				<hbox>
+					<tree width="400" id="treeRoles" height="148" seltype="single">
+						<treecols>
+							<treecol id="asg" label="Asignar" flex="1" type="checkbox" />
+							<treecol id="nom" label="Nombre" flex="1" />
+							<treecol id="des" label="Descripcion" flex="1" />
+						</treecols>
+						<treechildren />
+					</tree>
+				</hbox>
+			</vbox>
+		</hbox>
+		<hbox pack="center" id="boxControles">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

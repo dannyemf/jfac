@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Reporte</title>
+	
+	<script type="text/javascript" src="../../../js/jquery/jquery-1.4.2.min.js"></script>	
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		try {					
+			var model = window.parent.model;
+			var cri = model.criterio;
+
+			$("#empresa").text(model.empresa);
+			$("#propietario").text(model.propietario);
+			$("#ruc").text(model.ruc);
+			$("#direccion").text(model.direccion);
+			$("#telefono").text(model.telefono);
+			$("#fechaInicio").text(model.fechaInicio);
+			$("#fechaFin").text(model.fechaFin);			
+
+			for (var i = 0; i < model.lista.length; i++) {
+				var it = model.lista[i];		
+
+				var el =  '<br/><table border="0" style="width: 100%; border-collapse:collapse;" cellspacing="0" cellpadding="3"><thead><tr>';
+					el += '<td style="text-align: left"><font face="Calibri"><b>Producto:</b> '+it.producto+'</font></td>';
+					el += '<td style="width: 20px"></td>';
+					el += '<td style="text-align: left"><font face="Calibri"><b>Local:</b> '+it.local+'</font></td></tr></table>';
+					
+					el += '<table border="1" style="border-style: solid; border-width: 1px; width: 100%; border-collapse:collapse;" cellspacing="0" cellpadding="3"><thead><tr>';
+					el += '<th rowspan="2" style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Fecha</font></th>';
+					el += '<th rowspan="2" style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Descripción</font></th>';
+					el += '<th colspan="4" style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Cantidad</font></th>';
+					el += '</tr><tr>';
+					el += '<th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Anterior</font></th>';
+					el += '<th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Entrada</font></th>';
+					el += '<th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Salida</font></th>';
+					el += '<th style="background-color: #9BBB59"><font face="Calibri" color="#FFFFFF">Actual</font></th></tr></thead>';
+					el += '<tbody>';
+
+				for (var j = 0; j < it.items.length; j++){
+					var as = it.items[j];
+					el += '<tr>';					
+					el += '<td>'+ as.fecha +'</td>';
+					el += '<td>'+ as.descripcion  +'</td>';
+					el += '<td>'+ as.cantidadActual  +'</td>';
+					el += '<td align = "right">'+ as.cantidadEntra +'</td>';
+					el += '<td align = "right">'+ as.cantidadSale +'</td>';
+					el += '<td align = "right">'+ as.nuevaCantidad +'</td>';							
+					//el += '<td></td>';											
+					el += '</tr>';
+				}					
+				
+				el += '</tbody>';
+				el += '</table><br/>';
+				
+				$("#detalle").append(el);	
+			}			
+					
+		} catch (ex) {
+			alert("Print: " + ex);
+		}
+	});
+	</script>
+</head>
+	<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0"	marginwidth="0" marginheight="0">
+			
+		<div align="center">
+			<div style="width: 800px; height:270px">
+				<div style="border: solid 1px green; -moz-border-radius: 10px">
+				<table  style="width: 100%">
+					<tbody>
+						<tr>
+							<td width="16%" rowspan="5">
+								<font face="Calibri">
+									<img border="0" src="logo.png">
+								</font>
+								<p align="center">
+									<b>
+										<label id="propietario"></label>
+									</b>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div align="center">
+								<table>
+									<tbody>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Ruc:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="ruc"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Dirección:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="direccion" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Teléfono:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="telefono" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								</div>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+				</div>
+				</br>
+				<table width="800">
+					<tbody>				
+						<tr>
+							<td colspan="4">
+								<p align="center">
+								<span style="letter-spacing: 1px; font-weight: 700">
+								<font face="Broadway" color="#FF0000" style="font-size: 28pt; text-decoration: underline">
+								Reporte&nbsp;&nbsp; de&nbsp;&nbsp; Kardex</font></span></td>								
+						</tr>
+						<tr>
+							<td colspan="4" align="justify" width="100">
+								<div id="divDatos">
+								</div>
+							</td>						
+						</tr>
+					</tbody>
+				</table>
+				<div id="detalle" style="font-family: Calibri"/>
+			</div>						
+		</div>
+	</body>
+</html>

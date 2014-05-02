@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Producto">
+
+	<hbox id="header_editar" image="imgProducto" title="Editar Producto" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarProducto.js" />
+
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="ID" />
+						<textbox id="txtId" disabled="true" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="CÓDIGO" />
+						<textbox id="txtCodigo" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="NOMBRE" />
+						<textbox id="txtNombre" required="true" minlength="5" />
+						<label value="(*, 5)" class="reglas" />
+						<validation for="txtNombre"></validation>
+					</row>
+					<row>
+						<label value="PRECIO COMPRA" />
+						<textbox id="txtPrecioCompra" text="double" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtPrecioCompra"></validation>
+					</row>
+					<row>
+						<label value="PRECIO VENTA" />
+						<textbox id="txtPrecioVenta" text="double" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtPrecioVenta"></validation>
+					</row>
+					<row>
+						<label value="PRECIO PROMOCION" />
+						<textbox id="txtPrecioPromocion" text="double" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtPrecioPromocion"></validation>
+					</row>
+					<row>
+						<label value="PRECIO MAYORISTA" />
+						<textbox id="txtPrecioMayorista" text="double" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtPrecioMayorista"></validation>
+					</row>
+					<row>
+						<label value="STOCK MÍNIMO" />
+						<textbox id="txtStockMinimo" text="int" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtStockMinimo"></validation>
+					</row>
+					<row>
+						<label value="STOCK MÁXIMO" />
+						<textbox id="txtStockMaximo" text="int" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtStockMaximo"></validation>
+					</row>			
+					<row>
+						<label value="UTILIDAD" />
+						<textbox id="txtUtilidad" text="double" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtUtilidad"></validation>
+					</row>
+					<row>
+						<label value="DESCUENTO" />
+						<textbox id="txtDescuento" text="double" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtDescuento"></validation>
+					</row>
+					<row>
+						<label value="UNIDADES CAJA" />
+						<textbox id="txtUnidadesCaja" text="int" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtUnidadesCaja"></validation>
+					</row>
+					<row>
+						<label value="LÍNEA" />
+						<menulist id="listaLinea" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="listaLinea"></validation>
+					</row>
+					<row>
+						<label value="MARCA" />
+						<menulist id="listaMarca" required="true">
+							<menupopup />
+						</menulist>
+						<label value="(*)" class="reglas" />
+						<validation for="listaMarca"></validation>
+					</row>
+				</rows>
+			</grid>			
+		</hbox>
+		<grid>
+			<rows>
+				<row>
+					<checkbox label="IVA" id="chkIva" />
+					<checkbox id="chkFraccionable" label="FRACCIONABLE"/>
+					<checkbox id="chkPesable" label="PESABLE"/>
+					<checkbox id="chkAplicarSeries" label="APLICAR SERIES" />
+				</row>
+			</rows>
+		</grid>
+			
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

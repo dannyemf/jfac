@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<overlay id="general_imports"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+	<script type="application/x-javascript" src="chrome://jfac/content/js/jquery/jquery-1.5.1.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/jquery/autoNumeric-1.6.2.js" />
+	
+	<script type="text/javascript">
+		//Number.prototype.round
+		//Number.prototype.format
+		var $j = jQuery.noConflict();
+		 
+		window.elementos = new Array();
+		window.contexto = null;
+	</script>
+	
+
+	<!-- Utilidades -->
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/Preferencias.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/PreferenciasImpresion.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/Consola.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/Fecha.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/ValidadorDocumento.js" />
+	
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/IMain.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/Context.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/DQuery.js" />
+	
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/Constante.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/Date.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/util/Number.js" />
+	
+ 
+	<!-- Jquery -->
+
+	<!-- Controles  -->
+	<script type="application/x-javascript" src="chrome://jfac/content/js/control/XulTree.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/js/control/numeric.js" />
+
+	<!-- Modelo - Inventario -->
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/Linea.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/Marca.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/Producto.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/StockProducto.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/Transferencia.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/TransferenciaItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/Levantamiento.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/LevantamientoItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/inventario/Kardex.js" />
+	
+	<!-- Modelo - Compras -->
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/compras/Proveedor.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/compras/FacturaCompra.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/compras/FacturaCompraItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/compras/ProductoProveedor.js" />
+	
+	<!-- Modelo - Ventas -->
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/PuntoFacturacion.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/Cliente.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/FacturaVenta.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/FacturaVentaItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/AutorizacionSri.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/FacturaSecuencial.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/LoteCaja.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/Proforma.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/ProformaItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/LoteCajaItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/Anticipo.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/Cobro.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/CobroItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/Cuota.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/TipoCredito.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/ventas/CobroCuota.js" />
+
+	<!-- Modelo - Seguridad -->
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/seguridad/Usuario.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/seguridad/Rol.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/seguridad/RolUsuario.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/seguridad/Opcion.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/seguridad/RolOpcion.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/seguridad/Parametro.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/seguridad/Local.js" />
+
+	<!-- Modelo - Contabilidad -->
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/PeriodoContable.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/PeriodoContableLocal.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/Plan.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/Transaccion.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/TransaccionItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/LoteAsientos.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/AsientoContable.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/IngresosGastos.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/Banco.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/CuentaBancaria.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/Cheque.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/EstadoPlan.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/EstadoPlanItem.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/RetencionIva.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/RetencionIR.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/Retencion.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/contabilidad/RetencionItem.js" />
+	
+	<!-- Reporte  -->
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/reporte/Reporte.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/reporte/Tabla.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/reporte/Columna.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/modelo/reporte/Filtro.js" />
+
+	<!-- Dao y DDBB  -->
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/DataBase.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/Dao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/UsuarioDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/RolDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/OpcionDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ParametroDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/LineaDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/MarcaDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ProductoDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ProveedorDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/FacturaCompraDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/PeriodoContableDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/PlanDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ClienteDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/FacturaVentaDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/LocalDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/StockDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/TransaccionDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/LoteAsientosDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/PuntoFacturacionDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/AutorizacionSriDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/FacturaSecuencialDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/LoteCajaDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ProformaDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ContabilidadDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/IngresoGastoDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/AnticipoDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/BancoDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/CuentaBancariaDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/TransferenciaDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ChequeDao.js" />
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/TipoCreditoDao.js"/>
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/EstadoPlanDao.js"/>
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/RetencionDao.js"/>
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ProductoProveedorDao.js"/>
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/CobroDao.js"/>
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/LevantamientoDao.js"/>
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/KardexDao.js"/>
+	<script type="application/x-javascript" src="chrome://jfac/content/dao/ReporteDao.js"/>
+</overlay>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Buscar stock productos">
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="DialogoStockProductos.js" />
+	<vbox flex="1">
+		<hbox id="header_administrar">
+			<image class="imgProducto"></image>
+			<hbox id="header_administrar_label" align="center">
+				<label value="Buscador de  Productos" />
+			</hbox>
+			<hbox id="header_administrar_controles" align="center" pack="end"
+				flex="1">
+				<label value="Buscar por" />				
+				<textbox id="txtTexto" />
+				<button label="Buscar" id="btnBuscar" />				
+			</hbox>
+		</hbox>
+		<spacer height="10" />
+		<vbox flex="1">
+			<hbox flex="1">
+				<tree flex="1" rows="25" height="350" seltype="single" id="treeProductos"
+					enableColumnsDrag="true">
+					<treecols pickertooltiptext="Seleccionar columnas">
+						<treecol label="Código" primary="true" flex="1" />
+						<splitter />
+						<treecol flex="1" label="Nombre" />
+						<splitter />
+						<treecol flex="1" label="Stock" />
+						<splitter />
+						<treecol flex="1" label="Precio Compra" />
+						<splitter />
+						<treecol flex="1" label="Precio Venta" />
+						<splitter />
+						<treecol flex="1" label="Precio Promoción" />
+						<splitter />
+						<treecol flex="1" label="IVA" />
+					</treecols>
+					<treechildren />
+				</tree>
+			</hbox>
+		</vbox>
+		<hbox pack="center" id="boxControles">
+			<button id="btnAceptar" label="Aceptar"></button>
+			<button id="btnCancelar" label="Cancelar"></button>
+		</hbox>
+	</vbox>
+</window>

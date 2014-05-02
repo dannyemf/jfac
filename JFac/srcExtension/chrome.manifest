@@ -1,0 +1,11 @@
+content jfac chrome/jfac/content/
+skin jfac global chrome/jfac/skin/global/
+
+locale jfac es-EC chrome/jfac/locale/es-EC/
+locale jfac en-US chrome/jfac/locale/en-US/
+
+resource rec chrome/jfac/components/
+
+overlay	chrome://browser/content/browser.xul	chrome://jfac/content/vista/main/toolbarID.xul
+overlay chrome:// chrome://jfac/content/imports.xul 
+overlay chrome:// chrome://jfac/content/overlay_header.xul 

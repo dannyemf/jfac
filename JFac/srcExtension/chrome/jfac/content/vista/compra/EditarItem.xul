@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Item" buttons="accept,cancel"
+	buttonlabelcancel="Cancelar" buttonlabelaccept="Aceptar"
+	ondialogaccept="return doAcept();" ondialogcancel="">
+
+	<script type="text/javascript">
+    	<![CDATA[
+    	var p = window.arguments[0];
+    	 
+    	window.onload = function(){
+    		try{    			
+    			document.getElementById('txtCantidad').setAttribute('value', p.cantidad);
+    			document.getElementById('txtCodigo').setAttribute('value', p.producto.codigo);
+    			document.getElementById('txtNombre').setAttribute('value', p.producto.nombre);
+    			document.getElementById('txtCosto').setAttribute('value', p.costo);
+    			document.getElementById('txtDescuento').setAttribute('value', p.descuento);
+    			document.getElementById('txtSubTotal').setAttribute('value', p.subtotal);
+    			var iva = (p.iva * 100.0) / (p.cantidad * p.costo);
+    			iva = isNaN(iva) ? 0 : iva;
+    			
+    			document.getElementById('txtIvaP').setAttribute('value', iva);
+    			document.getElementById('txtIva').setAttribute('value', p.iva);
+    			
+    			document.getElementById('txtCantidad').addEventListener('input',function(){calcular();},true);
+    			document.getElementById('txtCosto').addEventListener('input',function(){calcular();},true);
+    			document.getElementById('txtDescuento').addEventListener('input',function(){calcular();},true);
+    			//document.getElementById('txtIvaP').addEventListener('input',function(){calcular();},true);
+    		}catch(e){
+    			alert(e);
+    		}
+    	};
+    	
+    	function calcular(){
+    		try{
+    			var cantidad = document.getElementById('txtCantidad').value;
+    			var costo = document.getElementById('txtCosto').value;
+    			var descuento = document.getElementById('txtDescuento').value;
+    			var ivaP = document.getElementById('txtIvaP').value;
+    			
+	    		if(isNaN(cantidad) || cantidad <= 0) cantidad = 1;
+	    		if(isNaN(costo) || costo < 0) costo = 0;
+	    		if(isNaN(descuento) || descuento < 0) descuento = 0;
+	    		if(isNaN(ivaP) || ivaP < 0) ivaP = 0;	    			    		
+	    		
+	    		var iva = (cantidad * costo) * ivaP / 100.0;
+	    		
+	    		document.getElementById('txtCantidad').value = cantidad;
+    			document.getElementById('txtCosto').value = costo;
+    			document.getElementById('txtDescuento').value = descuento;
+    			document.getElementById('txtIva').value = iva;
+    			document.getElementById('txtSubTotal').value = cantidad * costo + iva - descuento;
+    		}catch(e){
+    			alert(e);
+    		}
+    	}
+    	
+    	function doAcept(){
+    		try{
+    			var cantidad = document.getElementById('txtCantidad').value;
+    			var costo = document.getElementById('txtCosto').value;
+    			var descuento = document.getElementById('txtDescuento').value;
+    			var iva = document.getElementById('txtIva').value;
+    			
+	    		if(isNaN(cantidad) || cantidad <= 0) cantidad = 1;
+	    		if(isNaN(costo) || costo < 0) costo = 0;
+	    		if(isNaN(descuento) || descuento < 0) descuento = 0;
+	    		if(isNaN(iva) || iva < 0) iva = 0;
+	    		
+	    		cantidad = cantidad * 1;
+	    		costo = costo * 1;
+	    		descuento = descuento * 1;
+	    		iva = iva * 1;
+	    		
+	    		p.cantidad = cantidad;
+	    		p.costo = costo;
+	    		p.descuento = descuento;
+	    		p.iva = iva;
+	    		p.subtotal = cantidad * costo + iva - descuento;
+	    		
+	    		if(p.subtotal >= 0){
+	    			return true;
+	    		}else{
+	    			alert("Verifique las cantidades ingresadaas. El subtotal debe ser mayor a cero (0)");	    			
+	    		}
+    		}catch(e){    		
+    			alert(e);	
+    		}
+    		return false;
+    	};
+    	]]>
+	</script>
+
+	<hbox>
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Codigo" />
+					<textbox id="txtCodigo" disabled="true" />
+				</row>
+				<row>
+					<label value="Nombre" />
+					<textbox id="txtNombre" disabled="true" />
+				</row>
+				<row>
+					<label value="Cantidad" />
+					<textbox id="txtCantidad" />
+				</row>
+				<row>
+					<label value="Costo" />
+					<textbox id="txtCosto" />
+				</row>
+				<row>
+					<label value="Descuento" />
+					<textbox id="txtDescuento" />
+				</row>
+				<row>
+					<label value="Iva %" />
+					<hbox>
+						<textbox id="txtIvaP" disabled="true"/>
+						<textbox id="txtIva" disabled="true"/>
+					</hbox>
+				</row>
+				<row>
+					<label value="Sub Total" />
+					<textbox id="txtSubTotal" disabled="true"/>
+				</row>
+			</rows>
+		</grid>
+	</hbox>
+</dialog>

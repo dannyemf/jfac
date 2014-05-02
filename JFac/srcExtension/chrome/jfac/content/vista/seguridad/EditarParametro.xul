@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Parámetro">
+	<hbox id="header_editar" image="imgParametro" title="Editar Parámetro" />
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="EditarParametro.js" />
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid>
+				<columns>
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="CÓDIGO" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtCodigo" required="true" width="250"/>												
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtCodigo"></validation>						
+					</row>
+					<row>
+						<label value="Tipo"/>
+						<spacer/>
+						<menulist id="cmbTipo">
+							<menupopup>
+								<menuitem value="TIPO_SISTEMA" label="Sistema"/>
+								<menuitem value="TIPO_PROVEEDOR" label="Proveedor"/>
+								<menuitem value="TIPO_AGENTE_RETENCION" label="Agente de Retención"/>
+							</menupopup>
+						</menulist>
+					</row>
+					<row>
+						<label value="VALOR" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtValor" tipo="cedula" flex="1" required="true" />												
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtValor"></validation>
+					</row>
+					<row>
+						<label value="DESCRIPCIÓN" />
+						<label value="(*)" class="reglas" />
+						<textbox id="txtDescripcion" required="true" multiline="true" rows="8"/>						
+					</row>
+					<row>
+						<spacer/>
+						<spacer/>
+						<validation for="txtDescripcion"></validation>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

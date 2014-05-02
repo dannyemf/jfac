@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<RDF:Description about="urn:mozilla:install-manifest">
+		<em:aboutURL>chrome://jfac/content/vista/main/about.xul</em:aboutURL>
+		<em:creator>Jhoanna</em:creator>
+		<em:description>ERP (Facturacion, Inventario, Contabilidad) Para&#13;
+			empreseas</em:description>
+		<em:homepageURL/>
+		<em:iconURL>chrome://jfac/skin/logo32.png</em:iconURL>
+		<em:id>{840e6f97-b824-4b9f-b9d0-ecb600d125dc}</em:id>
+		<em:name>jfac</em:name>
+		<em:version>0.1.0</em:version>
+		<em:updateURL/>
+		<em:type>2</em:type>
+		<em:targetApplication>
+			<RDF:Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:maxVersion>4.6.*</em:maxVersion>
+				<em:minVersion>3.0</em:minVersion>
+			</RDF:Description>
+		</em:targetApplication>
+		<em:optionsURL>chrome://jfac/content/vista/main/OpcionesBase.xul</em:optionsURL>
+		<em:updateKey/>
+		<em:hidden/>
+		<em:developer>Jhoanna</em:developer>
+	</RDF:Description>
+</RDF>

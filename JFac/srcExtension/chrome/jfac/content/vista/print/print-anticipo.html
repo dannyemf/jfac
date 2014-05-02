@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Anticipo</title>
+<script type="text/javascript" src="../../js/jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../../js/util/Fecha.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	try {
+		var model = window.parent.model;
+		var pro = model.anticipo;
+		
+		$("#numero").text(pro.id);			
+		$("#cliNom").text(pro.cliente ? pro.cliente.getNombreCompleto() : "---");
+		$("#cliCed").text(pro.cliente ? pro.cliente.cedula : "---");
+		$("#cliDir").text(pro.cliente ? pro.cliente.direccion : "---");
+		$("#cliTel").text(pro.cliente ? pro.cliente.telefono : "---");
+
+		$("#empresa").text(model.empresa);
+		$("#direccionMatriz").text(model.direccionMatriz);
+		$("#propietario").text(model.propietario);
+		$("#direccion").text(model.direccion);
+		$("#ruc").text(model.ruc);
+		$("#telefono").text(model.telefono);
+		$("#local").text(model.local);
+
+		$("#descripcion").text(pro.descripcion);
+		$("#fecha").text(pro.fecha.toString('dd-MM-yyyy'));
+		$("#formaPago").text(pro.formaPago);
+		$("#monto").text(pro.monto);
+
+		var ap = '';
+		
+		if(pro.formaPago != pro.FORMA_PAGO_EFECTIVO){
+			ap += '<tr><td><font face="Calibri"><b>FECHA DE EMISIÓN:</b></font></td><td><font face="Calibri"><label>'+ pro.fechaEmision.toString('dd-MM-yyyy') +'</label></font></td></tr>';
+			ap += '<tr><td><font face="Calibri"><b>FECHA DE VENCIMIENTO:</b></font></td><td><font face="Calibri"><label>'+ pro.fechaVencimiento.toString('dd-MM-yyyy') +'</label></font></td></tr>';
+			ap += '<tr><td><font face="Calibri"><b>BANCO:</b></font></td><td><font face="Calibri"><label>'+ pro.banco.nombre +'</label></font></td></tr>';
+			if(pro.formaPago == pro.FORMA_PAGO_DEPOSITO){
+				ap += '<tr><td><font face="Calibri"><b>CUENTA EMPRESA:</b></font></td><td><font face="Calibri"><label>'+ pro.cuenta.numero + '</label><label>' + (pro.cuenta.id > 0 ? ' - ' + pro.cuenta.tipo : '') + '</label></font></td></tr>';
+			}
+			ap += '<tr><td><font face="Calibri"><b>CUENTA CLIENTE:</b></font></td><td><font face="Calibri"><label>'+ pro.numeroCuenta +'</label></font></td></tr>';
+			ap += '<tr><td><font face="Calibri"><b>NÚMERO DE REFERENCIA:</b></font></td><td><font face="Calibri"><label>'+ pro.numeroReferencia +'</label></font></td></tr>';
+		}		
+		$('#valores').append(ap);	
+	} catch (ex) {
+		alert("Print: " + ex);
+	}
+});
+</script>
+</head>
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0"
+	marginwidth="0" marginheight="0">
+	<div align="center">
+		<div style="width: 800px">
+			<div style="border: solid 1px green; -moz-border-radius: 10px">
+				<table  style="width: 100%">
+					<tbody>
+						<tr>
+							<td colspan="5" class="auto-style3" align="center"><label><font face="Calibri" size="4"><b>COMPROBANTE DE ANTICIPO</b></font></label></td>
+						</tr>									
+						<tr>
+							<td width="30%" rowspan="9" colspan="2">
+								<p align="center">
+									<font face="Calibri">
+										<img border="0" src="logo.png">
+									</font>
+									<b>
+										<label id="propietario"></label>
+										<br/>
+										<br/>
+										<font face="Calibri" size="2">
+											<b>Dirección:</b>
+										</font>
+									</b>
+									<label id="direccion" style="font-family: Calibri; font-size: 10pt"></label>
+									<br/>
+									<font face="Calibri" size="2"><b>Teléfono:</b></font>
+									<font face="Calibri" size="2">
+										<label id="telefono" style="font: Calibri"></label>
+										<br/>
+										<label id="localidad">Loja - Ecuador</label>
+									</font>
+								</p>								
+							</td>
+							<td width="536">
+								<table align="center" width="555">
+									<tbody>
+										<tr>
+											<td width="2%"></td>
+											<td width="7%"><font face="Calibri" size="2"><b>Ruc:</b></font></td>
+											<td width="50%">
+												<font face="Calibri" size="2">
+													<label id="ruc"></label>
+												</font>
+											</td>
+											<td width="16%"><font face="Calibri" size="2"><b>Fecha:</b></font></td>
+											<td>
+												<font face="Calibri" size="2">
+													<label id="fecha" style="font: Calibri"></label>
+												</font>
+											</td>						
+										</tr>
+										<tr>
+											<td>									
+											</td>
+											<td colspan="4">
+												<div style="border-top: 1px solid green"></div>
+											</td>
+										</tr>			
+										<tr>							
+											<td width="2%">&nbsp;</td>
+											<td width="10%"><font face="Calibri" size="2"><b>
+											Nombre:</b></font></td>
+											<td colspan="3">
+												<font face="Calibri" size="2">
+													<label id="cliNom" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%">&nbsp;</td>							
+											<td width="10%"><font face="Calibri" size="2"><b>
+											Cédula:</b></font></td>
+											<td width="58%" colspan="3">
+												<font face="Calibri" size="2">
+													<label id="cliCed" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%">&nbsp;</td>
+											<td width="10%"><font face="Calibri" size="2"><b>
+											Dirección:</b></font></td>
+											<td width="58%" colspan="3">
+												<font face="Calibri" size="2">
+													<label id="cliDir" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%">&nbsp;</td>
+											<td width="10%"><font face="Calibri" size="2"><b>
+											Teléfono:</b></font></td>
+											<td width="58%" colspan="3">
+												<font face="Calibri" size="2">
+													<label id="cliTel" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>			
+									</tbody>
+								</table>	
+							</td>
+						</tr>																			
+					</tbody>
+				</table>
+								
+				</div>				
+				<br/>
+					
+				<table id="valores" border="1" style="border-style: solid; border-width: 1px; width: 100%; border-collapse:collapse;" cellspacing="0" cellpadding="3">					
+					<tr>
+						<td width="183"><b><font face="Calibri">FORMA DE PAGO:</font></b></td>
+						<td>
+							<font face="Calibri">
+								<label id="formaPago" style="font: Calibri"></label>
+							</font>
+						</td>
+					</tr>
+					<tr>
+						<td width="183"><b><font face="Calibri">MONTO:</font></b></td>
+						<td>
+							<font face="Calibri">
+								<label id="monto" style="font: Calibri"></label>
+							</font>
+						</td>
+					</tr>
+					<tr>
+						<td width="183"><b><font face="Calibri">DESCRIPCIÓN:</font></b></td>
+						<td>
+							<font face="Calibri">
+								<label id="descripcion" style="font: Calibri"></label>
+							</font>
+						</td>
+					</tr>					
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

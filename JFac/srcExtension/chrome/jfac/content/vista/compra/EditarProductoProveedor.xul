@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Producto - Proveedor">
+	
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgProductoProveedor" title="Editar Producto - Proveedor" />
+	
+	<script type="application/x-javascript" src="EditarProductoProveedor.js" />
+	
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos" flex="1">
+			<grid flex="1">
+				<columns>
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="PROVEEDOR" />
+						<menulist id="cmbProveedor" min="1" width="250" >
+							<menupopup />
+						</menulist>
+					</row>
+					<row>
+						<label value="PRODUCTO" />
+						<hbox class="boxSeleccion">
+							<textbox id="txtProducto" required="true" disabled="true" width="230"/>
+							<button id="btnSel" style="margin:0px; padding: 0" class="itemSelect"/>
+						</hbox>
+					</row>
+					<row>
+						<label value="RETENCIÓN IR" />
+						<menulist id="cmbRetencionIR" min="1" width="250" >
+							<menupopup />
+						</menulist>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

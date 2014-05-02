@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Item" buttons="accept,cancel"
+	buttonlabelcancel="Cancelar" buttonlabelaccept="Aceptar"
+	ondialogaccept="return doAcept();" ondialogcancel="">
+
+	<script type="text/javascript">
+    	<![CDATA[
+    	var p = window.arguments[0];
+    	 
+    	window.onload = function(){
+    		try{
+    			document.getElementById('txtCantidad').setAttribute('value', p.cantidad);
+    			document.getElementById('txtCodigo').setAttribute('value', p.producto.codigo);
+    			document.getElementById('txtNombre').setAttribute('value', p.producto.nombre);
+    			document.getElementById('cmbPrecio').value = p.tipoPrecio;
+    			document.getElementById('txtPrecio').value = p.valorUnitario;
+    			document.getElementById('txtSubTotal').value = p.valorTotal;
+    			
+    			document.getElementById('cmbPrecio').addEventListener('select',function(){    				
+    				try{
+	    				p.tipoPrecio = this.value;
+	    				switch(p.tipoPrecio){
+			    			case 'venta': p.valorUnitario = p.producto.precioVenta; break;
+			    			case 'promocion': p.valorUnitario = p.producto.precioPromocion; break;
+			    			case 'mayorista': p.valorUnitario = p.producto.precioMayorista; break;
+			    			case 'compra': p.valorUnitario = p.producto.precioCompra; break;
+			    			default:  p.valorUnitario = p.producto.precioVenta; break;
+		    			}
+		    			
+		    			p.subtotal = (p.valorUnitario * p.cantidad );
+		    			
+		    			document.getElementById('txtPrecio').value = p.valorUnitario;
+		    			document.getElementById('txtSubTotal').value = p.valorTotal;
+	    			}catch(e){
+    					alert("cmbPrecio.select(): " + e);
+    				}  
+    			},false);
+    			    			    			
+    			document.getElementById('txtCantidad').addEventListener('change', function(){
+    				try{
+    					var c = this.value * 1;
+    				
+	    				if(isNaN(c)) c = 1;    				    				
+	    				if(c <= 0) c = 1;    				
+	    				this.value = c;
+	    				p.cantidad = c;
+	    				
+	    				p.valorTotal = (p.valorUnitario * p.cantidad );
+	    				
+	    				document.getElementById('txtSubTotal').value = p.valorTotal;
+    				}catch(e){
+    					alert("txtCantidad.change(): " + e);
+    				}   				
+    			},false);
+    			
+    		}catch(e){
+    			alert(e);
+    		}
+    	};
+    	
+    	
+    	function doAcept(){
+    		try{
+    			var c = document.getElementById('txtCantidad').value;
+	    		if(isNaN(c) || c <= 0){
+	    			c = 1;
+	    		}
+	    		p.cantidad = c;
+	    		
+	    		return true;
+    		}catch(e){
+    			alert(e);
+    			return false;
+    		}
+    	};
+    	]]>
+	</script>
+
+	<hbox>
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Codigo" />
+					<textbox id="txtCodigo" disabled="true" />
+				</row>
+				<row>
+					<label value="Nombre" />
+					<textbox id="txtNombre" disabled="true" />
+				</row>
+				
+				<row>
+					<label value="Tipo Precio" />
+					<menulist id="cmbPrecio">
+						<menupopup>
+							<menuitem label="Venta" value="venta"/>
+							<menuitem label="Promoción" value="promocion"/>
+							<menuitem label="Mayorista" value="mayorista"/>
+							<menuitem label="Compra" value="compra"/>
+						</menupopup>
+					</menulist>
+				</row>
+				<row>
+					<label value="Precio" />
+					<textbox id="txtPrecio"  disabled="true"  style="text-align: right"/>
+				</row>
+				
+				<row>
+					<label value="Cantidad" />
+					<textbox id="txtCantidad"  style="text-align: right"/>
+				</row>
+											
+				<row>
+					<label value="Total" />
+					<textbox id="txtSubTotal"  disabled="true" style="text-align: right"/>
+				</row>
+							
+			</rows>
+		</grid>
+	</hbox>
+</dialog>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Pagar Venta">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgPuntoFacturacion" title="Pagar Venta" />
+	<script type="application/x-javascript" src="PagarVenta.js" />
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+				
+					<row>
+						<label value="TOTAL" />
+						<textbox id="txtTotal" readonly="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="TOTAL ANTICIPOS" />
+						<textbox id="txtTotalAnticipos" readonly="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="USAR ANTICIPOS?" />
+						<hbox>
+							<checkbox id="chkAnticipo"/>
+							<textbox id="txtAnticipo" text="double"/>
+						</hbox>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="DEVOLVER SOBRANTE?" />
+						<hbox>
+							<checkbox id="chkDevolcerSobrante"/>
+							<textbox id="txtSobrante" text="double" readonly="true"/>
+						</hbox>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="Recibe"/>
+						<textbox id="txtRecibe" text="double"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="Cambio"/>
+						<textbox id="txtCambio" text="double"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+				</rows>
+			</grid>
+		</hbox>
+
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Facturar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

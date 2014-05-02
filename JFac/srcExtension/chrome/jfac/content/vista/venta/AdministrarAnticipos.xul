@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<vbox id="general_imports" />
+	<script type="application/x-javascript" src="AdministrarAnticipos.js" />
+	<vbox flex="1">
+
+		<hbox id="header_administrar">
+			<image class="imgAnticipo"></image>
+			<hbox id="header_administrar_label" align="center" flex="1">
+				<label value="Administrar Anticipos" />
+			</hbox>
+			
+			<hbox  pack="end">
+				<groupbox>
+					<caption></caption>
+					<grid>
+						<columns>	
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<label value="Estado"/>
+							</row>
+							<row>
+								<menulist id="cmbEstado">
+									<menupopup>
+										<menuitem value="Todos" label="Todos" selected="true"/>
+										<menuitem value="Pendiente" label="Pendiente"/>
+										<menuitem value="Devuelto" label="Devuelto"/>
+										<menuitem value="Anulado" label="Anulado"/>
+										<menuitem value="Finalizado" label="Finalizado"/>
+									</menupopup>
+								</menulist>				
+							</row>
+						</rows>
+					</grid>
+				</groupbox>				
+			</hbox>
+			
+			<hbox pack="end">
+				<pupupCliente id="popupCliente" rowDireccion="false" rowTelefono="false" rowMensaje="false" mensajeRuc="--Todos--"></pupupCliente>
+			</hbox>
+			
+			<hbox id="header_administrar_controles" align="center" pack="end">				
+				<button label="Buscar" id="btnBuscar" />
+				<button label="Nuevo" id="btnNuevo" />
+				<button label="Editar" id="btnEditar" />
+				<button label=" Devolver" id="btnDevolver" />
+				<button label=" Anular" id="btnAnular" />
+			</hbox>
+		</hbox>
+
+		<vbox flex="1">
+			<hbox flex="1">
+				<tree flex="1" rows="25" height="350" seltype="single" id="tree"
+					enableColumnsDrag="true">
+					<treecols pickertooltiptext="Seleccionar columnas">
+						<treecol label="Cliente" primary="true" flex="1" />
+						<splitter />
+						<treecol label="Fecha" flex="1" />
+						<splitter />
+						<treecol label="Estado" flex="1" />
+						<splitter />
+						<treecol label="Forma Pago" flex="1" />
+						<splitter />
+						<treecol label="Monto" flex="1" />
+						<splitter />
+						<treecol label="Saldo" flex="1" />						
+					</treecols>
+					<treechildren />
+				</tree>
+			</hbox>
+		</vbox>
+	</vbox>
+</window>

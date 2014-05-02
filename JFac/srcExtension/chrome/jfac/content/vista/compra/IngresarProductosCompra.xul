@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" width="900" height="700" title="Ingresar Productos">
+	
+	<vbox id="general_imports" />	
+	<script type="application/x-javascript" src="IngresarProductosCompra.js" />
+
+	<hbox id="header_editar" image="imgCompras" title="Ingresar Productos Factura de Compra" />
+
+	<hbox flex="1">
+		<vbox flex="1">			
+			<vbox height="200">
+				<label value="Lista de Productos" />
+				<hbox>
+					<tree rows="20" seltype="single" id="treeProductos"
+						enableColumnsDrag="true" flex="1">
+						<treecols pickertooltiptext="Seleccionar columnas">
+							<treecol label="Código" primary="true" flex="1" />
+							<splitter />
+							<treecol flex="1" label="Nombre" />
+							<splitter />
+							<treecol flex="1" label="Precio Compra" />
+							<splitter />
+							<treecol flex="1" label="Precio Venta" />
+							<splitter />
+							<treecol flex="1" label="Precio Promoción" />
+							<splitter />
+							<treecol flex="1" label="IVA" />
+						</treecols>
+						<treechildren />
+					</tree>
+				</hbox>
+			</vbox>
+			<vbox style="margin-top: 10px;">				
+				<vbox>
+					<grid>
+						<columns>
+							<column />
+							<column />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<label value="Buscar"/>								
+								<hbox style="-moz-border-radius: 5px !important; border: 1px solid">
+									<textbox id="txtBuscar" width="200" style="border: none" align="center"/>																	
+									<image id="btnBuscar"></image>
+								</hbox>
+								<spacer/>								
+							</row>
+							<row>
+								<label value="Cantidad" />
+								<textbox id="txtCantidad" text="double" />
+								<spacer/>
+							</row>
+							<row>
+								<label value="Costo" />
+								<textbox id="txtCosto" text="double" />
+								<spacer/>
+							</row>
+							<row>
+								<label value="Descuento" />
+								<textbox id="txtDescuento" text="double" />
+								<spacer/>
+							</row>
+							<row>
+								<label value="Iva" />
+								<hbox>
+									<textbox id="txtIvaP"  width="40" value="0" disabled="true"/>
+									<label value="%"/>
+									<textbox id="txtIva" text="double" disabled="true"/>
+								</hbox>
+								<spacer/>
+							</row>							
+							<row>
+								<label value="Subtotal" />
+								<textbox id="txtSubtotal" disabled="true" text="double" />
+								<spacer/>
+							</row>
+						</rows>
+					</grid>
+				</vbox>				
+			</vbox>
+		</vbox>
+		
+	</hbox>	
+	
+	<hbox pack="center" class="boxControles">
+		<button id="btnGuardar" label="Agregar" />
+		<button id="btnCerrar" label="Cerrar" />				
+	</hbox>
+</window>

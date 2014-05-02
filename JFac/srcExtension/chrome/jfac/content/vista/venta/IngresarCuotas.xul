@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window 
+xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+xmlns:html="http://www.w3.org/1999/xhtml" title="Ingresar Cuotas"
+>
+	<vbox id="general_imports"/>
+	<hbox id="header_editar" image="imgPuntoFacturacion" title="Ingresar - Cuotas"/>
+	<script type="application/x-javascript" src="IngresarCuotas.js"/>
+	
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+				</columns>
+				<rows>
+					<row>
+						<label value="MONTO"/>
+						<textbox id="txtTotal" readonly="true" text="double" decimalplaces="3" style="font-size: 22px; font-weight: bold"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					<row>
+						<label value="TIPO CRÉDITO"/>
+						<menulist id="cmbTipo">
+							<menupopup>
+								<menuitem value="MENSUAL" label="Mensual"/>
+								<menuitem value="QUINCENAL" label="Quincenal"/>	
+								<menuitem value="SEMANAL" label="Semanala"/>
+								<menuitem value="DIARIO" label="Diario"/>						
+							</menupopup>
+						</menulist>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="INTERES %"/>
+						<textbox id="txtInteres" text="double" decimalplaces="3" min="0" max="100" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="INTERES"/>
+						<textbox id="txtInteresValor" text="double" decimalplaces="3" min="0" max="100" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="MORA %"/>
+						<textbox id="txtMora" text="double" decimalplaces="3" min="0" max="100" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="CUOTAS"/>
+						<textbox id="txtCuotas" text="double" decimalplaces="3" min="1" max="100" disabled="true"/>
+						<spacer/>
+						<spacer/>
+					</row>
+					
+					<row>
+						<label value="TOTAL"/>
+						<textbox id="txtTotalPagar" readonly="true" text="double" decimalplaces="3" style="font-size: 22px; font-weight: bold"/>
+						<spacer/>
+						<spacer/>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+		<spacer height="10"/>
+		<hbox pack="end" style="border: 1px solid green" align="center">					
+			<button id="btnGenerar">Generar</button>
+		</hbox>
+		<spacer height="10"/>
+		<hbox>
+			<tree id="treeItems" flex="1" rows="10" height="200">
+				<treecols>
+					<treecol flex="1" label="N°"/>
+					
+					<splitter/>					
+					<treecol label="Fecha" text="fecha" flex="1"/>
+					
+					<splitter/>
+					<treecol label="Monto" flex="1" text="double"/>
+					
+					<splitter/>
+					<treecol label="Interes" flex="1" text="double"/>
+					
+					<splitter/>
+					<treecol label="Monto Pagar" flex="1" text="double"/>						
+											
+				</treecols>
+				<treechildren>
+				</treechildren>
+			</tree>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Aceptar" id="btnAceptar"/>
+			<button label="Cancelar" id="btnCancelar"/>
+		</hbox>
+	</vbox>
+</window>

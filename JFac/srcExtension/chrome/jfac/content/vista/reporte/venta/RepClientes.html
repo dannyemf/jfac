@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Reporte</title>
+	<script type="text/javascript" src="../../../js/jquery/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../../js/util/Fecha.js"></script>
+	
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		try {					
+			var model = window.parent.model;
+
+			$("#empresa").text(model.empresa);
+			$("#propietario").text(model.propietario);
+			$("#ruc").text(model.ruc);
+			$("#direccion").text(model.direccion);
+			$("#telefono").text(model.telefono);
+								
+			for ( var i = 0; i < model.lista.length; i++) {
+				var it = model.lista[i];
+				var el = '<tr>';
+				el += '<td>' + (i+1) +'</td>';
+				el += '<td>' + (it.cedula) +'</td>';
+				el += '<td>' + (it.nombres) + ' ' + (it.apellidos) + '</td>';
+				el += '<td>' + (it.direccion) +'</td>';
+				el += '<td>' + (it.telefono) +'</td>';
+				el += '</tr>';
+	
+				$("#detalle").append(el);
+			}		
+		} catch (ex) {
+			alert("Print: " + ex);
+		}
+	});
+	</script>
+</head>
+	<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0"	marginwidth="0" marginheight="0">
+			
+		<div align="center">
+			<div style="width: 800px; height:270px">
+				<div style="border: solid 1px green; -moz-border-radius: 10px">
+				<table  style="width: 100%">
+					<tbody>
+						<tr>
+							<td width="16%" rowspan="5">
+								<font face="Calibri">
+									<img border="0" src="logo.png">
+								</font>
+								<p align="center">
+									<b>
+										<label id="propietario"></label>
+									</b>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div align="center">
+								<table>
+									<tbody>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Ruc:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="ruc"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Dirección:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="direccion" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+										<tr>
+											<td width="2%"></td>
+											<td width="14%"><font face="Calibri"><b>Teléfono:</b></font></td>
+											<td width="60%">
+												<font face="Calibri">
+													<label id="telefono" style="font: Calibri"></label>
+												</font>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								</div>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+				</div>
+				</br>
+				<table width="800">
+					<tbody>				
+						<tr>
+							<td colspan="4">
+								<p align="center">
+								<span style="letter-spacing: 1px; font-weight: 700">
+								<font face="Broadway" color="#FF0000" style="font-size: 28pt; text-decoration: underline">
+								Reporte&nbsp;&nbsp; de&nbsp;&nbsp; Clientes</font></span></td>								
+						</tr>
+					</tbody>
+				</table>
+				
+				<table border="1" style="border-style: solid; border-width: 1px; width: 100%; border-collapse:collapse;" cellspacing="0" cellpadding="3">
+					<col width="50">
+					<col width="100">
+					<col width="500">
+					<col width="100">
+					<col width="100">
+					<thead>
+						<tr>
+							<th bgcolor="#9BBB59">
+								<font face="Calibri" color="#FFFFFF">Nº</font>
+							</th>
+							<th bgcolor="#9BBB59">
+							<font face="Calibri" color="#FFFFFF">Cédula</font></th>
+							<th bgcolor="#9BBB59">
+							<font face="Calibri" color="#FFFFFF">Nombre</font></th>
+							<th bgcolor="#9BBB59">
+							<font face="Calibri" color="#FFFFFF">Dirección</font></th>
+							<th bgcolor="#9BBB59">
+							<font face="Calibri" color="#FFFFFF">Teléfono</font></th>
+						</tr>
+					</thead>
+					<tbody id="detalle" style="font-family: Calibri">						
+					</tbody>
+				</table>								
+			</div>						
+		</div>
+	</body>
+</html>

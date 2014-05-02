@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Proveedor">
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgProveedor" title="Editar Proveedor" />
+	<script type="application/x-javascript" src="EditarProveedor.js" />
+	<vbox flex="1">
+		<hbox pack="center" id="boxDatos">
+			<grid width="460">
+				<columns>
+					<column />
+					<column />
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="CÓDIGO" />
+						<textbox id="txtCodigo" readonly="true" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="IDENTIFICACIÓN" />
+						<menulist id="cmdTipoIdentificacion">
+							<menupopup>
+								<menuitem label="RUC" value="RUC" />
+								<menuitem label="CÉDULA" value="CEDULA" />
+								<menuitem value="PASAPORTE" label="PASAPORTE" />
+							</menupopup>
+						</menulist>
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<spacer />
+						<textbox id="txtIdentificacion" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtIdentificacion"></validation>
+					</row>
+					<row>
+						<label value="RAZÓN" />
+						<textbox id="txtRazonSocial" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtRazonSocial"></validation>
+					</row>
+					<row>
+						<label value="PROVINCIA" />
+						<textbox id="txtProvincia" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtProvincia"></validation>
+					</row>
+					<row>
+						<label value="CIUDAD" />
+						<textbox id="txtCiudad" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtCiudad"></validation>
+					</row>
+					<row>
+						<label value="DIRECCIÓN" />
+						<textbox id="txtDireccion" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtDireccion"></validation>
+					</row>
+					<row>
+						<label value="CONTACTO" />
+						<textbox id="txtContacto" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtContacto"></validation>
+					</row>
+					<row>
+						<label value="TELÉFONO" />
+						<textbox id="txtTelefono" required="true" />
+						<label value="(*)" class="reglas" />
+						<validation for="txtTelefono"></validation>
+					</row>
+					<row>
+						<label value="FAX" />
+						<textbox id="txtFax" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="CELULAR" />
+						<textbox id="txtCelular" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="MAIL" />
+						<textbox id="txtMail" mail="true" />
+						<spacer />
+						<spacer />
+					</row>
+					<row>
+						<label value="TIPO PROV" />
+						<menulist id="cmbTipoProveedor" width="250">
+							<menupopup>								
+							</menupopup>
+						</menulist>
+						<spacer />
+						<spacer />
+					</row>					
+				</rows>
+			</grid>
+		</hbox>
+		<hbox pack="center" id="boxControles" style="padding-top:10px;padding-bottom:10px;">
+			<button label="Guardar" id="btnGuardar" />
+			<button label="Cancelar" id="btnCancelar" />
+		</hbox>
+	</vbox>
+</window>

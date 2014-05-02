@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/controles.css" type="text/css"?>
+<?xml-stylesheet href="chrome://jfac/skin/tema.css" type="text/css"?>
+
+<?xul-overlay href="chrome://jfac/content/imports.xul"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" title="Editar Asiento" width="500" height="400">	
+	
+	<vbox id="general_imports" />
+	<hbox id="header_editar" image="imgBanco" title="Editar Asiento Contable" />	
+	<script type="application/x-javascript" src="EditarAsiento.js" />
+
+	<vbox flex="1">
+	
+	<hbox>
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Fecha" />
+					<textbox id="txtFecha" disabled="true" width="250"/>
+					<spacer/>
+					<spacer/>
+				</row>
+				<row>
+					<label value="Descripción" />
+					<textbox id="txtDescripcion" multiline="true" maxlength="100" required="true"/>
+					<label class="reglas" value="(*)"/>
+					<validation for="txtDescripcion"></validation>
+				</row>
+				<row>
+					<label value="Plan" />
+					<hbox class="boxSeleccion">
+						<textbox id="txtPlan" required="true" readonly="true" width="230"/>
+						<button id="btnBuscarPlan" class="itemSelect"></button>
+					</hbox>					
+					<label class="reglas" value="(*)"/>					
+					<validation for="txtPlan"></validation>
+				</row>
+				<row>
+					<label value="Origen" />
+					<textbox id="txtOrigen" required="true"/>
+					<label class="reglas" value="(*)"/>					
+					<validation for="txtOrigen"></validation>
+				</row>
+				<row>
+					<label value="Documento" />
+					<textbox id="txtDocumento"/>
+					<spacer/>					
+					<spacer/>
+				</row>
+				<row>
+					<label value="Monto" />
+					<textbox id="txtMonto" required="true" text="double"/>
+					<label class="reglas" value="(*)"/>					
+					<validation for="txtMonto"></validation>
+				</row>				
+				<row>
+					<label value="Tipo" />
+					<menulist id="cmbTipo">
+						<menupopup>
+							<menuitem value="Debe" label="Debe"/>
+							<menuitem value="Haber" label="Haber"/>
+						</menupopup>
+					</menulist>
+					<spacer/>
+					<spacer/>
+				</row>		
+			</rows>
+		</grid>
+	</hbox>
+	
+	<hbox pack="center" id="boxControles">
+		<button label="Guardar" id="btnGuardar" />
+		<button label="Cancelar" id="btnCancelar" />
+	</hbox>
+	
+	</vbox>
+</window>
