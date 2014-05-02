@@ -18,7 +18,8 @@ Este es un módulo php que sirve de puente entre la extensión JFac y la Base de
 
 3. JFacWeb
 ====
-Este es un módulo php que usa el framework codeigniter 2.1.4 en donde se presenta el proyecto al cliente.
+Este es un módulo php que usa el framework CodeIgniter 2.1.4 en donde se presenta el proyecto al cliente.
+- http://ellislab.com/codeigniter
 
 4. JFacRecuros
 ====
