@@ -25,7 +25,7 @@ DataBase.prototype = new Object();
  */
 DataBase.prototype.refreshPrefs = function(){
 	Preferencias.startup();
-	this.url = Preferencias.server + "do.php?CMD=";
+	this.url = Preferencias.server + "server?CMD=";
 	this.urlBase = Preferencias.server + "";
 	this.isMostrarSql = Preferencias.mostrar_sql;
 };
@@ -76,7 +76,7 @@ DataBase.prototype.execute = function( sql, evento, cmd ){
 	
 	try {
 		// Damos Privilegios
-		netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");
+		//netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");
 		
 		// Ejecuta la peticion
 		var phpRequest = new XMLHttpRequest();
@@ -398,7 +398,7 @@ DataBase.prototype.verificarConexion = function(){
 	this.refreshPrefs();
 	try {
 		var pet = this.url+'CONEXION';
-		netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");			
+		//netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");			
 		op.my = this;
 		op.open('GET',  pet, false);		
 		try {op.send(null);} catch (e) {}		
@@ -408,6 +408,8 @@ DataBase.prototype.verificarConexion = function(){
 		}else{
 			logInfo(this.url + "	--->	No existe conexión");
 		}
-	} catch(e) {}
+	} catch(e) {
+		alert('Server: ' + e);
+	}
 	return this.status;
 };
